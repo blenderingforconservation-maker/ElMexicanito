@@ -70,47 +70,21 @@ a{color:inherit}
 
 .wrap{width:min(1120px,100%);margin:auto;padding-inline:22px}
 
-/* ================= PORTADA AMPLIA ================= */
+/* ================= PORTADA ================= */
 .hero{
   position:relative;
   isolation:isolate;
   overflow:hidden;
-  min-height:clamp(290px,42vw,440px);
-  display:flex;
-  flex-direction:column;
-  background:
-    radial-gradient(ellipse at 92% 0%,rgba(217,155,38,.2) 0,transparent 52%),
-    linear-gradient(155deg,var(--chile-oscuro) 0%,var(--chile) 76%,#7D2016 100%);
   color:var(--tortilla);
+  background:
+    radial-gradient(ellipse at 88% 8%,rgba(217,155,38,.24) 0,transparent 50%),
+    linear-gradient(160deg,var(--chile-oscuro) 0%,var(--chile) 82%);
   border-bottom:3px double rgba(245,213,154,.42);
 }
-.hero > .wrap{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding-bottom:38px;
-}
-.hero-photo{
-  position:absolute;
-  inset:0;
-  z-index:-3;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 52%;
-}
-.hero.has-photo::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-2;
-  background:linear-gradient(
-    180deg,
-    rgba(71,36,25,.52) 0%,
-    rgba(107,27,18,.22) 48%,
-    rgba(71,36,25,.84) 100%
-  );
+/* papel picado */
+.papel{
+  height:36px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='34' viewBox='0 0 84 34'%3E%3Cpath d='M0 2H84' stroke='%23F5D59A' stroke-width='1.2'/%3E%3Cpath d='M4 2h32v22l-4 5-4-5-4 5-4-5-4 5-4-5-4 5-4-5z' fill='%23D99B26'/%3E%3Cpath d='M46 2h32v22l-4 5-4-5-4 5-4-5-4 5-4-5-4 5-4-5z' fill='%232A6F44'/%3E%3Ccircle cx='20' cy='11' r='3' fill='%236B1B12'/%3E%3Ccircle cx='62' cy='11' r='3' fill='%23FFFDF8'/%3E%3C/svg%3E") repeat-x 0 0/84px 34px;
 }
 .top-bar{
   display:flex;
@@ -149,7 +123,7 @@ a{color:inherit}
   width:8px;
   height:8px;
   border-radius:50%;
-  background:#D99A8E;
+  background:#B8473B;
   position:relative;
   z-index:2;
 }
@@ -164,7 +138,7 @@ a{color:inherit}
 .status-pill.is-open .status-ring{background:rgba(72,222,132,.44);animation:soft-pulse 2.5s cubic-bezier(.22,.61,.36,1) infinite}
 .status-pill.is-closing .status-dot{background:var(--live-amber);box-shadow:0 0 8px rgba(245,188,71,.6)}
 .status-pill.is-closing .status-ring{background:rgba(245,188,71,.44);animation:soft-pulse 2s cubic-bezier(.22,.61,.36,1) infinite}
-.status-pill.is-closed .status-dot{opacity:.82}
+.status-pill.is-closed .status-dot{background:#B8473B;box-shadow:0 0 0 2px rgba(255,253,248,.16)}
 .status-pill.is-closed .status-ring{display:none}
 
 @keyframes soft-pulse{
@@ -188,16 +162,57 @@ a{color:inherit}
 }
 .language:hover{background:rgba(255,253,248,.18);border-color:rgba(255,253,248,.62)}
 
-.hero-content{padding-top:48px}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(28px,5vw,64px);
+  align-items:center;
+  padding-block:22px 56px;
+}
 .hero h1{
   margin:0;
   font-family:var(--font-serif);
-  font-size:clamp(46px,8.2vw,90px);
+  font-size:clamp(42px,6.4vw,80px);
   font-weight:500;
   letter-spacing:-.035em;
-  line-height:.98;
-  text-shadow:0 6px 26px rgba(71,36,25,.48);
+  line-height:.96;
+  text-wrap:balance;
+  text-shadow:0 6px 26px rgba(71,36,25,.4);
 }
+.hero-lede{margin:18px 0 0;max-width:36ch;font-size:16px;line-height:1.55;color:rgba(255,253,248,.9)}
+.hero-facts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:22px}
+.hero-rating{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:99px;
+  border:1px solid rgba(245,213,154,.5);background:rgba(71,36,25,.35);
+  color:var(--tortilla);font-size:13px;font-weight:600;
+}
+.hero-star{color:var(--maiz);font-size:15px}
+.hero-hours{font-size:13px;font-weight:600;color:#F5D59A}
+
+/* Foto completa, sin recortes: se ve entera y el fondo es su propio desenfoque */
+.hero-figure{margin:0;position:relative}
+.hero-frame{
+  position:relative;overflow:hidden;isolation:isolate;
+  border:6px solid var(--tortilla);border-radius:var(--r-md);
+  background:var(--chile-oscuro);transform:rotate(1.2deg);
+  box-shadow:0 0 0 1px rgba(245,213,154,.5),0 28px 54px rgba(30,8,4,.46);
+}
+.hero-frame::before{
+  content:"";position:absolute;inset:-24px;z-index:-1;
+  background:var(--foto) center/cover;filter:blur(22px) saturate(1.15);
+}
+.hero-img{display:block;width:100%;height:auto;max-height:min(70vh,600px);object-fit:contain}
+.sello{
+  position:absolute;left:-12px;bottom:-18px;z-index:3;width:92px;height:92px;
+  border-radius:50%;display:grid;place-content:center;text-align:center;
+  background:var(--maiz);color:var(--chile-oscuro);
+  border:2px dashed var(--chile-oscuro);outline:3px solid var(--maiz);
+  transform:rotate(-9deg);font-family:var(--font-serif);line-height:1;
+}
+.sello b{font-size:27px;font-weight:600}
+.sello small{font-size:12px;font-weight:500}
+.hero:not(.has-photo) .hero-grid{grid-template-columns:1fr}
+.hero:not(.has-photo) .hero-figure{display:none}
 
 /* ================= NAV ESCRITORIO ================= */
 .desktop-nav{
@@ -553,6 +568,18 @@ h2{
   text-align:center;color:var(--canela);
 }
 
+/* Control de cantidad en fichas: siempre visible, sin botón Agregar */
+.stepper output{display:inline-block}
+.stepper output.pop{animation:badge-pop .34s cubic-bezier(.22,1.25,.36,1)}
+.card .stepper-row{padding:6px 6px 6px 13px}
+.card:not(.in-cart) .stepper-row{background:var(--masa);border-color:var(--borde-fuerte)}
+.card .stepper-label{font-size:12.5px}
+.card .stepper{gap:8px}
+.card .stepper button{width:40px;height:40px;font-size:22px}
+.card .stepper button:last-child{background:var(--chile);border-color:var(--chile);color:var(--tortilla)}
+.card .stepper button:last-child:hover:not(:disabled){background:var(--chile-hover);border-color:var(--chile-hover)}
+.card .stepper output{min-width:30px;font-size:17px}
+
 /* ================= CAPA DE LIMONES VOLANDO ================= */
 .lime-layer{position:fixed;inset:0;pointer-events:none;z-index:120;overflow:hidden}
 .flying-lime{
@@ -591,8 +618,8 @@ h2{
 
 /* Reseñas Google Maps */
 .reviews-header{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:16px;flex-wrap:wrap;padding-bottom:18px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  gap:16px;padding-bottom:20px;
   border-bottom:1px solid var(--borde);margin-bottom:18px;
 }
 .gmaps-brand{
@@ -606,8 +633,10 @@ h2{
   border-radius:var(--r-md);background:var(--masa);border:1px solid var(--borde);
 }
 .score-number{font-family:var(--font-serif);font-size:32px;font-weight:600;line-height:1;color:var(--chile-oscuro)}
-.score-stars{display:flex;gap:2px;color:var(--maiz);font-size:15px;line-height:1;margin-bottom:3px}
-.score-count{font-size:11.5px;color:var(--canela);font-weight:600}
+.score-stars{position:relative;display:inline-block;font-size:15px;letter-spacing:2px;line-height:1;margin-bottom:3px;color:var(--borde-fuerte)}
+.score-stars::before,.score-stars i::before{content:"★★★★★"}
+.score-stars i{position:absolute;inset:0;overflow:hidden;white-space:nowrap;color:var(--maiz);width:var(--fill,94%)}
+.score-count{display:block;font-size:11.5px;color:var(--canela);font-weight:600}
 
 .reviews-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:22px}
 .review-item{
@@ -618,32 +647,22 @@ h2{
 .review-author{display:flex;align-items:center;gap:9px;min-width:0}
 .review-avatar{
   width:32px;height:32px;border-radius:50%;background:var(--chile-suave);
-  color:var(--chile-oscuro);font-size:12.5px;font-weight:800;
+  color:var(--chile-oscuro);font-size:12.5px;font-weight:800;overflow:hidden;
   display:grid;place-items:center;flex-shrink:0;
 }
+.review-avatar img{width:100%;height:100%;object-fit:cover}
 .review-author strong{display:block;font-size:13.5px;color:var(--cacao);line-height:1.2}
 .review-author small{display:block;font-size:11px;color:var(--canela)}
 .review-stars{color:var(--maiz);font-size:13px;letter-spacing:1px;flex-shrink:0}
-.review-text{margin:0;font-size:13.5px;line-height:1.5;color:var(--cacao)}
-.review-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
-.review-tag{
-  font-size:11px;font-weight:700;color:var(--canela);background:var(--tortilla);
-  border:1px solid var(--borde);padding:2px 8px;border-radius:99px;
+.review-text{
+  margin:0;font-size:13.5px;line-height:1.5;color:var(--cacao);
+  display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;
 }
 
-.rate-box{padding:20px 18px;border-radius:var(--r-md);background:var(--maiz-suave);border:1px solid #E9D3A3}
+.rate-box{display:grid;gap:14px;padding:20px 18px;border-radius:var(--r-md);background:var(--maiz-suave);border:1px solid #E9D3A3}
 .rate-box h4{font-family:var(--font-serif);font-size:20px;font-weight:500;margin:0 0 4px;color:var(--chile-oscuro)}
-.star-picker{display:flex;align-items:center;gap:6px;margin:14px 0 8px;flex-wrap:wrap}
-.star-btn{
-  width:42px;height:42px;border:1px solid #E3C993;border-radius:var(--r-sm);
-  background:var(--tortilla);color:#D2C0A8;font-size:23px;line-height:1;
-  display:grid;place-items:center;
-  transition:transform .14s ease,color .14s ease,border-color .14s ease,background .14s ease;
-}
-.star-btn:hover{transform:translateY(-2px);border-color:var(--maiz)}
-.star-btn.lit{color:var(--maiz);border-color:var(--maiz);background:#FFFDF7}
-.star-caption{font-size:13px;font-weight:700;color:var(--chile-oscuro);margin-left:6px}
-.rate-chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+.rate-cta{background:var(--maiz);color:var(--cacao)}
+.rate-all{justify-self:center;font-size:13px;font-weight:700;color:var(--chile-oscuro)}
 
 /* ================= FLOTANTES Y NAV MÓVIL ================= */
 .wa-float,.scroll-top{
@@ -806,8 +825,11 @@ dialog::backdrop{background:rgba(71,36,25,.64);backdrop-filter:blur(3px)}
 .photo-top{display:flex;justify-content:flex-end;margin-bottom:10px}
 #largePhoto{display:block;max-width:100%;max-height:76vh;object-fit:contain;margin:auto;border-radius:var(--r-md)}
 
+/* ================= PIE DE PÁGINA ================= */
 footer{padding:26px 20px 44px;border-top:1px solid var(--borde);text-align:center;color:var(--canela);font-size:12.5px;line-height:1.75}
 footer strong{color:var(--chile-oscuro)}
+footer strong,footer .footer-studio{display:block}
+footer .footer-studio{margin-top:2px;font-size:12px}
 .toast{
   position:fixed;z-index:95;bottom:88px;left:50%;transform:translateX(-50%);
   width:max-content;max-width:calc(100% - 28px);padding:10px 16px;
@@ -819,11 +841,13 @@ footer strong{color:var(--chile-oscuro)}
 @media(max-width:960px){
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:30px;padding-block:14px 38px}
+  .hero-figure{order:-1}
+  .hero-lede{max-width:none}
+}
 @media(max-width:760px){
   .wrap{padding-inline:16px}
-  .hero{min-height:275px}
-  .hero > .wrap{padding-bottom:26px}
-  .hero h1{font-size:clamp(42px,11.5vw,66px)}
   .desktop-nav{display:none}
   .menu-bar{top:0;padding:10px 0}
   .search-wrap{width:100%}
@@ -881,7 +905,7 @@ footer strong{color:var(--chile-oscuro)}
 <div id="limeLayer" class="lime-layer" aria-hidden="true"></div>
 
 <header class="hero" id="hero">
-  <img id="heroPhoto" class="hero-photo" alt="Tacos de El Mexicanito" hidden>
+  <div class="papel" aria-hidden="true"></div>
   <div class="wrap">
     <div class="top-bar">
       <div id="statusPill" class="status-pill" aria-live="polite">
@@ -893,8 +917,21 @@ footer strong{color:var(--chile-oscuro)}
       </div>
       <button type="button" id="language" class="language">EN</button>
     </div>
-    <div class="hero-content">
-      <h1>Taquería El Mexicanito</h1>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Taquería<br>El Mexicanito</h1>
+        <p class="hero-lede" data-t="heroLede"></p>
+        <div class="hero-facts">
+          <button type="button" id="heroRating" class="hero-rating">
+            <span class="hero-star" aria-hidden="true">★</span><b id="heroRatingNum"></b><span id="heroRatingCount"></span>
+          </button>
+          <span class="hero-hours" data-t="heroHours"></span>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <div id="heroFrame" class="hero-frame"><img id="heroPhoto" class="hero-img" alt="Tacos de El Mexicanito" hidden></div>
+        <figcaption class="sello"><b>$18</b><small data-t="stampUnit">el taco</small></figcaption>
+      </figure>
     </div>
   </div>
 </header>
@@ -975,21 +1012,21 @@ footer strong{color:var(--chile-oscuro)}
       </div>
 
       <!-- RESEÑAS DE GOOGLE MAPS -->
-      <section class="reviews-card" aria-labelledby="reviewsTitle">
+      <section class="reviews-card" id="reviews" aria-labelledby="reviewsTitle">
         <div class="reviews-header">
           <div>
             <span class="gmaps-brand">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               <span data-t="reviewsKicker">Reseñas en Google Maps</span>
             </span>
-            <h3 id="reviewsTitle" data-t="reviewsTitle">Lo que dicen nuestros clientes</h3>
+            <h3 id="reviewsTitle" data-t="reviewsTitle">¿Qué opinan nuestros clientes?</h3>
           </div>
 
-          <div class="score-box" aria-label="Calificación promedio 4.7 de 5">
+          <div class="score-box">
             <span id="avgRating" class="score-number">4.7</span>
             <div>
-              <div class="score-stars" aria-hidden="true">★★★★★</div>
-              <span id="reviewCountLabel" class="score-count">226 reseñas</span>
+              <div class="score-stars" id="scoreStars" aria-hidden="true"><i></i></div>
+              <span id="reviewCountLabel" class="score-count"></span>
             </div>
           </div>
         </div>
@@ -997,36 +1034,14 @@ footer strong{color:var(--chile-oscuro)}
         <div id="reviewsGrid" class="reviews-grid"></div>
 
         <div class="rate-box">
-          <h4 data-t="rateTitle">Califica en Google Maps</h4>
-          <p class="hint" data-t="rateIntro">Escribe tu opinión aquí; al pulsar publicar la copiamos lista para pegarla y abrir directamente nuestra ficha de Google Maps.</p>
-
-          <form id="reviewForm" novalidate>
-            <div class="star-picker" role="radiogroup" aria-label="Calificación en estrellas">
-              <button type="button" class="star-btn lit" data-star="1" aria-label="1 estrella">★</button>
-              <button type="button" class="star-btn lit" data-star="2" aria-label="2 estrellas">★</button>
-              <button type="button" class="star-btn lit" data-star="3" aria-label="3 estrellas">★</button>
-              <button type="button" class="star-btn lit" data-star="4" aria-label="4 estrellas">★</button>
-              <button type="button" class="star-btn lit" data-star="5" aria-label="5 estrellas">★</button>
-              <span id="starCaption" class="star-caption">¡Excelentes tacos!</span>
-            </div>
-
-            <div class="rate-chips">
-              <button type="button" class="chip" data-rtag="sabor" data-t="rtFlavor">Gran sabor</button>
-              <button type="button" class="chip" data-rtag="salsas" data-t="rtSalsas">Salsas ricas</button>
-              <button type="button" class="chip" data-rtag="precio" data-t="rtPrice">Buen precio</button>
-              <button type="button" class="chip" data-rtag="servicio" data-t="rtService">Buen servicio</button>
-            </div>
-
-            <label class="field">
-              <span data-t="reviewCommentLabel">Tu opinión <small data-t="optionalTag">(opcional)</small></span>
-              <textarea id="reviewComment" maxlength="260" rows="2" placeholder="¿Qué tacos te gustaron más?"></textarea>
-            </label>
-
-            <button type="submit" id="submitReviewBtn" class="button full">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span data-t="publishMapsBtn">Publicar en Google Maps</span>
-            </button>
-          </form>
+          <div>
+            <h4 data-t="rateTitle">Califica en Google Maps</h4>
+            <p class="hint" data-t="rateHelp"></p>
+          </div>
+          <a id="rateLink" class="visit-btn rate-cta" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">★</span><span data-t="rateBtn">Calificar en Google Maps</span>
+          </a>
+          <a id="allReviewsLink" class="rate-all" target="_blank" rel="noopener noreferrer" data-t="allReviews">Ver todas las reseñas en Maps</a>
         </div>
       </section>
     </div>
@@ -1034,8 +1049,8 @@ footer strong{color:var(--chile-oscuro)}
 </main>
 
 <footer>
-  <strong>Taquería El Mexicanito</strong><br>
-  <span data-t="footer">Estudio de Soluciones Digitales</span>
+  <strong>Taquería El Mexicanito</strong>
+  <span class="footer-studio">Estudio de Soluciones Digitales 2026</span>
 </footer>
 
 <button type="button" id="scrollTopBtn" class="scroll-top" aria-label="Subir al inicio" hidden>
@@ -1226,8 +1241,10 @@ footer strong{color:var(--chile-oscuro)}
    2) Fotos individuales: súbelas a imagenes/Menu/ con los nombres
       indicados en CARNES y MENU. Mientras no existan se muestra
       el icono abstracto en el espacio reservado de cada ficha.
-   3) googlePlaceId: pega aquí tu Place ID de Google Maps para
-      abrir directo la ventana "Escribir una reseña".
+   3) googlePlaceId: Place ID de Google Maps (calificar y reseñas).
+   4) googleApiKey: llave de Google Cloud con "Places API (New)",
+      restringida a tu dominio. Con ella se cargan en vivo la
+      calificación y las mejores reseñas reales.
    ============================================================ */
 const CONFIG = {
   nombre: "El Mexicanito",
@@ -1238,6 +1255,7 @@ const CONFIG = {
   horarioEn: "Monday to Saturday · 8:00 p.m. to 2:00 a.m. · Sunday closed",
   maps: "https://maps.app.goo.gl/c9U9ZHns9X64SmFF8",
   googlePlaceId: "ChIJP-LAmu2fKoQRMUwb6wlnM-I",
+  googleApiKey: "",
   portada: "imagenes/tacos.jpg",
   portadaFallback: "https://raw.githubusercontent.com/blenderingforconservation-maker/ElMexicanito/main/imagenes/tacos.jpg",
   carpetaFotos: "imagenes/Menu/",
@@ -1333,31 +1351,10 @@ const MENU = [
   }
 ];
 
-const RESENAS_MAPS = [
-  {
-    autor:"Cliente en Google Maps", fecha:"Reseña destacada", fechaEn:"Featured review", estrellas:5,
-    texto:"Excelente sabor y muy bien servidos. El suadero y la costilla nunca fallan.",
-    textoEn:"Excellent flavor and generous portions. Suadero and rib never disappoint.",
-    tags:["Gran sabor","5 estrellas"]
-  },
-  {
-    autor:"Comensal frecuente", fecha:"Google Maps", fechaEn:"Google Maps", estrellas:5,
-    texto:"Las salsas levantan perfecto cualquier taco y el precio de $18 está súper justo.",
-    textoEn:"The salsas pair perfectly with every taco and the $18 price is very fair.",
-    tags:["Salsas ricas","Buen precio"]
-  },
-  {
-    autor:"Visita nocturna", fecha:"Google Maps", fechaEn:"Google Maps", estrellas:5,
-    texto:"Atención rápida incluso en hora pico. Pedir combinados con agua natural de guayaba es obligatorio.",
-    textoEn:"Fast service even at peak hours. Getting combo tacos with fresh guava water is a must.",
-    tags:["Buen servicio","Agua de guayaba"]
-  },
-  {
-    autor:"Opinión verificada", fecha:"Google Maps", fechaEn:"Google Maps", estrellas:5,
-    texto:"De los mejores tacos nocturnos de Tequisquiapan. Llegan bien calientitos a domicilio.",
-    textoEn:"One of the best late-night taco spots in Tequisquiapan. Delivery arrives piping hot.",
-    tags:["Tequisquiapan","Gran sabor"]
-  }
+/* Opcional: pega aquí reseñas REALES de tu ficha (nombre y texto tal cual aparecen).
+   Se usan solo si no hay googleApiKey o si la API falla. Si está vacío, no se muestra ninguna. */
+const RESENAS_FIJAS = [
+  // { autor:"Nombre", fecha:"hace 2 semanas", estrellas:5, texto:"Texto de la reseña…" }
 ];
 
 const TEXT = {
@@ -1371,7 +1368,6 @@ const TEXT = {
     locationLabel:"Ubicación", scheduleLabel:"Horario", phoneLabel:"WhatsApp y teléfono",
     mapsBtn:"Ver en Maps", waBtn:"Enviar WhatsApp", callBtn:"Llamar",
     scheduleNote:"Horarios sujetos a cambios en días festivos. Confirma disponibilidad por WhatsApp.",
-    footer:"Menú digital · San Luis Potosí, S.L.P.",
     orderTitle:"Mi pedido", step1:"1. Tu orden", step2:"2. Envío a domicilio",
     review:"Revisa tus productos antes de continuar.", clearCart:"Vaciar",
     itemsLabel:"Piezas", subtotal:"Subtotal", total:"Total",
@@ -1408,16 +1404,13 @@ const TEXT = {
     copied:"Texto copiado al portapapeles.", cartCleared:"Se vació tu pedido.",
     addedToast:"Agregado al pedido",
     groupTacosMeta:"$18 c/u", groupDrinksMeta:"$25 – $50",
-    reviewsKicker:"Reseñas en Google Maps", reviewsTitle:"Lo que dicen nuestros clientes",
+    reviewsKicker:"Reseñas en Google Maps", reviewsTitle:"¿Qué opinan nuestros clientes?",
     reviewsCountSuffix:"reseñas",
     rateTitle:"Califica en Google Maps",
-    rateIntro:"Escribe tu opinión aquí; al pulsar publicar la copiamos lista para pegarla y abrir directamente nuestra ficha de Google Maps.",
-    rtFlavor:"Gran sabor", rtSalsas:"Salsas ricas", rtPrice:"Buen precio", rtService:"Buen servicio",
-    reviewCommentLabel:"Tu opinión", reviewCommentPlaceholder:"¿Qué tacos te gustaron más?",
-    publishMapsBtn:"Publicar en Google Maps",
-    starLabels:["","Puede mejorar","Regular","Muy bien","¡Muy ricos!","¡Excelentes tacos!"],
-    reviewCopiedOpening:"Opinión copiada. Pégala en Google Maps para publicarla.",
-    reviewOpening:"Abriendo Google Maps para publicar tu calificación…"
+    heroLede:"Elige lo que más se te antoje y pide a domicilio.",
+    heroHours:"Lun a sáb, 8 pm a 2 am", stampUnit:"el taco",
+    rateBtn:"Calificar en Google Maps", allReviews:"Ver todas las reseñas en Maps",
+    rateHelp:"Tu calificación ayuda a que más gente nos encuentre. Se abre directo en nuestra ficha de Google Maps."
   },
   en:{
     menu:"Menu", visit:"Visit us", order:"My order", orderShort:"Order",
@@ -1429,7 +1422,6 @@ const TEXT = {
     locationLabel:"Location", scheduleLabel:"Hours", phoneLabel:"WhatsApp & phone",
     mapsBtn:"View on Maps", waBtn:"Send WhatsApp", callBtn:"Call",
     scheduleNote:"Hours may vary on holidays. Please confirm availability via WhatsApp.",
-    footer:"Digital menu · San Luis Potosí, S.L.P.",
     orderTitle:"My order", step1:"1. Your order", step2:"2. Home delivery",
     review:"Review your items before continuing.", clearCart:"Clear",
     itemsLabel:"Items", subtotal:"Subtotal", total:"Total",
@@ -1466,16 +1458,13 @@ const TEXT = {
     copied:"Text copied to clipboard.", cartCleared:"Order cleared.",
     addedToast:"Added to order",
     groupTacosMeta:"$18 each", groupDrinksMeta:"$25 – $50",
-    reviewsKicker:"Google Maps Reviews", reviewsTitle:"What our guests say",
+    reviewsKicker:"Google Maps Reviews", reviewsTitle:"What do our guests think?",
     reviewsCountSuffix:"reviews",
     rateTitle:"Review us on Google Maps",
-    rateIntro:"Write your review here; tapping publish copies it to your clipboard and opens our Google Maps listing directly.",
-    rtFlavor:"Great flavor", rtSalsas:"Tasty salsas", rtPrice:"Fair prices", rtService:"Great service",
-    reviewCommentLabel:"Your review", reviewCommentPlaceholder:"Which tacos were your favorite?",
-    publishMapsBtn:"Publish on Google Maps",
-    starLabels:["","Could improve","Fair","Good","Very tasty!","Amazing tacos!"],
-    reviewCopiedOpening:"Review copied. Paste it on Google Maps to publish.",
-    reviewOpening:"Opening Google Maps to post your rating…"
+    heroLede:"Pick whatever you crave and order for delivery.",
+    heroHours:"Mon to Sat, 8 pm to 2 am", stampUnit:"each",
+    rateBtn:"Rate us on Google Maps", allReviews:"See all reviews on Maps",
+    rateHelp:"Your rating helps more people find us. It opens straight on our Google Maps listing."
   }
 };
 
@@ -1506,7 +1495,6 @@ const selectedOpt = new Map(MENU.filter(p => p.opciones?.length).map(p => [p.id,
 let lang = "es", activeCategory = "ALL", orderId = "", toastTimer, lastBadgeCount = 0;
 const comboDraft = { meats: [], qty: 1 };
 const orderState = { veggie: "con_todo", extras: new Set(["salsa_verde", "salsa_roja", "limones"]), payment: "efectivo", gpsUrl: "" };
-const reviewDraft = { stars: 5, tags: new Set() };
 
 const t = key => TEXT[lang][key];
 const productTitle = p => lang === "es" ? p.nombre : p.nombreEn;
@@ -1565,16 +1553,16 @@ function spawnLimeBurst(anchorEl) {
     const r = anchorEl.getBoundingClientRect();
     if (r.width || r.height) { x = r.left + r.width * 0.5; y = r.top + r.height * 0.45; }
   }
-  const count = 5;
+  const count = 8;
   for (let i = 0; i < count; i++) {
     const lime = document.createElement("span");
     lime.className = "flying-lime";
     lime.innerHTML = LIME_SLICE_SVG;
-    const spread = (i - 2) * 28 + (Math.random() * 16 - 8);
-    const peakY = -(56 + Math.random() * 42);
+    const spread = (i - 3.5) * 36 + (Math.random() * 20 - 10);
+    const peakY = -(84 + Math.random() * 56);
     const rot0 = Math.random() * 48 - 24;
     const rot1 = rot0 + (spread >= 0 ? 1 : -1) * (85 + Math.random() * 90);
-    const size = Math.round(24 * (0.75 + Math.random() * 0.38));
+    const size = Math.round(32 * (0.78 + Math.random() * 0.42));
 
     lime.style.cssText = `width:${size}px;height:${size}px;left:${x - size / 2}px;top:${y - size / 2}px`;
     layer.append(lime);
@@ -1582,10 +1570,10 @@ function spawnLimeBurst(anchorEl) {
     lime.animate([
       { transform: `translate3d(0,0,0) rotate(${rot0}deg) scale(.35)`, opacity: 0 },
       { transform: `translate3d(${spread * .55}px,${peakY}px,0) rotate(${(rot0 + rot1) * .5}deg) scale(1.06)`, opacity: .95, offset: .42 },
-      { transform: `translate3d(${spread * 1.4}px,${peakY + 42}px,0) rotate(${rot1}deg) scale(.65)`, opacity: 0 }
+      { transform: `translate3d(${spread * 1.4}px,${peakY + 64}px,0) rotate(${rot1}deg) scale(.65)`, opacity: 0 }
     ], {
-      duration: 680 + Math.random() * 200,
-      delay: i * 26,
+      duration: 820 + Math.random() * 260,
+      delay: i * 30,
       easing: "cubic-bezier(.22,.68,.32,1)",
       fill: "forwards"
     }).onfinish = () => lime.remove();
@@ -1618,11 +1606,15 @@ function loadState() {
   } catch {}
 }
 
+/* Hora de San Luis Potosí; la madrugada cuenta como el servicio del día anterior (lun a sáb, cierra 2:00) */
 function updateOpenStatus() {
-  const now = new Date(), day = now.getDay(), hour = now.getHours();
-  const state = (day >= 1 && day <= 6 && hour >= 20) ? "open" : (day !== 1 && hour < 2) ? "closing" : "closed";
-  const pill = $("statusPill");
-  pill.className = "status-pill is-" + state;
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Mexico_City", weekday: "short", hour: "numeric", hourCycle: "h23"
+  }).formatToParts(new Date()).map(x => [x.type, x.value]));
+  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday), hour = +p.hour;
+  const state = (day >= 1 && day <= 6 && hour >= 20) || (day !== 1 && hour < 1) ? "open"
+              : (day !== 1 && hour === 1) ? "closing" : "closed";
+  $("statusPill").className = "status-pill is-" + state;
   $("statusText").textContent = t(state === "open" ? "statusOpen" : state === "closing" ? "statusClosing" : "statusClosed");
 }
 
@@ -1855,23 +1847,14 @@ function buildProductCard(product) {
     actions.append(comboBtn);
   } else {
     const hasOpts = product.tipo === "select" || product.tipo === "sizes";
-    const addBtn = make("button", "add-btn", "+ " + t("addBtn"));
-    addBtn.type = "button";
-    addBtn.onclick = ev => {
-      const optId = hasOpts ? selectedOpt.get(product.id) : null;
-      changeItem(product.id, 1, optId ? [optId] : [], ev.currentTarget);
-      showToast(t("addedToast") + ": " + (optId ? optionLabel(product, optId, product.tipo === "sizes") : productTitle(product)));
-    };
-
     const stepRow = make("div", "stepper-row");
-    stepRow.hidden = true;
     const stepper = buildStepper(
       btn => changeItem(product.id, -1, hasOpts ? [selectedOpt.get(product.id)] : [], btn),
       btn => changeItem(product.id, 1, hasOpts ? [selectedOpt.get(product.id)] : [], btn),
       0, productTitle(product)
     );
     stepRow.append(make("span", "stepper-label", t("quantity")), stepper);
-    actions.append(addBtn, stepRow);
+    actions.append(stepRow);
   }
 
   card.append(photo, body, actions);
@@ -1945,11 +1928,8 @@ function syncCardsAndBadges() {
     if (product.tipo !== "combo2") {
       const hasOpts = product.tipo === "select" || product.tipo === "sizes";
       const qty = cart.get(cartKeyFor(id, hasOpts ? [activeOpt] : []))?.quantity || 0;
-      const addBtn = card.querySelector(".add-btn"), stepRow = card.querySelector(".stepper-row");
-      addBtn.hidden = qty > 0;
-      stepRow.hidden = qty === 0;
-      if (hasOpts) stepRow.querySelector(".stepper-label").textContent = optionLabel(product, activeOpt, true);
-      stepRow.querySelector("output").textContent = qty;
+      const stepRow = card.querySelector(".stepper-row"), out = stepRow.querySelector("output");
+      if (out.textContent !== String(qty)) { out.textContent = qty; out.classList.remove("pop"); void out.offsetWidth; out.classList.add("pop"); }
       const [minus, plus] = stepRow.querySelectorAll("button");
       minus.disabled = qty === 0;
       plus.disabled = qty >= 99;
@@ -1976,70 +1956,61 @@ $("search").addEventListener("input", renderProducts);
 $("clearSearch").onclick = () => { $("search").value = ""; renderProducts(); $("search").focus(); };
 
 /* ================= RESEÑAS GOOGLE MAPS ================= */
+let liveReviews = null;
+
+async function loadGoogleReviews() {
+  if (!CONFIG.googleApiKey || !CONFIG.googlePlaceId) return null;
+  try {
+    const res = await fetch("https://places.googleapis.com/v1/places/" + encodeURIComponent(CONFIG.googlePlaceId.trim()), {
+      headers: { "X-Goog-Api-Key": CONFIG.googleApiKey, "X-Goog-FieldMask": "rating,userRatingCount,reviews" }
+    });
+    if (!res.ok) return null;
+    const d = await res.json();
+    const body = r => (r.originalText || r.text)?.text || "";
+    const reviews = (d.reviews || [])
+      .filter(r => r.rating >= 4 && body(r).length > 30)
+      .sort((a, b) => b.rating - a.rating || body(b).length - body(a).length)
+      .slice(0, 4)
+      .map(r => ({
+        autor: r.authorAttribution?.displayName || "",
+        foto: r.authorAttribution?.photoUri || "",
+        fecha: r.relativePublishTimeDescription || "",
+        estrellas: r.rating,
+        texto: body(r)
+      }));
+    return { rating: d.rating, total: d.userRatingCount, reviews };
+  } catch { return null; }
+}
+
 function renderReviews() {
+  const list = liveReviews?.reviews?.length ? liveReviews.reviews : RESENAS_FIJAS;
+  const rating = liveReviews?.rating ?? CONFIG.ratingGoogle;
+  const total = liveReviews?.total ?? CONFIG.totalResenasGoogle;
+  const countText = total + " " + t("reviewsCountSuffix");
+  $("avgRating").textContent = $("heroRatingNum").textContent = rating.toFixed(1);
+  $("reviewCountLabel").textContent = $("heroRatingCount").textContent = countText;
+  $("scoreStars").style.setProperty("--fill", (rating / 5 * 100) + "%");
+
   const grid = $("reviewsGrid");
   grid.replaceChildren();
-  $("avgRating").textContent = CONFIG.ratingGoogle.toFixed(1);
-  $("reviewCountLabel").textContent = CONFIG.totalResenasGoogle + " " + t("reviewsCountSuffix");
-
-  RESENAS_MAPS.forEach(item => {
+  grid.hidden = !list.length;
+  list.forEach(item => {
     const card = make("article", "review-item");
-    const top = make("div", "review-top");
-    const author = make("div", "review-author");
-    const meta = make("div");
-    meta.append(make("strong", "", item.autor), make("small", "", lang === "es" ? item.fecha : item.fechaEn));
-    author.append(make("span", "review-avatar", item.autor.charAt(0).toUpperCase()), meta);
+    const top = make("div", "review-top"), author = make("div", "review-author"), meta = make("div");
+    meta.append(make("strong", "", item.autor), make("small", "", item.fecha || ""));
+    const avatar = make("span", "review-avatar");
+    if (item.foto) {
+      const img = make("img");
+      img.src = item.foto; img.alt = ""; img.referrerPolicy = "no-referrer";
+      img.onerror = () => { img.remove(); avatar.textContent = item.autor.charAt(0).toUpperCase(); };
+      avatar.append(img);
+    } else avatar.textContent = item.autor.charAt(0).toUpperCase();
+    author.append(avatar, meta);
     top.append(author, make("span", "review-stars", "★".repeat(item.estrellas)));
-    card.append(top, make("p", "review-text", lang === "es" ? item.texto : item.textoEn));
-    if (item.tags?.length) {
-      const tagsWrap = make("div", "review-tags");
-      item.tags.forEach(tg => tagsWrap.append(make("span", "review-tag", tg)));
-      card.append(tagsWrap);
-    }
+    card.append(top, make("p", "review-text", item.texto));
     grid.append(card);
   });
 }
-
-function updateStarPicker(hoverVal = null) {
-  const val = hoverVal ?? reviewDraft.stars;
-  document.querySelectorAll(".star-btn").forEach(btn => {
-    const s = Number(btn.dataset.star);
-    btn.classList.toggle("lit", s <= val);
-    btn.setAttribute("aria-checked", String(s === reviewDraft.stars));
-  });
-  $("starCaption").textContent = t("starLabels")[val] || "";
-}
-
-document.querySelectorAll(".star-btn").forEach(btn => {
-  const s = Number(btn.dataset.star);
-  btn.onmouseenter = () => updateStarPicker(s);
-  btn.onmouseleave = () => updateStarPicker();
-  btn.onclick = () => { reviewDraft.stars = s; updateStarPicker(); };
-});
-
-document.querySelectorAll("[data-rtag]").forEach(btn => {
-  btn.onclick = () => {
-    const key = btn.dataset.rtag;
-    reviewDraft.tags.has(key) ? reviewDraft.tags.delete(key) : reviewDraft.tags.add(key);
-    btn.classList.toggle("active", reviewDraft.tags.has(key));
-  };
-});
-
-$("reviewForm").addEventListener("submit", async ev => {
-  ev.preventDefault();
-  const comment = $("reviewComment").value.trim();
-  const tagMap = { sabor: t("rtFlavor"), salsas: t("rtSalsas"), precio: t("rtPrice"), servicio: t("rtService") };
-  const tagsText = [...reviewDraft.tags].map(k => tagMap[k]).filter(Boolean).join(", ");
-  const draftText = [comment, tagsText].filter(Boolean).join(" — ");
-
-  spawnLimeBurst($("submitReviewBtn"));
-  const copied = draftText ? await copyToClipboard(draftText) : false;
-  showToast(copied ? t("reviewCopiedOpening") : t("reviewOpening"));
-
-  const url = mapsReviewUrl();
-  const win = window.open(url, "_blank", "noopener,noreferrer");
-  if (!win) window.location.assign(url);
-});
 
 /* ================= CARRITO & CHECKOUT WHATSAPP ================= */
 function renderCart() {
@@ -2234,12 +2205,10 @@ function applyLanguage() {
   $("refs").placeholder = t("refsPlaceholder");
   $("cashAmount").placeholder = t("changePlaceholder");
   $("notes").placeholder = t("notesPlaceholder");
-  $("reviewComment").placeholder = t("reviewCommentPlaceholder");
   $("gpsBtnText").textContent = orderState.gpsUrl ? t("gpsAttached") : t("gpsAdd");
   $("floatingWA").href = $("visitWA").href = waUrl(t("hello"));
 
   updateOpenStatus();
-  updateStarPicker();
   renderCategories();
   renderProducts();
   renderReviews();
@@ -2257,11 +2226,19 @@ $("visitAddress").textContent = CONFIG.direccion;
 $("visitPhone").textContent = CONFIG.telefonoVisible;
 $("visitMapsBtn").href = CONFIG.maps;
 $("visitCall").href = "tel:" + CONFIG.whatsapp.replace(/^52/, "");
+$("rateLink").href = mapsReviewUrl();
+$("allReviewsLink").href = CONFIG.maps;
+$("heroRating").onclick = () => { showView("visit", true, false); $("reviews").scrollIntoView({ behavior: "smooth" }); };
+loadGoogleReviews().then(d => { liveReviews = d; renderReviews(); });
 
 /* Portada desde imagenes/tacos.jpg con respaldo a GitHub Raw */
 const heroPhoto = $("heroPhoto");
 let triedFallback = false;
-heroPhoto.onload = () => { heroPhoto.hidden = false; $("hero").classList.add("has-photo"); };
+heroPhoto.onload = () => {
+  heroPhoto.hidden = false;
+  $("hero").classList.add("has-photo");
+  $("heroFrame").style.setProperty("--foto", `url("${heroPhoto.currentSrc || heroPhoto.src}")`);
+};
 heroPhoto.onerror = () => {
   if (!triedFallback && CONFIG.portadaFallback) { triedFallback = true; heroPhoto.src = CONFIG.portadaFallback; return; }
   heroPhoto.hidden = true; $("hero").classList.remove("has-photo");
