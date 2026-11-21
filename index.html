@@ -3,44 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6A1B16">
-<meta name="description" content="Menú digital y pedidos por WhatsApp de El Mexicanito en San Luis Potosí.">
-<title>El Mexicanito | Menú y Pedidos</title>
+<meta name="theme-color" content="#681A14">
+<meta name="description" content="Menú digital y pedidos a domicilio por WhatsApp de El Mexicanito en San Luis Potosí.">
+<title>El Mexicanito | Menú</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F7F2EA;
-  --surface:#FFFFFF;
-  --surface-soft:#F3ECE1;
-  --ink:#1F1613;
-  --muted:#705E54;
-  --red:#A1281E;
-  --red-hover:#841E16;
-  --red-dark:#541410;
-  --red-tint:#FDF0EE;
-  --gold:#E6B344;
-  --gold-soft:#FEF5DE;
-  --green:#248A4D;
-  --green-live:#34D873;
-  --amber-live:#F5B73B;
-  --wa:#25D366;
-  --wa-dark:#188646;
-  --line:#E8DDD0;
-  --radius:20px;
-  --shadow-sm:0 4px 14px rgba(31,22,19,.05);
-  --shadow-md:0 12px 30px rgba(31,22,19,.09);
-  --shadow-lg:0 24px 60px rgba(24,12,9,.22);
+  --paper:#F4EDE2;
+  --paper-deep:#EAE0D0;
+  --card:#FCF8F1;
+  --ink:#211814;
+  --muted:#6D5C50;
+  --red:#872219;
+  --red-hover:#6D1912;
+  --red-dark:#4C120D;
+  --red-soft:#F6E7E2;
+  --ochre:#C98D2B;
+  --ochre-soft:#F7ECD6;
+  --green:#2B6843;
+  --live-green:#43D97E;
+  --live-amber:#F2B84B;
+  --wa:#1E8E4E;
+  --wa-hover:#17753F;
+  --line:#DFD3C2;
+  --line-strong:#CBBBA6;
+  --r-sm:8px;
+  --r-md:13px;
+  --r-lg:18px;
+  --shadow-card:0 2px 10px rgba(33,24,20,.045);
+  --shadow-lift:0 10px 26px rgba(33,24,20,.09);
+  --shadow-sheet:0 24px 60px rgba(26,14,10,.26);
+  --font-serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-sans:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{background:var(--bg);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{background:var(--paper);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   margin:0;
   color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg);
-  line-height:1.45;
+  font-family:var(--font-sans);
+  background:var(--paper);
+  line-height:1.48;
   -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+/* Grano sutil de papel artesanal */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:90;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 body.locked{overflow:hidden}
 button,input,textarea,select{font:inherit;color:inherit}
@@ -48,9 +67,9 @@ button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 button:disabled{opacity:.42;cursor:not-allowed}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
 
-.wrap{width:min(1160px,100%);margin:auto;padding-inline:20px}
+.wrap{width:min(1140px,100%);margin:auto;padding-inline:22px}
 
 /* ================= HERO ================= */
 .hero{
@@ -58,23 +77,11 @@ a{color:inherit}
   isolation:isolate;
   overflow:hidden;
   background:
-    radial-gradient(circle at 86% 18%,rgba(230,179,68,.22) 0,transparent 38%),
-    radial-gradient(circle at 10% 95%,rgba(196,68,45,.34) 0,transparent 44%),
-    linear-gradient(135deg,var(--red-dark) 0%,var(--red) 66%,#7A1E18 100%);
-  color:#FFFDF9;
-  padding-bottom:36px;
-}
-.hero::before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  right:-150px;
-  top:-40px;
-  width:460px;
-  height:460px;
-  border:1px solid rgba(244,214,139,.22);
-  border-radius:50%;
-  box-shadow:0 0 0 46px rgba(244,214,139,.035),0 0 0 92px rgba(244,214,139,.025);
+    radial-gradient(ellipse at 92% 0%,rgba(201,141,43,.16) 0,transparent 52%),
+    linear-gradient(155deg,var(--red-dark) 0%,var(--red) 78%,#6E1B14 100%);
+  color:#FBF5EC;
+  padding-bottom:38px;
+  border-bottom:3px double rgba(235,204,150,.35);
 }
 .hero-photo{
   position:absolute;
@@ -84,225 +91,211 @@ a{color:inherit}
   height:100%;
   object-fit:cover;
 }
-.hero.has-photo::before{display:none}
 .hero.has-photo::after{
   content:"";
   position:absolute;
   inset:0;
   z-index:-2;
-  background:linear-gradient(110deg,rgba(42,13,11,.9) 0%,rgba(88,22,18,.72) 58%,rgba(36,11,9,.62) 100%);
+  background:linear-gradient(105deg,rgba(44,12,9,.92) 0%,rgba(84,21,16,.76) 55%,rgba(38,11,8,.66) 100%);
 }
 .top-bar{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:12px;
-  padding-block:18px 8px;
+  padding-block:18px 10px;
 }
 
-/* Indicador dinámico con pulso tenue */
+/* Indicador de actividad dinámico */
 .status-pill{
   display:inline-flex;
   align-items:center;
   gap:9px;
-  padding:8px 14px;
+  padding:7px 13px;
   border-radius:99px;
-  background:rgba(255,255,255,.11);
-  border:1px solid rgba(255,255,255,.22);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  background:rgba(28,10,8,.34);
+  border:1px solid rgba(251,245,236,.18);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
   font-size:12px;
-  font-weight:700;
-  letter-spacing:.25px;
-  color:#FFF9F0;
+  font-weight:600;
+  letter-spacing:.2px;
+  color:#FAF2E6;
 }
 .status-beacon{
   position:relative;
-  width:10px;
-  height:10px;
+  width:9px;
+  height:9px;
   flex-shrink:0;
   display:inline-flex;
   align-items:center;
   justify-content:center;
 }
 .status-dot{
-  width:9px;
-  height:9px;
+  width:8px;
+  height:8px;
   border-radius:50%;
-  background:#E27972;
+  background:#C98D87;
   position:relative;
   z-index:2;
 }
 .status-ring{
   position:absolute;
-  inset:-4px;
+  inset:-5px;
   border-radius:50%;
   opacity:0;
   pointer-events:none;
 }
 .status-pill.is-open .status-dot{
-  background:var(--green-live);
-  box-shadow:0 0 10px rgba(52,216,115,.65);
+  background:var(--live-green);
+  box-shadow:0 0 8px rgba(67,217,126,.55);
 }
 .status-pill.is-open .status-ring{
-  background:rgba(52,216,115,.48);
-  animation:beacon-pulse 2.3s cubic-bezier(.22,.61,.36,1) infinite;
+  background:rgba(67,217,126,.42);
+  animation:soft-pulse 2.5s cubic-bezier(.22,.61,.36,1) infinite;
 }
 .status-pill.is-closing .status-dot{
-  background:var(--amber-live);
-  box-shadow:0 0 10px rgba(245,183,59,.65);
+  background:var(--live-amber);
+  box-shadow:0 0 8px rgba(242,184,75,.55);
 }
 .status-pill.is-closing .status-ring{
-  background:rgba(245,183,59,.48);
-  animation:beacon-pulse 1.9s cubic-bezier(.22,.61,.36,1) infinite;
+  background:rgba(242,184,75,.42);
+  animation:soft-pulse 2s cubic-bezier(.22,.61,.36,1) infinite;
 }
 .status-pill.is-closed .status-dot{
-  background:#D97B74;
-  opacity:.85;
+  background:#C8847D;
+  opacity:.78;
 }
 .status-pill.is-closed .status-ring{display:none}
 
-@keyframes beacon-pulse{
-  0%{transform:scale(.65);opacity:.65}
-  70%{transform:scale(2.15);opacity:0}
-  100%{transform:scale(2.15);opacity:0}
+@keyframes soft-pulse{
+  0%{transform:scale(.55);opacity:.6}
+  75%{transform:scale(2.1);opacity:0}
+  100%{transform:scale(2.1);opacity:0}
 }
 
 .language{
-  border:1px solid rgba(255,255,255,.35);
-  color:#fff;
-  background:rgba(255,255,255,.08);
-  padding:8px 14px;
-  border-radius:99px;
-  min-height:38px;
+  border:1px solid rgba(251,245,236,.32);
+  color:#FBF5EC;
+  background:transparent;
+  padding:7px 13px;
+  border-radius:var(--r-sm);
+  min-height:36px;
   font-size:12px;
-  font-weight:700;
-  transition:background .18s ease;
+  font-weight:600;
+  letter-spacing:.3px;
+  transition:background .18s ease,border-color .18s ease;
 }
-.language:hover{background:rgba(255,255,255,.18)}
+.language:hover{background:rgba(255,255,255,.12);border-color:rgba(251,245,236,.55)}
 
-.hero-content{padding:16px 0 4px}
+.hero-content{padding:18px 0 4px}
 .hero h1{
   margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(44px,8.2vw,86px);
-  font-weight:400;
-  letter-spacing:-2px;
-  line-height:1.02;
+  font-family:var(--font-serif);
+  font-size:clamp(44px,8vw,86px);
+  font-weight:500;
+  letter-spacing:-.035em;
+  line-height:.98;
 }
 
-/* ================= STICKY NAV (DELIVERY BAR) ================= */
+/* ================= NAV ESCRITORIO ================= */
 .desktop-nav{
   position:sticky;
   top:0;
   z-index:30;
-  background:rgba(247,242,234,.92);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+  background:rgba(244,237,226,.94);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
 }
 .nav-inner{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  min-height:66px;
+  min-height:62px;
   gap:18px;
 }
 .brand{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:22px;
+  font-family:var(--font-serif);
+  font-size:21px;
+  font-weight:500;
   color:var(--red-dark);
-  letter-spacing:-.4px;
+  letter-spacing:-.02em;
 }
-.nav-buttons{display:flex;gap:8px;align-items:center}
-.nav-buttons button,.mobile-nav button{
+.nav-buttons{display:flex;gap:6px;align-items:center}
+.nav-buttons button{
   border:0;
-  color:var(--ink);
+  color:var(--muted);
   background:transparent;
-  padding:10px 17px;
-  border-radius:99px;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.4px;
-  transition:all .16s ease;
+  padding:9px 15px;
+  border-radius:var(--r-sm);
+  font-size:13px;
+  font-weight:700;
+  transition:color .16s ease,background .16s ease;
 }
-.nav-buttons button:hover{background:rgba(161,40,30,.08)}
-.nav-buttons .active{background:var(--red);color:#fff}
+.nav-buttons button:hover{color:var(--ink);background:rgba(33,24,20,.05)}
+.nav-buttons .active{color:var(--red-dark);background:var(--paper-deep)}
 .nav-order-btn{
+  margin-left:6px;
   background:var(--ink)!important;
-  color:#fff!important;
+  color:#FCF8F1!important;
   display:inline-flex;
   align-items:center;
-  gap:7px;
-  box-shadow:0 4px 12px rgba(31,22,19,.16);
+  gap:8px;
+  padding:9px 16px!important;
 }
-.nav-order-btn:hover{background:#352520!important}
+.nav-order-btn:hover{background:#342620!important}
 .count{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   min-width:20px;
   height:20px;
-  background:var(--gold);
-  color:var(--red-dark);
+  background:var(--ochre);
+  color:#1E130D;
   padding:0 6px;
   border-radius:99px;
   font-size:11px;
-  font-weight:900;
+  font-weight:800;
 }
 
-/* ================= MAIN & DELIVERY TOOLBAR ================= */
-main{padding-block:26px 96px;scroll-margin-top:78px}
-.section-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:14px;
-  flex-wrap:wrap;
-  margin-bottom:18px;
-}
+/* ================= MAIN & BARRA DE FILTROS ================= */
+main{padding-block:28px 104px;scroll-margin-top:76px}
+.section-head{margin-bottom:18px}
 .kicker{
   display:inline-block;
   font-size:11px;
-  font-weight:800;
-  letter-spacing:1.5px;
+  font-weight:700;
+  letter-spacing:1.4px;
   text-transform:uppercase;
-  color:var(--green);
+  color:var(--red);
 }
 h2{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(30px,4.5vw,42px);
-  font-weight:400;
+  font-family:var(--font-serif);
+  font-size:clamp(30px,4.2vw,42px);
+  font-weight:500;
+  letter-spacing:-.025em;
   margin:4px 0 6px;
   line-height:1.1;
 }
 .lead{
   color:var(--muted);
   font-size:14.5px;
-  max-width:620px;
+  max-width:580px;
   margin:0;
 }
-.currency-pill{
-  font-size:12px;
-  font-weight:700;
-  color:var(--muted);
-  background:var(--surface);
-  border:1px solid var(--line);
-  padding:8px 14px;
-  border-radius:99px;
-  box-shadow:var(--shadow-sm);
-}
 
-.delivery-toolbar{
+.menu-bar{
   position:sticky;
-  top:66px;
+  top:62px;
   z-index:22;
-  background:rgba(247,242,234,.94);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  padding:12px 0 14px;
-  margin-bottom:12px;
-  border-bottom:1px solid rgba(232,221,208,.75);
+  background:rgba(244,237,226,.95);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  padding:12px 0;
+  margin-bottom:20px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -311,134 +304,135 @@ h2{
 }
 .filters{
   display:flex;
-  gap:8px;
+  gap:6px;
   overflow-x:auto;
   scrollbar-width:none;
-  padding-bottom:2px;
 }
 .filters::-webkit-scrollbar{display:none}
 .filter{
   flex-shrink:0;
-  min-height:40px;
-  border:1px solid var(--line);
-  border-radius:99px;
-  background:var(--surface);
-  color:var(--ink);
-  padding:8px 17px;
-  font-size:13px;
+  min-height:38px;
+  border:1px solid transparent;
+  border-radius:var(--r-sm);
+  background:transparent;
+  color:var(--muted);
+  padding:7px 14px;
+  font-size:13.5px;
   font-weight:700;
-  box-shadow:var(--shadow-sm);
   transition:all .16s ease;
 }
-.filter:hover{border-color:var(--red)}
+.filter:hover{color:var(--ink);background:rgba(33,24,20,.05)}
 .filter.active{
   background:var(--ink);
-  color:#fff;
+  color:#FCF8F1;
   border-color:var(--ink);
 }
 .search-wrap{
   position:relative;
-  width:min(100%,320px);
+  width:min(100%,300px);
   flex-shrink:0;
 }
 .search-icon{
   position:absolute;
-  left:13px;
+  left:12px;
   top:50%;
   transform:translateY(-50%);
-  width:17px;
-  height:17px;
+  width:16px;
+  height:16px;
   stroke:var(--muted);
   fill:none;
-  stroke-width:2.1;
+  stroke-width:2;
   pointer-events:none;
 }
 .search{
   width:100%;
-  padding:10px 36px 10px 39px;
-  min-height:42px;
-  border:1px solid var(--line);
-  border-radius:99px;
-  background:var(--surface);
+  padding:9px 34px 9px 36px;
+  min-height:40px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);
+  background:var(--card);
   color:var(--ink);
   font-size:14px;
-  box-shadow:var(--shadow-sm);
-  transition:border-color .18s ease,box-shadow .18s ease;
+  transition:border-color .16s ease,background .16s ease;
 }
-.search:focus{border-color:var(--red);outline:none;box-shadow:0 0 0 3px rgba(161,40,30,.12)}
+.search:focus{border-color:var(--red);background:#fff;outline:none}
 .search-clear{
   position:absolute;
-  right:6px;
+  right:5px;
   top:50%;
   transform:translateY(-50%);
-  width:30px;
-  height:30px;
+  width:28px;
+  height:28px;
   border:0;
-  border-radius:50%;
+  border-radius:6px;
   background:transparent;
   color:var(--muted);
-  font-size:19px;
+  font-size:18px;
   display:grid;
   place-items:center;
 }
-.search-clear:hover{background:var(--surface-soft);color:var(--ink)}
+.search-clear:hover{background:var(--paper-deep);color:var(--ink)}
 
-/* ================= MENU GRID & DELIVERY CARDS ================= */
+/* ================= GRID Y TARJETAS ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
+  gap:20px;
 }
 .card{
   position:relative;
   min-width:0;
   border:1px solid var(--line);
-  border-radius:var(--radius);
+  border-radius:var(--r-md);
   overflow:hidden;
-  background:var(--surface);
+  background:var(--card);
   display:flex;
   flex-direction:column;
-  box-shadow:var(--shadow-sm);
+  box-shadow:var(--shadow-card);
   transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
 }
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.card.in-cart{border-color:var(--red);box-shadow:0 10px 26px rgba(161,40,30,.13)}
-.card.featured{border-color:#DEC8A5}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);border-color:var(--line-strong)}
+.card.in-cart{border-color:var(--red);box-shadow:0 8px 22px rgba(135,34,25,.1)}
+.card.featured{background:#FFFBF4}
+
 .card-badge{
   position:absolute;
-  top:11px;
-  right:11px;
+  top:10px;
+  right:10px;
   z-index:4;
   background:var(--red);
-  color:#fff;
-  padding:4px 10px;
-  border-radius:99px;
+  color:#FFF9F2;
+  padding:3px 9px;
+  border-radius:6px;
   font-size:12px;
   font-weight:800;
-  box-shadow:0 6px 14px rgba(84,20,16,.34);
+  letter-spacing:.2px;
+  box-shadow:0 4px 12px rgba(76,18,13,.28);
 }
 .card-tag{
   position:absolute;
-  top:11px;
-  left:11px;
+  top:10px;
+  left:10px;
   z-index:4;
-  background:rgba(31,22,19,.82);
-  backdrop-filter:blur(6px);
-  color:#FFF7E8;
-  padding:4px 10px;
-  border-radius:99px;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.3px;
+  background:rgba(33,24,20,.82);
+  color:#FBF5EC;
+  padding:4px 9px;
+  border-radius:6px;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.7px;
+  text-transform:uppercase;
 }
+
 .photo{
   width:100%;
   aspect-ratio:16/10;
   position:relative;
   display:grid;
   place-items:center;
-  background:radial-gradient(circle at 28% 24%,#FAF0E1 0%,#EFE0C8 100%);
+  background:linear-gradient(160deg,#EFE5D5 0%,#E6D7C1 100%);
   border:0;
+  border-bottom:1px solid var(--line);
   padding:0;
   overflow:hidden;
 }
@@ -451,180 +445,210 @@ h2{
   inset:0;
   transition:transform .35s ease;
 }
-.photo:not(:disabled):hover img{transform:scale(1.04)}
-.placeholder{text-align:center;color:var(--red-dark);padding:16px}
-.placeholder-icon{
-  width:54px;
-  height:54px;
-  margin:0 auto 8px;
-  border-radius:16px;
-  background:rgba(255,255,255,.82);
-  border:1px solid rgba(161,40,30,.1);
+.photo:not(:disabled):hover img{transform:scale(1.03)}
+
+.placeholder{
+  text-align:center;
+  color:var(--red-dark);
+  padding:16px;
   display:grid;
-  place-items:center;
-  font-size:28px;
-  box-shadow:0 4px 12px rgba(84,20,16,.06);
+  justify-items:center;
+  gap:6px;
+}
+.placeholder svg{
+  width:42px;
+  height:42px;
+  stroke:var(--red);
+  fill:none;
+  stroke-width:1.45;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.72;
 }
 .placeholder strong{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:18px;
-  font-weight:400;
-  display:block;
+  font-family:var(--font-serif);
+  font-size:17px;
+  font-weight:500;
+  color:var(--ink);
 }
-.placeholder small{display:block;margin-top:3px;color:var(--muted);font-size:11px}
+.placeholder small{color:var(--muted);font-size:11px;letter-spacing:.2px}
 
 .content{padding:16px 16px 12px;flex:1;display:flex;flex-direction:column}
+.meta-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+}
 .category-label{
-  font-size:10px;
-  letter-spacing:1.1px;
-  color:var(--green);
+  font-size:10.5px;
+  letter-spacing:1px;
+  color:var(--muted);
   text-transform:uppercase;
-  font-weight:800;
+  font-weight:700;
 }
 .card h3{
-  font-size:19px;
-  font-weight:800;
-  letter-spacing:-.25px;
-  line-height:1.25;
-  margin:5px 0 6px;
+  font-family:var(--font-serif);
+  font-size:21px;
+  font-weight:500;
+  letter-spacing:-.015em;
+  line-height:1.2;
+  margin:4px 0 6px;
 }
 .card-description{
   font-size:13px;
-  line-height:1.45;
+  line-height:1.48;
   color:var(--muted);
   margin:0 0 10px;
 }
 .price{
   margin-top:auto;
-  font-size:17px;
+  font-size:16px;
   font-weight:800;
   color:var(--ink);
   padding-top:4px;
 }
 .price.pending{
-  display:inline-block;
-  align-self:flex-start;
-  font-size:11.5px;
-  font-weight:700;
-  color:#7D603B;
-  background:var(--gold-soft);
-  padding:4px 9px;
-  border-radius:8px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--muted);
+  font-style:italic;
 }
 
-/* Selector desplegable en Torta & chips de variantes activas */
+/* Selectores de variantes en tarjeta (Torta, Agua, Boing) */
 .variant-box{
   margin-top:12px;
   display:grid;
-  gap:8px;
+  gap:6px;
 }
 .select-label{
   font-size:11px;
-  font-weight:800;
-  letter-spacing:.5px;
-  text-transform:uppercase;
+  font-weight:700;
+  letter-spacing:.4px;
   color:var(--muted);
 }
-.meat-select{
+.custom-select{
   width:100%;
-  min-height:42px;
-  padding:9px 36px 9px 12px;
-  border:1.5px solid var(--line);
-  border-radius:12px;
-  background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23705E54' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 11px center;
+  min-height:41px;
+  padding:8px 34px 8px 11px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);
+  background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%236D5C50' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 10px center;
   appearance:none;
   -webkit-appearance:none;
   font-size:13.5px;
-  font-weight:700;
+  font-weight:600;
   color:var(--ink);
   cursor:pointer;
-  transition:border-color .15s ease;
+  transition:border-color .15s ease,background-color .15s ease;
 }
-.meat-select:focus{border-color:var(--red);outline:none;background-color:#fff}
+.custom-select:focus{border-color:var(--red);background-color:#fff;outline:none}
+
+/* Selector táctil de tamaño (Agua de guayaba ½ L / 1 L) */
+.size-switch{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+}
+.size-btn{
+  border:1px solid var(--line-strong);
+  background:var(--paper);
+  color:var(--ink);
+  border-radius:var(--r-sm);
+  padding:8px 6px;
+  font-size:12.5px;
+  font-weight:700;
+  text-align:center;
+  transition:all .15s ease;
+}
+.size-btn:hover{border-color:var(--red)}
+.size-btn.active{
+  background:var(--ink);
+  color:#FCF8F1;
+  border-color:var(--ink);
+}
 
 .added-variants{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
+  gap:5px;
   margin-top:10px;
 }
 .variant-pill{
   display:inline-flex;
   align-items:center;
-  gap:5px;
-  padding:4px 9px;
-  border-radius:99px;
-  background:var(--red-tint);
+  padding:3px 8px;
+  border-radius:6px;
+  background:var(--red-soft);
   color:var(--red-dark);
-  border:1px solid rgba(161,40,30,.2);
+  border:1px solid rgba(135,34,25,.18);
   font-size:11.5px;
   font-weight:700;
 }
 
-.card-actions{
-  padding:0 16px 16px;
-  margin-top:4px;
-}
+.card-actions{padding:0 16px 16px;margin-top:4px}
 .add-btn{
   width:100%;
-  min-height:43px;
-  border:0;
-  border-radius:13px;
-  background:var(--surface-soft);
-  color:var(--red-dark);
+  min-height:42px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);
+  background:var(--paper);
+  color:var(--ink);
   font-size:13.5px;
-  font-weight:800;
+  font-weight:700;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:7px;
-  transition:background .16s ease,color .16s ease,transform .1s ease;
+  transition:background .16s ease,color .16s ease,border-color .16s ease,transform .1s ease;
 }
-.add-btn:hover{background:var(--red);color:#fff}
-.add-btn:active{transform:scale(.98)}
+.add-btn:hover{background:var(--red);border-color:var(--red);color:#FCF8F1}
+.add-btn:active{transform:scale(.985)}
 .add-btn.combo-cta{
   background:var(--red);
-  color:#fff;
-  box-shadow:0 6px 16px rgba(161,40,30,.22);
+  border-color:var(--red);
+  color:#FCF8F1;
 }
-.add-btn.combo-cta:hover{background:var(--red-hover)}
+.add-btn.combo-cta:hover{background:var(--red-hover);border-color:var(--red-hover)}
 
 .stepper-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
-  background:var(--red-tint);
-  border:1px solid rgba(161,40,30,.22);
-  padding:4px 5px 4px 12px;
-  border-radius:13px;
+  gap:8px;
+  background:var(--red-soft);
+  border:1px solid rgba(135,34,25,.24);
+  padding:4px 4px 4px 11px;
+  border-radius:var(--r-sm);
 }
-.stepper-label{font-size:12px;font-weight:700;color:var(--red-dark)}
-.stepper{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-}
-.stepper button{
-  width:34px;
-  height:34px;
-  border:0;
-  border-radius:10px;
-  background:var(--surface);
-  color:var(--red);
-  font-size:20px;
+.stepper-label{
+  font-size:12px;
   font-weight:700;
+  color:var(--red-dark);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.stepper{display:inline-flex;align-items:center;gap:5px;flex-shrink:0}
+.stepper button{
+  width:32px;
+  height:32px;
+  border:1px solid rgba(135,34,25,.15);
+  border-radius:7px;
+  background:var(--card);
+  color:var(--red-dark);
+  font-size:19px;
+  font-weight:600;
   display:grid;
   place-items:center;
-  box-shadow:0 2px 5px rgba(0,0,0,.07);
-  transition:transform .1s ease,background .15s ease,color .15s ease;
+  transition:background .14s ease,color .14s ease,transform .1s ease;
 }
-.stepper button:hover:not(:disabled){background:var(--red);color:#fff}
-.stepper button:active:not(:disabled){transform:scale(.92)}
+.stepper button:hover:not(:disabled){background:var(--red);color:#fff;border-color:var(--red)}
+.stepper button:active:not(:disabled){transform:scale(.93)}
 .stepper output{
   min-width:24px;
   text-align:center;
-  font-size:14.5px;
+  font-size:14px;
   font-weight:800;
   color:var(--ink);
 }
@@ -632,109 +656,109 @@ h2{
 .empty{
   margin-top:20px;
   padding:32px;
-  background:var(--surface);
-  border:1px dashed var(--line);
-  border-radius:var(--radius);
+  background:var(--card);
+  border:1px dashed var(--line-strong);
+  border-radius:var(--r-md);
   text-align:center;
   color:var(--muted);
 }
 
-/* ================= VISIT VIEW ================= */
+/* ================= VISÍTANOS ================= */
 .visit-card{
-  max-width:640px;
+  max-width:620px;
   margin:0 auto;
   padding:30px 26px;
-  background:var(--surface);
+  background:var(--card);
   border:1px solid var(--line);
-  border-radius:26px;
-  box-shadow:var(--shadow-sm);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow-card);
 }
 .visit-card .lead{margin-bottom:20px}
-.info-box{
-  padding:15px 17px;
-  margin-bottom:11px;
-  background:var(--bg);
-  border:1px solid var(--line);
-  border-radius:15px;
+.info-list{
+  border-top:1px solid var(--line);
+  margin-bottom:22px;
 }
-.info-box-label{
+.info-item{
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+.info-label{
   display:block;
   font-size:11px;
-  font-weight:800;
+  font-weight:700;
   letter-spacing:1.1px;
   color:var(--muted);
   text-transform:uppercase;
-  margin-bottom:5px;
+  margin-bottom:4px;
 }
-.info-box-text{margin:0;font-size:15px;line-height:1.5;color:var(--ink);font-weight:600}
-.visit-actions{display:grid;gap:10px;margin:20px 0 12px}
+.info-text{margin:0;font-size:15px;line-height:1.5;color:var(--ink);font-weight:500}
+.visit-actions{display:grid;gap:10px;margin-bottom:14px}
 .visit-btn{
-  min-height:52px;
+  min-height:48px;
   width:100%;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:9px;
-  padding:13px 18px;
-  border:0;
-  border-radius:14px;
-  color:#fff;
+  padding:12px 18px;
+  border:1px solid transparent;
+  border-radius:var(--r-sm);
+  color:#FCF8F1;
   text-decoration:none;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.35px;
-  text-transform:uppercase;
+  font-size:13.5px;
+  font-weight:700;
   transition:filter .16s ease,transform .1s ease;
 }
+.visit-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .visit-btn:hover{filter:brightness(1.06)}
 .visit-btn:active{transform:scale(.99)}
+.visit-btn.whatsapp{background:var(--wa)}
 .visit-btn.maps{background:var(--ink)}
-.visit-btn.whatsapp{background:var(--wa-dark)}
-.visit-btn.call{background:var(--red)}
+.visit-btn.call{background:transparent;color:var(--red-dark);border-color:var(--line-strong)}
 
-/* ================= FLOATING DELIVERY CART BAR ================= */
+/* ================= BARRA FLOTANTE DE CARRITO ================= */
 .cart-bar{
   position:fixed;
   left:50%;
   bottom:22px;
   transform:translateX(-50%);
   z-index:34;
-  width:min(460px,calc(100% - 24px));
+  width:min(450px,calc(100% - 24px));
   background:var(--ink);
-  color:#fff;
-  border:0;
-  border-radius:18px;
-  padding:12px 15px;
+  color:#FCF8F1;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r-md);
+  padding:12px 14px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  box-shadow:0 16px 36px rgba(24,14,11,.35);
+  box-shadow:0 16px 34px rgba(24,14,11,.34);
   transition:transform .18s ease;
 }
 .cart-bar:hover{transform:translateX(-50%) translateY(-2px)}
 .cart-bar-left{display:flex;align-items:center;gap:12px;text-align:left}
 .cart-bar-count{
-  min-width:34px;
-  height:34px;
+  min-width:32px;
+  height:32px;
   padding:0 8px;
-  border-radius:11px;
-  background:var(--gold);
-  color:var(--red-dark);
+  border-radius:8px;
+  background:var(--ochre);
+  color:#1E130D;
   font-size:14px;
-  font-weight:900;
+  font-weight:800;
   display:grid;
   place-items:center;
 }
 .cart-bar-info strong{display:block;font-size:14px;line-height:1.2}
-.cart-bar-info span{display:block;font-size:12px;color:#E5D9CD;margin-top:2px}
+.cart-bar-info span{display:block;font-size:12px;color:#DDD0C3;margin-top:2px}
 .cart-bar-cta{
   background:var(--red);
-  color:#fff;
-  padding:9px 14px;
-  border-radius:12px;
-  font-size:12.5px;
-  font-weight:800;
+  color:#FCF8F1;
+  padding:8px 14px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:700;
   white-space:nowrap;
 }
 
@@ -742,8 +766,8 @@ h2{
   position:fixed;
   right:18px;
   z-index:30;
-  width:50px;
-  height:50px;
+  width:48px;
+  height:48px;
   display:grid;
   place-items:center;
   border-radius:50%;
@@ -754,82 +778,83 @@ h2{
   bottom:22px;
   background:var(--wa);
   color:#fff;
-  box-shadow:0 10px 24px rgba(24,134,70,.35);
+  box-shadow:0 8px 22px rgba(30,142,78,.32);
 }
-.wa-float:hover{transform:scale(1.06)}
-.wa-float svg{width:28px;height:28px;fill:currentColor}
+.wa-float:hover{transform:scale(1.05)}
+.wa-float svg{width:26px;height:26px;fill:currentColor}
 .scroll-top{
-  bottom:84px;
-  background:rgba(255,255,255,.84);
+  bottom:80px;
+  background:rgba(252,248,241,.82);
   color:var(--red-dark);
-  border:1px solid var(--line);
+  border:1px solid var(--line-strong);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
-  box-shadow:0 8px 18px rgba(0,0,0,.08);
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
-.scroll-top svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.scroll-top svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 
-/* ================= MOBILE NAV ================= */
+/* ================= NAV MÓVIL ================= */
 .mobile-nav{display:none}
 .nav-icon{
-  width:21px;
-  height:21px;
+  width:20px;
+  height:20px;
   margin:0 auto 4px;
   display:block;
   fill:none;
   stroke:currentColor;
-  stroke-width:1.9;
+  stroke-width:1.85;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
 
-/* ================= BUTTONS & MODALS (BOTTOM-SHEETS) ================= */
+/* ================= BOTONES Y MODALES ================= */
 .button{
-  min-height:48px;
+  min-height:46px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:8px;
-  padding:12px 18px;
+  padding:11px 18px;
   border:1px solid transparent;
-  border-radius:14px;
+  border-radius:var(--r-sm);
   background:var(--red);
-  color:#fff;
+  color:#FCF8F1;
   text-decoration:none;
   font-size:13.5px;
-  font-weight:800;
-  transition:background .16s ease,transform .1s ease;
+  font-weight:700;
+  transition:background .15s ease,transform .1s ease;
 }
+.button svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .button:hover:not(:disabled){background:var(--red-hover)}
 .button:active:not(:disabled){transform:scale(.99)}
-.button.wa-submit{background:var(--wa-dark)}
-.button.wa-submit:hover:not(:disabled){background:#13713A}
-.button.secondary{background:var(--surface);color:var(--ink);border-color:var(--line)}
-.button.secondary:hover:not(:disabled){background:var(--bg)}
-.button.ghost{background:transparent;color:var(--muted);border-color:transparent;min-height:36px;padding:6px 10px;font-size:12px}
-.button.ghost:hover{color:var(--red);background:var(--red-tint)}
+.button.wa-submit{background:var(--wa)}
+.button.wa-submit:hover:not(:disabled){background:var(--wa-hover)}
+.button.secondary{background:var(--card);color:var(--ink);border-color:var(--line-strong)}
+.button.secondary:hover:not(:disabled){background:var(--paper)}
+.button.ghost{background:transparent;color:var(--muted);border-color:transparent;min-height:34px;padding:5px 9px;font-size:12px}
+.button.ghost:hover{color:var(--red);background:var(--red-soft)}
 .full{width:100%}
 
 dialog{
   padding:0;
-  border:0;
-  border-radius:26px;
-  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:var(--card);
   color:var(--ink);
-  width:min(580px,calc(100% - 24px));
+  width:min(560px,calc(100% - 24px));
   max-height:90vh;
   max-height:90dvh;
-  box-shadow:var(--shadow-lg);
+  box-shadow:var(--shadow-sheet);
   overflow:hidden;
 }
-dialog::backdrop{background:rgba(24,11,9,.72);backdrop-filter:blur(4px)}
+dialog::backdrop{background:rgba(24,13,10,.68);backdrop-filter:blur(3px)}
 .dialog-shell{display:flex;flex-direction:column;max-height:90vh;max-height:90dvh}
 .sheet-handle{
-  width:40px;
+  width:38px;
   height:4px;
   border-radius:99px;
-  background:#DDD2C5;
-  margin:10px auto 0;
+  background:var(--line-strong);
+  margin:9px auto 0;
   display:none;
 }
 .dialog-head{
@@ -837,65 +862,68 @@ dialog::backdrop{background:rgba(24,11,9,.72);backdrop-filter:blur(4px)}
   justify-content:space-between;
   align-items:center;
   gap:12px;
-  padding:18px 22px 14px;
+  padding:16px 20px 13px;
   border-bottom:1px solid var(--line);
 }
-.dialog-head h2{font-size:24px;margin:0;font-family:inherit;font-weight:800;letter-spacing:-.4px}
+.dialog-head h2{font-size:23px;margin:0}
 .close{
-  width:38px;
-  height:38px;
+  width:36px;
+  height:36px;
   flex-shrink:0;
-  border:1px solid var(--line);
-  border-radius:50%;
-  background:var(--bg);
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);
+  background:var(--paper);
   color:var(--ink);
-  font-size:22px;
+  font-size:21px;
   display:grid;
   place-items:center;
 }
-.close:hover{background:var(--surface-soft)}
-.step-pills{display:flex;gap:6px;padding:12px 22px 0}
-.step-pill{
-  flex:1;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.35px;
-  text-transform:uppercase;
-  color:var(--muted);
-  padding:8px 10px;
-  border-radius:10px;
-  background:var(--bg);
-  text-align:center;
-}
-.step-pill.active{background:var(--ink);color:#fff}
-.dialog-body{padding:18px 22px 20px;overflow-y:auto;flex:1}
-.dialog-foot{
-  padding:14px 22px 18px;
-  border-top:1px solid var(--line);
-  background:var(--surface);
-  display:grid;
-  gap:9px;
-}
-.hint{font-size:12px;line-height:1.55;color:var(--muted);margin:0}
+.close:hover{background:var(--paper-deep)}
 
-/* COMBO MODAL (2 CARNES) */
+.step-bar{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+.step-tab{
+  padding:10px 12px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--muted);
+  text-align:center;
+  border-bottom:2px solid transparent;
+}
+.step-tab.active{color:var(--red-dark);border-bottom-color:var(--red);background:var(--card)}
+
+.dialog-body{padding:18px 20px 20px;overflow-y:auto;flex:1}
+.dialog-foot{
+  padding:13px 20px 16px;
+  border-top:1px solid var(--line);
+  background:var(--card);
+  display:grid;
+  gap:8px;
+}
+.hint{font-size:12.5px;line-height:1.5;color:var(--muted);margin:0}
+
+/* MODAL TACO COMBINADO */
 .combo-header-info{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:10px;
   margin-bottom:14px;
-  padding:12px 14px;
-  border-radius:14px;
-  background:var(--bg);
+  padding:11px 13px;
+  border-radius:var(--r-sm);
+  background:var(--paper);
   border:1px solid var(--line);
 }
 .combo-counter{
-  padding:5px 11px;
-  border-radius:99px;
+  padding:4px 10px;
+  border-radius:6px;
   font-size:12px;
   font-weight:800;
-  background:var(--surface-soft);
+  background:var(--paper-deep);
   color:var(--muted);
   white-space:nowrap;
 }
@@ -903,33 +931,34 @@ dialog::backdrop{background:rgba(24,11,9,.72);backdrop-filter:blur(4px)}
 .meat-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
+  gap:9px;
 }
 .meat-option{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:8px;
-  padding:13px 14px;
-  border:1.5px solid var(--line);
-  border-radius:14px;
-  background:var(--surface);
+  padding:12px 13px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);
+  background:var(--card);
   text-align:left;
   font-size:14px;
-  font-weight:700;
-  transition:all .15s ease;
+  font-weight:600;
+  transition:all .14s ease;
 }
-.meat-option:hover:not(:disabled){border-color:var(--red)}
+.meat-option:hover{border-color:var(--red)}
 .meat-option.selected{
   border-color:var(--red);
-  background:var(--red-tint);
+  background:var(--red-soft);
   color:var(--red-dark);
+  font-weight:700;
 }
 .meat-check{
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  border:1.5px solid #CDBFAF;
+  width:20px;
+  height:20px;
+  border-radius:5px;
+  border:1.5px solid var(--line-strong);
   display:grid;
   place-items:center;
   font-size:12px;
@@ -947,19 +976,20 @@ dialog::backdrop{background:rgba(24,11,9,.72);backdrop-filter:blur(4px)}
   justify-content:space-between;
   gap:12px;
   margin-top:16px;
-  padding:12px 14px;
-  border-radius:14px;
-  background:var(--bg);
+  padding:11px 13px;
+  border-radius:var(--r-sm);
+  background:var(--paper);
   border:1px solid var(--line);
+  font-size:14px;
 }
 
-/* CART ITEMS */
+/* CARRITO */
 .cart-toolbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:10px;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 .cart-row{
   padding:13px 0;
@@ -974,121 +1004,141 @@ dialog::backdrop{background:rgba(24,11,9,.72);backdrop-filter:blur(4px)}
   gap:12px;
   font-size:15px;
 }
-.cart-title strong{font-weight:800}
-.cart-variant-text{font-size:12.5px;color:var(--red);font-weight:700;margin-top:2px}
+.cart-title strong{font-weight:700}
+.cart-variant-text{font-size:12.5px;color:var(--red);font-weight:600;margin-top:2px}
 .cart-sub{font-size:12px;color:var(--muted)}
-.cart-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
+.cart-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .totals{
   margin-top:14px;
-  padding:14px 16px;
-  background:var(--bg);
+  padding:13px 15px;
+  background:var(--paper);
   border:1px solid var(--line);
-  border-radius:15px;
+  border-radius:var(--r-sm);
 }
-.totals div{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin:5px 0}
+.totals div{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin:4px 0}
 .totals .total{
-  margin-top:9px;
-  padding-top:9px;
+  margin-top:8px;
+  padding-top:8px;
   border-top:1px solid var(--line);
-  font-size:16.5px;
-  font-weight:900;
+  font-size:16px;
+  font-weight:800;
   color:var(--red-dark);
 }
 
-/* CHECKOUT FORM */
-.form-section{margin-bottom:18px}
+/* CHECKOUT SOLO A DOMICILIO */
+.delivery-banner{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 13px;
+  margin-bottom:16px;
+  border-radius:var(--r-sm);
+  background:var(--paper);
+  border:1px solid var(--line);
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink);
+}
+.delivery-banner svg{
+  width:18px;
+  height:18px;
+  stroke:var(--red);
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  flex-shrink:0;
+}
+.form-section{margin-bottom:16px}
 .section-title{
   display:block;
   font-size:11.5px;
-  font-weight:800;
+  font-weight:700;
   letter-spacing:.7px;
   text-transform:uppercase;
   color:var(--muted);
   margin-bottom:8px;
 }
-.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.segmented.two-col{grid-template-columns:repeat(2,1fr)}
+.segmented{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .seg-btn{
-  border:1.5px solid var(--line);
-  background:var(--bg);
+  border:1px solid var(--line-strong);
+  background:var(--paper);
   color:var(--ink);
-  border-radius:13px;
-  padding:11px 8px;
-  font-size:12.5px;
-  font-weight:800;
-  text-align:center;
-  transition:all .15s ease;
-}
-.seg-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
-.chip-group{display:flex;flex-wrap:wrap;gap:7px}
-.chip{
-  border:1px solid var(--line);
-  background:var(--surface);
-  color:var(--ink);
-  padding:8px 13px;
-  border-radius:99px;
-  font-size:12px;
+  border-radius:var(--r-sm);
+  padding:11px 10px;
+  font-size:13.5px;
   font-weight:700;
+  text-align:center;
   transition:all .14s ease;
 }
-.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.seg-btn.active{background:var(--ink);color:#FCF8F1;border-color:var(--ink)}
+.chip-group{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  border:1px solid var(--line-strong);
+  background:var(--card);
+  color:var(--ink);
+  padding:7px 12px;
+  border-radius:var(--r-sm);
+  font-size:12.5px;
+  font-weight:600;
+  transition:all .14s ease;
+}
+.chip.active{background:var(--red);color:#FCF8F1;border-color:var(--red)}
 .field{display:block;font-size:13px;font-weight:700;margin:11px 0}
 .field small{font-weight:400;color:var(--muted)}
-.field input,.field textarea,.field select{
+.field input,.field textarea{
   display:block;
   width:100%;
-  margin-top:6px;
-  padding:11px 13px;
-  min-height:45px;
-  border:1.5px solid var(--line);
-  border-radius:12px;
+  margin-top:5px;
+  padding:10px 12px;
+  min-height:44px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);
   background:#fff;
   color:var(--ink);
-  font-size:15px;
+  font-size:14.5px;
   font-weight:400;
 }
-.field input:focus,.field textarea:focus,.field select:focus{
+.field input:focus,.field textarea:focus{
   border-color:var(--red);
   outline:none;
-  box-shadow:0 0 0 3px rgba(161,40,30,.1);
+  box-shadow:0 0 0 3px rgba(135,34,25,.1);
 }
 .gps-btn{
   width:100%;
-  min-height:44px;
+  min-height:42px;
   margin-top:6px;
-  border:1.5px dashed var(--green);
-  border-radius:12px;
-  background:rgba(36,138,77,.07);
+  border:1px dashed var(--green);
+  border-radius:var(--r-sm);
+  background:rgba(43,104,67,.06);
   color:var(--green);
   font-size:13px;
-  font-weight:800;
+  font-weight:700;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:8px;
 }
+.gps-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
 .gps-btn.attached{border-style:solid;background:var(--green);color:#fff}
+
 .order-preview{
   margin-top:12px;
-  padding:13px 14px;
-  background:var(--bg);
+  padding:12px 13px;
+  background:var(--paper);
   border:1px solid var(--line);
-  border-radius:14px;
+  border-radius:var(--r-sm);
   font-size:12px;
   color:var(--muted);
   white-space:pre-line;
-  line-height:1.52;
+  line-height:1.5;
 }
-.foot-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.foot-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 
 #photoDialog{
-  width:min(900px,calc(100% - 24px));
+  width:min(880px,calc(100% - 24px));
   background:transparent;
+  border:0;
   box-shadow:none;
   overflow:visible;
 }
@@ -1099,7 +1149,7 @@ dialog::backdrop{background:rgba(24,11,9,.72);backdrop-filter:blur(4px)}
   max-height:76vh;
   object-fit:contain;
   margin:auto;
-  border-radius:16px;
+  border-radius:var(--r-md);
 }
 
 footer{
@@ -1107,24 +1157,24 @@ footer{
   border-top:1px solid var(--line);
   text-align:center;
   color:var(--muted);
-  font-size:12px;
-  line-height:1.8;
+  font-size:12.5px;
+  line-height:1.75;
 }
 .toast{
   position:fixed;
-  z-index:80;
-  bottom:94px;
+  z-index:95;
+  bottom:92px;
   left:50%;
   transform:translateX(-50%);
   width:max-content;
   max-width:calc(100% - 28px);
-  padding:11px 17px;
-  border-radius:13px;
+  padding:10px 16px;
+  border-radius:var(--r-sm);
   background:var(--ink);
-  color:#fff;
+  color:#FCF8F1;
   font-size:13px;
-  font-weight:700;
-  box-shadow:0 12px 28px rgba(0,0,0,.26);
+  font-weight:600;
+  box-shadow:0 10px 26px rgba(0,0,0,.24);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -1132,80 +1182,83 @@ footer{
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:760px){
-  .wrap{padding-inline:15px}
+  .wrap{padding-inline:16px}
   .hero{padding-bottom:26px}
-  .hero h1{font-size:clamp(40px,11.5vw,64px);letter-spacing:-1.6px}
+  .hero h1{font-size:clamp(40px,11.5vw,64px)}
   .desktop-nav{display:none}
-  .delivery-toolbar{top:0;padding:10px 0 12px}
+  .menu-bar{top:0;padding:10px 0}
   .search-wrap{width:100%}
-  main{padding-block:20px 130px;scroll-margin-top:8px}
-  .visit-card{padding:22px 17px;border-radius:22px}
+  main{padding-block:20px 134px;scroll-margin-top:8px}
+  .visit-card{padding:22px 18px}
 
   .mobile-nav{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:6px;
+    gap:4px;
     position:fixed;
     bottom:calc(10px + env(safe-area-inset-bottom));
     left:10px;
     right:10px;
     z-index:35;
-    background:rgba(255,255,255,.95);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
+    background:rgba(252,248,241,.96);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
     padding:6px;
-    border:1px solid var(--line);
-    border-radius:20px;
-    box-shadow:0 12px 32px rgba(31,22,19,.16);
+    border:1px solid var(--line-strong);
+    border-radius:16px;
+    box-shadow:0 12px 30px rgba(33,24,20,.15);
   }
   .mobile-nav button{
-    padding:7px 4px;
-    font-size:10px;
-    min-height:52px;
-    border-radius:14px;
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    padding:6px 4px;
+    font-size:10.5px;
+    font-weight:700;
+    min-height:50px;
+    border-radius:11px;
     position:relative;
   }
-  .mobile-nav button.active{background:var(--red-tint);color:var(--red)}
+  .mobile-nav button.active{background:var(--red-soft);color:var(--red-dark)}
   .mobile-nav .count{position:absolute;top:4px;right:14px}
 
   .cart-bar{
-    bottom:calc(82px + env(safe-area-inset-bottom));
+    bottom:calc(80px + env(safe-area-inset-bottom));
     width:calc(100% - 20px);
-    padding:11px 14px;
+    padding:11px 13px;
   }
   .wa-float{
-    bottom:calc(84px + env(safe-area-inset-bottom));
+    bottom:calc(82px + env(safe-area-inset-bottom));
     right:14px;
     width:46px;
     height:46px;
   }
   .scroll-top{
-    bottom:calc(140px + env(safe-area-inset-bottom));
+    bottom:calc(138px + env(safe-area-inset-bottom));
     right:14px;
     width:42px;
     height:42px;
   }
-  body.has-cart .wa-float{bottom:calc(158px + env(safe-area-inset-bottom))}
-  body.has-cart .scroll-top{bottom:calc(214px + env(safe-area-inset-bottom))}
+  body.has-cart .wa-float{bottom:calc(154px + env(safe-area-inset-bottom))}
+  body.has-cart .scroll-top{bottom:calc(210px + env(safe-area-inset-bottom))}
 
-  /* Bottom-sheets en móvil */
   #orderDialog,#comboDialog{
     width:100%;
     max-width:100%;
     margin:auto 0 0;
-    border-radius:24px 24px 0 0;
+    border-radius:20px 20px 0 0;
+    border-bottom:0;
     max-height:92dvh;
   }
   .dialog-shell{max-height:92dvh}
   .sheet-handle{display:block}
-  .dialog-head{padding:12px 18px 12px}
+  .dialog-head{padding:11px 18px 11px}
   .dialog-head h2{font-size:21px}
-  .step-pills{padding:10px 18px 0}
   .dialog-body{padding:14px 18px 18px}
   .dialog-foot{padding:12px 18px calc(14px + env(safe-area-inset-bottom))}
 
   footer{padding:22px 16px calc(155px + env(safe-area-inset-bottom))}
-  .toast{bottom:calc(162px + env(safe-area-inset-bottom))}
+  .toast{bottom:calc(160px + env(safe-area-inset-bottom))}
 }
 @media(max-width:520px){
   .grid{grid-template-columns:1fr}
@@ -1230,7 +1283,7 @@ footer{
         </span>
         <span id="statusText"></span>
       </div>
-      <button type="button" id="language" class="language">English · EN</button>
+      <button type="button" id="language" class="language">EN</button>
     </div>
     <div class="hero-content">
       <h1>El Mexicanito</h1>
@@ -1242,10 +1295,10 @@ footer{
   <nav class="wrap nav-inner" aria-label="Principal">
     <span class="brand">El Mexicanito</span>
     <div class="nav-buttons">
-      <button type="button" data-view="menu" class="active" data-t="menu">MENÚ</button>
-      <button type="button" data-view="visit" data-t="visit">VISÍTANOS</button>
+      <button type="button" data-view="menu" class="active" data-t="menu">Menú</button>
+      <button type="button" data-view="visit" data-t="visit">Visítanos</button>
       <button type="button" class="nav-order-btn" data-order aria-haspopup="dialog">
-        <span data-t="order">MI PEDIDO</span>
+        <span data-t="order">Mi pedido</span>
         <span class="count" data-count hidden></span>
       </button>
     </div>
@@ -1254,20 +1307,17 @@ footer{
 
 <main id="main" class="wrap">
   <section id="menuView">
-    <div class="section-header">
-      <div>
-        <span class="kicker" data-t="menuLabel">PEDIDOS EN LÍNEA</span>
-        <h2 data-t="menuTitle">Nuestro menú</h2>
-        <p class="lead" data-t="intro">Elige tus tacos, combina 2 carnes o arma tu torta y envía tu pedido directo por WhatsApp.</p>
-      </div>
-      <span id="currencyBadge" class="currency-pill"></span>
+    <div class="section-head">
+      <span class="kicker" data-t="menuLabel">Para llevar a domicilio</span>
+      <h2 data-t="menuTitle">La carta</h2>
+      <p class="lead" data-t="intro">Elige tus tacos, combina dos carnes, arma tu torta y agrega tus bebidas. Tu orden se envía directo por WhatsApp.</p>
     </div>
 
-    <div class="delivery-toolbar">
+    <div class="menu-bar">
       <div id="categoryFilters" class="filters" role="tablist" aria-label="Categorías"></div>
       <div class="search-wrap">
         <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input id="search" class="search" type="search" aria-label="Buscar en el menú" placeholder="Buscar tacos o tortas…">
+        <input id="search" class="search" type="search" aria-label="Buscar en el menú" placeholder="Buscar tacos, tortas o bebidas…">
         <button type="button" id="clearSearch" class="search-clear" aria-label="Limpiar búsqueda" hidden>×</button>
       </div>
     </div>
@@ -1278,27 +1328,38 @@ footer{
 
   <section id="visitView" hidden>
     <div class="visit-card">
-      <span class="kicker" data-t="visitLabel">VISÍTANOS</span>
-      <h2 data-t="visitTitle">Aquí nos encontramos</h2>
-      <p class="lead" data-t="visitIntro">Consulta la ubicación y contáctanos por WhatsApp para confirmar tu pedido.</p>
+      <span class="kicker" data-t="visitLabel">Visítanos</span>
+      <h2 data-t="visitTitle">Dónde estamos</h2>
+      <p class="lead" data-t="visitIntro">Consulta nuestra dirección, horario nocturno y contacto directo por WhatsApp.</p>
 
-      <div class="info-box">
-        <span class="info-box-label" data-t="locationLabel">UBICACIÓN</span>
-        <p id="visitAddress" class="info-box-text"></p>
-      </div>
-      <div class="info-box">
-        <span class="info-box-label" data-t="scheduleLabel">HORARIO</span>
-        <p id="visitSchedule" class="info-box-text"></p>
-      </div>
-      <div class="info-box">
-        <span class="info-box-label" data-t="phoneLabel">WHATSAPP / TELÉFONO</span>
-        <p id="visitPhone" class="info-box-text"></p>
+      <div class="info-list">
+        <div class="info-item">
+          <span class="info-label" data-t="locationLabel">Ubicación</span>
+          <p id="visitAddress" class="info-text"></p>
+        </div>
+        <div class="info-item">
+          <span class="info-label" data-t="scheduleLabel">Horario</span>
+          <p id="visitSchedule" class="info-text"></p>
+        </div>
+        <div class="info-item">
+          <span class="info-label" data-t="phoneLabel">WhatsApp y teléfono</span>
+          <p id="visitPhone" class="info-text"></p>
+        </div>
       </div>
 
       <div class="visit-actions">
-        <a id="visitWA" class="visit-btn whatsapp" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💬</span><span data-t="waBtn">ENVIAR WHATSAPP</span></a>
-        <a id="visitMapsBtn" class="visit-btn maps" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">📍</span><span data-t="mapsBtn">ABRIR EN GOOGLE MAPS</span></a>
-        <a id="visitCall" class="visit-btn call"><span aria-hidden="true">☎</span><span data-t="callBtn">LLAMAR AHORA</span></a>
+        <a id="visitWA" class="visit-btn whatsapp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span data-t="waBtn">Enviar WhatsApp</span>
+        </a>
+        <a id="visitMapsBtn" class="visit-btn maps" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-t="mapsBtn">Abrir en Google Maps</span>
+        </a>
+        <a id="visitCall" class="visit-btn call">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-t="callBtn">Llamar</span>
+        </a>
       </div>
       <p class="hint" data-t="scheduleNote">Horarios sujetos a cambios en días festivos. Confirma disponibilidad por WhatsApp.</p>
     </div>
@@ -1307,7 +1368,7 @@ footer{
 
 <footer>
   <strong>El Mexicanito</strong><br>
-  <span data-t="footer">Menú digital con pedidos por WhatsApp · San Luis Potosí, S.L.P.</span>
+  <span data-t="footer">Menú digital · San Luis Potosí, S.L.P.</span>
 </footer>
 
 <button type="button" id="cartBar" class="cart-bar" data-order hidden>
@@ -1318,7 +1379,7 @@ footer{
       <span id="cartBarTotal"></span>
     </span>
   </span>
-  <span class="cart-bar-cta" data-t="viewOrder">Ver pedido →</span>
+  <span class="cart-bar-cta" data-t="viewOrder">Ver pedido</span>
 </button>
 
 <button type="button" id="scrollTopBtn" class="scroll-top" aria-label="Subir al inicio" hidden>
@@ -1332,35 +1393,35 @@ footer{
 <nav class="mobile-nav" aria-label="Navegación móvil">
   <button type="button" data-view="menu" class="active">
     <svg class="nav-icon" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-    <span data-t="menu">MENÚ</span>
+    <span data-t="menu">Menú</span>
   </button>
   <button type="button" data-view="visit">
     <svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-    <span data-t="visit">VISÍTANOS</span>
+    <span data-t="visit">Visítanos</span>
   </button>
   <button type="button" data-order aria-haspopup="dialog">
     <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-    <span data-t="orderShort">PEDIDO</span>
+    <span data-t="orderShort">Pedido</span>
     <span class="count" data-count hidden></span>
   </button>
 </nav>
 
-<!-- MODAL PERSONALIZADOR: TACO COMBINADO (2 CARNES) -->
+<!-- MODAL: TACO COMBINADO (2 CARNES) -->
 <dialog id="comboDialog" aria-labelledby="comboTitle">
   <div class="dialog-shell">
     <span class="sheet-handle" aria-hidden="true"></span>
     <div class="dialog-head">
-      <h2 id="comboTitle" data-t="comboModalTitle">Arma tu Taco Combinado</h2>
+      <h2 id="comboTitle" data-t="comboModalTitle">Taco Combinado</h2>
       <button id="closeCombo" class="close" type="button" aria-label="Cerrar">×</button>
     </div>
     <div class="dialog-body">
       <div class="combo-header-info">
-        <p class="hint" data-t="comboInstruction">Selecciona exactamente 2 carnes para combinar en tu taco.</p>
+        <p class="hint" data-t="comboInstruction">Elige exactamente 2 carnes para combinar.</p>
         <span id="comboCounter" class="combo-counter">0 / 2</span>
       </div>
       <div id="comboMeatGrid" class="meat-grid" role="group" aria-label="Carnes disponibles"></div>
       <div class="combo-qty-bar">
-        <strong data-t="comboQtyLabel">¿Cuántos tacos así?</strong>
+        <strong data-t="comboQtyLabel">Cantidad</strong>
         <div class="stepper">
           <button type="button" id="comboMinus" aria-label="Quitar">−</button>
           <output id="comboQtyOut">1</output>
@@ -1369,12 +1430,12 @@ footer{
       </div>
     </div>
     <div class="dialog-foot">
-      <button type="button" id="addComboBtn" class="button full" disabled data-t="comboAddBtn">Agregar combinación al pedido</button>
+      <button type="button" id="addComboBtn" class="button full" disabled data-t="comboAddBtn">Agregar al pedido</button>
     </div>
   </div>
 </dialog>
 
-<!-- MODAL PRINCIPAL: CARRITO + CHECKOUT WHATSAPP -->
+<!-- MODAL: PEDIDO Y ENVÍO A DOMICILIO POR WHATSAPP -->
 <dialog id="orderDialog" aria-labelledby="orderTitle">
   <div class="dialog-shell">
     <span class="sheet-handle" aria-hidden="true"></span>
@@ -1383,17 +1444,17 @@ footer{
       <button id="closeOrder" class="close" type="button" aria-label="Cerrar">×</button>
     </div>
 
-    <div class="step-pills">
-      <div id="pillStep1" class="step-pill active" data-t="step1">1. Tu orden</div>
-      <div id="pillStep2" class="step-pill" data-t="step2">2. Entrega y WhatsApp</div>
+    <div class="step-bar">
+      <div id="pillStep1" class="step-tab active" data-t="step1">1. Tu orden</div>
+      <div id="pillStep2" class="step-tab" data-t="step2">2. Envío a domicilio</div>
     </div>
 
     <div class="dialog-body">
-      <!-- PASO 1: CARRITO -->
+      <!-- PASO 1 -->
       <div id="step1Body">
         <div class="cart-toolbar">
-          <p class="hint" data-t="review">Revisa tus productos y cantidades.</p>
-          <button type="button" id="clearCartBtn" class="button ghost" data-t="clearCart" hidden>Vaciar pedido</button>
+          <p class="hint" data-t="review">Revisa tus productos antes de continuar.</p>
+          <button type="button" id="clearCartBtn" class="button ghost" data-t="clearCart" hidden>Vaciar</button>
         </div>
         <div id="cartRows"></div>
         <div class="totals" aria-live="polite">
@@ -1403,15 +1464,11 @@ footer{
         </div>
       </div>
 
-      <!-- PASO 2: FORMULARIO WHATSAPP -->
+      <!-- PASO 2: SOLO A DOMICILIO -->
       <form id="orderForm" hidden novalidate>
-        <div class="form-section">
-          <span class="section-title" data-t="deliveryTitle">Modalidad de pedido</span>
-          <div class="segmented" role="radiogroup" aria-label="Modalidad de pedido">
-            <button type="button" class="seg-btn active" data-delivery="recoger" data-t="delPickup">🛍️ Recoger</button>
-            <button type="button" class="seg-btn" data-delivery="domicilio" data-t="delHome">🛵 Domicilio</button>
-            <button type="button" class="seg-btn" data-delivery="local" data-t="delDine">🍽️ En local</button>
-          </div>
+        <div class="delivery-banner">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-t="deliveryOnlyNotice">Pedido para llevar a domicilio</span>
         </div>
 
         <label class="field">
@@ -1419,95 +1476,80 @@ footer{
           <input id="customer" autocomplete="name" maxlength="80" required placeholder="Ej. Carlos Ramírez">
         </label>
 
-        <!-- Recoger -->
-        <div id="pickupFields">
-          <label class="field">
-            <span data-t="pickupTimeLabel">¿Cuándo pasas por tu pedido?</span>
-            <select id="pickupTime">
-              <option value="asap" data-t="pickupAsap">Lo antes posible</option>
-              <option value="15m" data-t="pickup15">En 15 minutos</option>
-              <option value="30m" data-t="pickup30">En 30 minutos</option>
-              <option value="45m" data-t="pickup45">En 45 minutos</option>
-            </select>
-          </label>
-        </div>
+        <label class="field">
+          <span data-t="addressLabel">Dirección de entrega *</span>
+          <input id="address" autocomplete="street-address" maxlength="180" required placeholder="Calle, número y colonia">
+        </label>
 
-        <!-- Domicilio -->
-        <div id="deliveryFields" hidden>
-          <label class="field">
-            <span data-t="addressLabel">Dirección de entrega *</span>
-            <input id="address" autocomplete="street-address" maxlength="180" placeholder="Calle, número y colonia">
-          </label>
-          <label class="field">
-            <span data-t="refsLabel">Referencias de domicilio</span>
-            <input id="refs" maxlength="140" placeholder="Color de casa, entre calles, portón…">
-          </label>
+        <label class="field">
+          <span data-t="refsLabel">Referencias del domicilio <small data-t="optionalTag">(opcional)</small></span>
+          <input id="refs" maxlength="140" placeholder="Color de fachada, entre calles, portón…">
+        </label>
+
+        <div class="form-section">
           <button type="button" id="gpsBtn" class="gps-btn">
-            <span aria-hidden="true">📍</span>
-            <span id="gpsBtnText" data-t="gpsAdd">Adjuntar mi ubicación GPS</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            <span id="gpsBtnText" data-t="gpsAdd">Adjuntar ubicación GPS</span>
           </button>
         </div>
 
-        <!-- En local -->
-        <div id="dineFields" hidden>
-          <label class="field">
-            <span data-t="tableLabel">Mesa o referencia en local</span>
-            <input id="tableRef" maxlength="60" placeholder="Ej. Mesa 3 / Barra">
-          </label>
-        </div>
-
-        <div class="form-section">
-          <span class="section-title" data-t="prepTitle">¿Cómo los preparamos?</span>
-          <div class="chip-group">
-            <button type="button" class="chip active" data-veggie="con_todo" data-t="vAll">Con todo (cebolla y cilantro)</button>
-            <button type="button" class="chip" data-veggie="sin_cebolla" data-t="vNoOnion">Sin cebolla</button>
-            <button type="button" class="chip" data-veggie="sin_cilantro" data-t="vNoCilantro">Sin cilantro</button>
-            <button type="button" class="chip" data-veggie="sin_verdura" data-t="vPlain">Sin verdura</button>
+        <div id="foodPrepBlock">
+          <div class="form-section">
+            <span class="section-title" data-t="prepTitle">Preparación</span>
+            <div class="chip-group">
+              <button type="button" class="chip active" data-veggie="con_todo" data-t="vAll">Con todo (cebolla y cilantro)</button>
+              <button type="button" class="chip" data-veggie="sin_cebolla" data-t="vNoOnion">Sin cebolla</button>
+              <button type="button" class="chip" data-veggie="sin_cilantro" data-t="vNoCilantro">Sin cilantro</button>
+              <button type="button" class="chip" data-veggie="sin_verdura" data-t="vPlain">Sin verdura</button>
+            </div>
           </div>
-        </div>
 
-        <div class="form-section">
-          <span class="section-title" data-t="extrasTitle">Salsas y acompañamientos</span>
-          <div class="chip-group">
-            <button type="button" class="chip active" data-extra="salsa_verde" data-t="eGreen">Salsa verde</button>
-            <button type="button" class="chip active" data-extra="salsa_roja" data-t="eRed">Salsa roja</button>
-            <button type="button" class="chip active" data-extra="limones" data-t="eLimes">Limones</button>
-            <button type="button" class="chip" data-extra="aparte" data-t="eSide">Todo aparte</button>
+          <div class="form-section">
+            <span class="section-title" data-t="extrasTitle">Salsas y acompañamientos</span>
+            <div class="chip-group">
+              <button type="button" class="chip active" data-extra="salsa_verde" data-t="eGreen">Salsa verde</button>
+              <button type="button" class="chip active" data-extra="salsa_roja" data-t="eRed">Salsa roja</button>
+              <button type="button" class="chip active" data-extra="limones" data-t="eLimes">Limones</button>
+              <button type="button" class="chip" data-extra="aparte" data-t="eSide">Todo aparte</button>
+            </div>
           </div>
         </div>
 
         <div class="form-section">
           <span class="section-title" data-t="paymentTitle">Forma de pago</span>
-          <div class="segmented two-col" role="radiogroup" aria-label="Forma de pago">
-            <button type="button" class="seg-btn active" data-pay="efectivo" data-t="payCash">💵 Efectivo</button>
-            <button type="button" class="seg-btn" data-pay="transferencia" data-t="payTransfer">📲 Transferencia</button>
+          <div class="segmented" role="radiogroup" aria-label="Forma de pago">
+            <button type="button" class="seg-btn active" data-pay="efectivo" data-t="payCash">Efectivo</button>
+            <button type="button" class="seg-btn" data-pay="transferencia" data-t="payTransfer">Transferencia</button>
           </div>
           <label class="field" id="cashChangeField">
             <span data-t="changeLabel">¿Con cuánto pagas? <small data-t="optionalTag">(opcional)</small></span>
-            <input id="cashAmount" type="text" inputmode="decimal" maxlength="30" placeholder="Ej. $200 / Pago exacto">
+            <input id="cashAmount" type="text" inputmode="decimal" maxlength="30" placeholder="Ej. $200 o pago exacto">
           </label>
         </div>
 
         <label class="field">
-          <span data-t="notes">Indicaciones adicionales <small data-t="optionalTag">(opcional)</small></span>
-          <textarea id="notes" maxlength="400" rows="2" placeholder="Ej. Tortilla dorada, torta bien calientita…"></textarea>
+          <span data-t="notes">Notas del pedido <small data-t="optionalTag">(opcional)</small></span>
+          <textarea id="notes" maxlength="400" rows="2" placeholder="Ej. Tortilla dorada, sin hielo en el agua…"></textarea>
         </label>
 
         <p id="priceConfirmHint" class="hint"></p>
-        <div id="orderPreview" class="order-preview" aria-label="Resumen del mensaje"></div>
+        <div id="orderPreview" class="order-preview" aria-label="Vista previa del mensaje"></div>
       </form>
     </div>
 
     <div class="dialog-foot">
-      <div id="step1Foot" style="display:grid;gap:9px">
-        <button id="continueOrder" class="button full" type="button" data-t="continue">Continuar con mi pedido →</button>
-        <button id="more" class="button secondary full" type="button" data-t="more">Agregar más productos</button>
+      <div id="step1Foot" style="display:grid;gap:8px">
+        <button id="continueOrder" class="button full" type="button" data-t="continue">Continuar al envío</button>
+        <button id="more" class="button secondary full" type="button" data-t="more">Seguir agregando</button>
       </div>
-      <div id="step2Foot" style="display:grid;gap:9px" hidden>
-        <button id="sendWhatsAppBtn" class="button wa-submit full" type="button" data-t="send">💬 Enviar pedido por WhatsApp</button>
+      <div id="step2Foot" style="display:grid;gap:8px" hidden>
+        <button id="sendWhatsAppBtn" class="button wa-submit full" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span data-t="send">Enviar pedido por WhatsApp</span>
+        </button>
         <div class="foot-row">
-          <button id="back" class="button secondary" type="button" data-t="back">← Volver</button>
-          <button id="copyOrderBtn" class="button secondary" type="button" data-t="copyOrder">📋 Copiar</button>
+          <button id="back" class="button secondary" type="button" data-t="back">Volver</button>
+          <button id="copyOrderBtn" class="button secondary" type="button" data-t="copyOrder">Copiar texto</button>
         </div>
       </div>
     </div>
@@ -1526,9 +1568,11 @@ footer{
 
 /* ============================================================
    ZONA EDITABLE · EL MEXICANITO
-   1) Precios: cambia precio:null por el número real (ej. precio:22).
+   1) Precios: sustituye null por el precio en pesos (ej. 22).
    2) Fotos: súbelas a images/Menu/ con el nombre indicado.
-   3) CARNES alimenta automáticamente tacos, tortas y combinado.
+   3) Jugo Boing de vidrio: presentación estándar de taquería
+      en 354 ml (si manejan la botella chica, cambia a "237 ml").
+   4) CARNES alimenta tacos individuales, tortas y combinado.
    ============================================================ */
 const CONFIG = {
   nombre: "El Mexicanito",
@@ -1539,7 +1583,8 @@ const CONFIG = {
   horarioEn: "Monday to Saturday · 8:00 p.m. to 2:00 a.m. · Sunday closed",
   maps: "https://maps.app.goo.gl/c9U9ZHns9X64SmFF8",
   portada: "images/Restaurante/portada.jpg",
-  carpetaFotos: "images/Menu/"
+  carpetaFotos: "images/Menu/",
+  boingVidrioMl: "354 ml"
 };
 
 const CARNES = [
@@ -1553,10 +1598,19 @@ const CARNES = [
   { id:"machitos", nombre:"Machitos", nombreEn:"Machitos",        precioTaco:null, foto:"taco-machitos.jpg" }
 ];
 
+const SABORES_BOING = [
+  { id:"mango",   nombre:"Mango",   nombreEn:"Mango" },
+  { id:"guayaba", nombre:"Guayaba", nombreEn:"Guava" },
+  { id:"fresa",   nombre:"Fresa",   nombreEn:"Strawberry" },
+  { id:"uva",     nombre:"Uva",     nombreEn:"Grape" },
+  { id:"manzana", nombre:"Manzana", nombreEn:"Apple" }
+];
+
 const MENU = [
   ...CARNES.map(c => ({
     id: c.id,
     tipo: "simple",
+    esComida: true,
     categoria: "Tacos",
     categoriaEn: "Tacos",
     nombre: "Taco de " + c.nombre,
@@ -1565,164 +1619,206 @@ const MENU = [
     nombreCortoEn: c.nombreEn,
     precio: c.precioTaco,
     foto: c.foto,
-    icono: "🌮"
+    ilustracion: "taco"
   })),
   {
     id: "taco-combinado",
     tipo: "combo2",
+    esComida: true,
     categoria: "Tacos",
     categoriaEn: "Tacos",
     nombre: "Taco Combinado",
     nombreEn: "Combo Taco",
     nombreCorto: "Combinado",
     nombreCortoEn: "Combo",
-    descripcion: "Combina tus 2 carnes favoritas en un solo taco.",
+    descripcion: "Combina las 2 carnes que prefieras en un solo taco.",
     descripcionEn: "Combine your 2 favorite meats in one taco.",
-    tag: "2 CARNES",
-    tagEn: "2 MEATS",
+    tag: "2 carnes",
+    tagEn: "2 meats",
     precio: null,
     foto: "taco-combinado.jpg",
-    icono: "🌮"
+    ilustracion: "taco"
   },
   {
     id: "torta",
-    tipo: "torta-select",
+    tipo: "select",
+    esComida: true,
     categoria: "Tortas",
     categoriaEn: "Tortas",
     nombre: "Torta",
-    nombreEn: "Torta (Mexican Sandwich)",
+    nombreEn: "Torta",
     nombreCorto: "Torta",
     nombreCortoEn: "Torta",
-    descripcion: "Elige la carne que prefieras desde el menú desplegable.",
-    descripcionEn: "Pick your preferred meat from the dropdown menu.",
-    tag: "A ELEGIR",
-    tagEn: "CUSTOM",
+    descripcion: "Pan calientito con la carne de tu elección.",
+    descripcionEn: "Warm telera roll with your choice of meat.",
+    tag: "A elegir",
+    tagEn: "Custom",
+    labelOpcion: "Tipo de carne",
+    labelOpcionEn: "Choose meat",
+    opciones: CARNES.map(c => ({ id: c.id, nombre: c.nombre, nombreEn: c.nombreEn })),
     precio: null,
     foto: "torta.jpg",
-    icono: "🥖"
+    ilustracion: "torta"
+  },
+  {
+    id: "agua-guayaba",
+    tipo: "sizes",
+    esComida: false,
+    categoria: "Bebidas",
+    categoriaEn: "Drinks",
+    nombre: "Agua natural de guayaba",
+    nombreEn: "Fresh guava water",
+    nombreCorto: "Agua de guayaba",
+    nombreCortoEn: "Guava water",
+    descripcion: "Preparada al día con fruta natural. Disponible en medio litro y litro.",
+    descripcionEn: "Made fresh daily with natural guava. Half-liter and 1-liter sizes.",
+    labelOpcion: "Tamaño",
+    labelOpcionEn: "Size",
+    opciones: [
+      { id:"medio", nombre:"½ Litro (500 ml)", nombreEn:"½ Liter (500 ml)", corto:"½ L", cortoEn:"½ L", precio:null },
+      { id:"litro", nombre:"1 Litro",          nombreEn:"1 Liter",          corto:"1 L", cortoEn:"1 L", precio:null }
+    ],
+    precio: null,
+    foto: "agua-guayaba.jpg",
+    ilustracion: "cup"
+  },
+  {
+    id: "jugo-boing",
+    tipo: "select",
+    esComida: false,
+    categoria: "Bebidas",
+    categoriaEn: "Drinks",
+    nombre: "Jugo Boing de vidrio (" + CONFIG.boingVidrioMl + ")",
+    nombreEn: "Boing glass bottle (" + CONFIG.boingVidrioMl + ")",
+    nombreCorto: "Boing " + CONFIG.boingVidrioMl,
+    nombreCortoEn: "Boing " + CONFIG.boingVidrioMl,
+    descripcion: "Botella de vidrio bien fría de " + CONFIG.boingVidrioMl + ".",
+    descripcionEn: "Chilled " + CONFIG.boingVidrioMl + " glass bottle.",
+    labelOpcion: "Sabor",
+    labelOpcionEn: "Flavor",
+    opciones: SABORES_BOING,
+    precio: null,
+    foto: "boing-vidrio.jpg",
+    ilustracion: "bottle"
   }
 ];
 
 const TEXT = {
   es: {
-    menu:"MENÚ", visit:"VISÍTANOS", order:"MI PEDIDO", orderShort:"PEDIDO",
-    menuLabel:"PEDIDOS EN LÍNEA", menuTitle:"Nuestro menú",
-    intro:"Elige tus tacos, combina 2 carnes o arma tu torta y envía tu pedido directo por WhatsApp.",
-    currencyPending:"Precios por confirmar · Consulta por WhatsApp",
-    currencyReady:"Precios en MXN",
+    menu:"Menú", visit:"Visítanos", order:"Mi pedido", orderShort:"Pedido",
+    menuLabel:"Para llevar a domicilio", menuTitle:"La carta",
+    intro:"Elige tus tacos, combina dos carnes, arma tu torta y agrega tus bebidas. Tu orden se envía directo por WhatsApp.",
     noResults:"No encontramos productos con esa búsqueda.",
-    visitLabel:"VISÍTANOS", visitTitle:"Aquí nos encontramos",
-    visitIntro:"Consulta la ubicación y contáctanos por WhatsApp para confirmar tu pedido.",
-    locationLabel:"UBICACIÓN", scheduleLabel:"HORARIO", phoneLabel:"WHATSAPP / TELÉFONO",
-    mapsBtn:"ABRIR EN GOOGLE MAPS", waBtn:"ENVIAR WHATSAPP", callBtn:"LLAMAR AHORA",
+    visitLabel:"Visítanos", visitTitle:"Dónde estamos",
+    visitIntro:"Consulta nuestra dirección, horario nocturno y contacto directo por WhatsApp.",
+    locationLabel:"Ubicación", scheduleLabel:"Horario", phoneLabel:"WhatsApp y teléfono",
+    mapsBtn:"Abrir en Google Maps", waBtn:"Enviar WhatsApp", callBtn:"Llamar",
     scheduleNote:"Horarios sujetos a cambios en días festivos. Confirma disponibilidad por WhatsApp.",
-    footer:"Menú digital con pedidos por WhatsApp · San Luis Potosí, S.L.P.",
-    orderTitle:"Mi pedido", step1:"1. Tu orden", step2:"2. Entrega y WhatsApp",
-    review:"Revisa tus productos y cantidades.", clearCart:"Vaciar pedido",
+    footer:"Menú digital · San Luis Potosí, S.L.P.",
+    orderTitle:"Mi pedido", step1:"1. Tu orden", step2:"2. Envío a domicilio",
+    review:"Revisa tus productos antes de continuar.", clearCart:"Vaciar",
     itemsLabel:"Piezas", subtotal:"Subtotal", total:"Total estimado",
     pending:"Por confirmar", plusPending:" + por confirmar",
-    continue:"Continuar con mi pedido →", more:"Agregar más productos",
-    deliveryTitle:"Modalidad de pedido",
-    delPickup:"🛍️ Recoger", delHome:"🛵 Domicilio", delDine:"🍽️ En local",
+    continue:"Continuar al envío", more:"Seguir agregando",
+    deliveryOnlyNotice:"Pedido para llevar a domicilio",
     name:"Tu nombre *", namePlaceholder:"Ej. Carlos Ramírez",
-    pickupTimeLabel:"¿Cuándo pasas por tu pedido?",
-    pickupAsap:"Lo antes posible", pickup15:"En 15 minutos", pickup30:"En 30 minutos", pickup45:"En 45 minutos",
     addressLabel:"Dirección de entrega *", addressPlaceholder:"Calle, número y colonia",
-    refsLabel:"Referencias de domicilio", refsPlaceholder:"Color de casa, entre calles, portón…",
-    gpsAdd:"Adjuntar mi ubicación GPS", gpsLoading:"Obteniendo ubicación…",
-    gpsAttached:"Ubicación GPS adjunta ✓ (toca para quitar)", gpsError:"No pudimos obtener tu ubicación GPS.",
-    tableLabel:"Mesa o referencia en local", tablePlaceholder:"Ej. Mesa 3 / Barra",
-    prepTitle:"¿Cómo los preparamos?",
+    refsLabel:"Referencias del domicilio", refsPlaceholder:"Color de fachada, entre calles, portón…",
+    gpsAdd:"Adjuntar ubicación GPS", gpsLoading:"Obteniendo ubicación…",
+    gpsAttached:"Ubicación GPS adjunta (toca para quitar)", gpsError:"No pudimos obtener tu ubicación GPS.",
+    prepTitle:"Preparación",
     vAll:"Con todo (cebolla y cilantro)", vNoOnion:"Sin cebolla", vNoCilantro:"Sin cilantro", vPlain:"Sin verdura",
     extrasTitle:"Salsas y acompañamientos",
     eGreen:"Salsa verde", eRed:"Salsa roja", eLimes:"Limones", eSide:"Todo aparte",
     paymentTitle:"Forma de pago",
-    payCash:"💵 Efectivo", payTransfer:"📲 Transferencia",
-    changeLabel:"¿Con cuánto pagas?", changePlaceholder:"Ej. $200 / Pago exacto",
+    payCash:"Efectivo", payTransfer:"Transferencia",
+    changeLabel:"¿Con cuánto pagas?", changePlaceholder:"Ej. $200 o pago exacto",
     optionalTag:"(opcional)",
-    notes:"Indicaciones adicionales", notesPlaceholder:"Ej. Tortilla dorada, torta bien calientita…",
-    confirmPending:"Algunos precios están por confirmar; te indicaremos el total final por WhatsApp.",
-    confirmReady:"Al pulsar enviar se abrirá WhatsApp con tu pedido listo para confirmar.",
-    send:"💬 Enviar pedido por WhatsApp", back:"← Volver", copyOrder:"📋 Copiar",
-    all:"Todos", search:"Buscar tacos o tortas…", quantity:"Cantidad", addBtn:"Agregar",
-    chooseMeatLabel:"Elige la carne", chooseTwoBtn:"Elegir 2 carnes",
-    comboModalTitle:"Arma tu Taco Combinado",
-    comboInstruction:"Selecciona exactamente 2 carnes para combinar en tu taco.",
-    comboQtyLabel:"¿Cuántos tacos así?", comboAddBtn:"Agregar combinación al pedido",
-    comboMaxHint:"Ya elegiste 2 carnes. Desmarca una si deseas cambiarla.",
+    notes:"Notas del pedido", notesPlaceholder:"Ej. Tortilla dorada, sin hielo en el agua…",
+    confirmPending:"Algunos precios están pendientes de actualización; confirmaremos el total final por WhatsApp.",
+    confirmReady:"Al enviar se abrirá WhatsApp con tu pedido listo para confirmar.",
+    send:"Enviar pedido por WhatsApp", back:"Volver", copyOrder:"Copiar texto",
+    all:"Todos", search:"Buscar tacos, tortas o bebidas…", quantity:"Cantidad", addBtn:"Agregar",
+    chooseTwoBtn:"Elegir 2 carnes",
+    comboModalTitle:"Taco Combinado",
+    comboInstruction:"Elige exactamente 2 carnes para combinar.",
+    comboQtyLabel:"Cantidad", comboAddBtn:"Agregar al pedido",
+    comboMaxHint:"Ya seleccionaste 2 carnes. Desmarca una para cambiarla.",
     add:"Agregar", remove:"Quitar", close:"Cerrar", photo:"Fotografía del producto",
-    enlarge:"Ampliar fotografía", emptyCart:"Aún no has agregado productos a tu pedido.",
+    enlarge:"Ampliar fotografía", emptyCart:"Todavía no agregas nada a tu pedido.",
     pricePending:"Precio por confirmar", photoSoon:"Foto próximamente",
-    hello:"Hola, quisiera hacer una consulta sobre El Mexicanito.",
-    chat:"Contactar por WhatsApp", viewOrder:"Ver pedido →",
+    hello:"Hola, quiero hacer una consulta sobre El Mexicanito.",
+    chat:"WhatsApp", viewOrder:"Ver pedido",
     statusOpen:"Abierto ahora", statusClosing:"Próximo a cerrar", statusClosed:"Cerrado",
-    needName:"Escribe tu nombre para identificar el pedido.",
+    needName:"Escribe tu nombre para registrar el pedido.",
     needAddress:"Escribe tu dirección para el envío a domicilio.",
-    copied:"Pedido copiado al portapapeles.", cartCleared:"Se vació tu pedido.",
+    copied:"Texto del pedido copiado.", cartCleared:"Se vació tu pedido.",
     addedToast:"Agregado", unitOne:"pieza", unitMany:"piezas",
-    tortaOf:"Torta de ", meatPrefix:"Carne: "
+    tortaOf:"Torta de "
   },
   en: {
-    menu:"MENU", visit:"VISIT US", order:"MY ORDER", orderShort:"ORDER",
-    menuLabel:"ONLINE ORDERING", menuTitle:"Our menu",
-    intro:"Pick your tacos, combine 2 meats, or customize a torta and send your order directly via WhatsApp.",
-    currencyPending:"Prices to be confirmed · Ask on WhatsApp",
-    currencyReady:"Prices in MXN",
+    menu:"Menu", visit:"Visit us", order:"My order", orderShort:"Order",
+    menuLabel:"Home delivery", menuTitle:"The menu",
+    intro:"Choose your tacos, combine two meats, build your torta and add drinks. Orders go straight to WhatsApp.",
     noResults:"No items match your search.",
-    visitLabel:"VISIT US", visitTitle:"Find us here",
-    visitIntro:"Check our location and message us on WhatsApp to confirm your order.",
-    locationLabel:"LOCATION", scheduleLabel:"HOURS", phoneLabel:"WHATSAPP / PHONE",
-    mapsBtn:"OPEN IN GOOGLE MAPS", waBtn:"MESSAGE ON WHATSAPP", callBtn:"CALL NOW",
+    visitLabel:"Visit us", visitTitle:"Where to find us",
+    visitIntro:"Check our address, night hours and direct WhatsApp contact.",
+    locationLabel:"Location", scheduleLabel:"Hours", phoneLabel:"WhatsApp & phone",
+    mapsBtn:"Open in Google Maps", waBtn:"Send WhatsApp", callBtn:"Call",
     scheduleNote:"Hours may vary on holidays. Please confirm availability via WhatsApp.",
-    footer:"Digital menu with WhatsApp ordering · San Luis Potosí, S.L.P.",
-    orderTitle:"My order", step1:"1. Your order", step2:"2. Delivery & WhatsApp",
-    review:"Review your items and quantities.", clearCart:"Clear order",
+    footer:"Digital menu · San Luis Potosí, S.L.P.",
+    orderTitle:"My order", step1:"1. Your order", step2:"2. Home delivery",
+    review:"Review your items before continuing.", clearCart:"Clear",
     itemsLabel:"Items", subtotal:"Subtotal", total:"Estimated total",
     pending:"To be confirmed", plusPending:" + to be confirmed",
-    continue:"Continue to checkout →", more:"Add more items",
-    deliveryTitle:"Order type",
-    delPickup:"🛍️ Pickup", delHome:"🛵 Delivery", delDine:"🍽️ Dine-in",
+    continue:"Continue to delivery", more:"Add more items",
+    deliveryOnlyNotice:"Home delivery order",
     name:"Your name *", namePlaceholder:"e.g. Alex Smith",
-    pickupTimeLabel:"When will you pick it up?",
-    pickupAsap:"As soon as possible", pickup15:"In 15 minutes", pickup30:"In 30 minutes", pickup45:"In 45 minutes",
     addressLabel:"Delivery address *", addressPlaceholder:"Street, number, neighborhood",
     refsLabel:"Address landmarks", refsPlaceholder:"House color, cross streets…",
-    gpsAdd:"Attach my GPS location", gpsLoading:"Getting location…",
-    gpsAttached:"GPS location attached ✓ (tap to remove)", gpsError:"Could not retrieve your GPS location.",
-    tableLabel:"Table or bar spot", tablePlaceholder:"e.g. Table 3 / Counter",
-    prepTitle:"How should we prepare them?",
-    vAll:"With everything (onion & cilantro)", vNoOnion:"No onion", vNoCilantro:"No cilantro", vPlain:"Plain (no veggies)",
+    gpsAdd:"Attach GPS location", gpsLoading:"Getting location…",
+    gpsAttached:"GPS location attached (tap to remove)", gpsError:"Could not retrieve your GPS location.",
+    prepTitle:"Preparation",
+    vAll:"With everything (onion & cilantro)", vNoOnion:"No onion", vNoCilantro:"No cilantro", vPlain:"No veggies",
     extrasTitle:"Salsas & sides",
-    eGreen:"Green salsa", eRed:"Red salsa", eLimes:"Limes", eSide:"Everything on the side",
+    eGreen:"Green salsa", eRed:"Red salsa", eLimes:"Limes", eSide:"On the side",
     paymentTitle:"Payment method",
-    payCash:"💵 Cash", payTransfer:"📲 Bank transfer",
-    changeLabel:"Paying with?", changePlaceholder:"e.g. $200 / Exact change",
+    payCash:"Cash", payTransfer:"Bank transfer",
+    changeLabel:"Paying with?", changePlaceholder:"e.g. $200 or exact change",
     optionalTag:"(optional)",
-    notes:"Additional notes", notesPlaceholder:"e.g. Well-toasted tortilla, extra warm bread…",
+    notes:"Order notes", notesPlaceholder:"e.g. Toasted tortilla, no ice in guava water…",
     confirmPending:"Some prices are pending update; we will confirm your final total on WhatsApp.",
-    confirmReady:"Pressing send will open WhatsApp with your complete order ready to confirm.",
-    send:"💬 Send order via WhatsApp", back:"← Back", copyOrder:"📋 Copy",
-    all:"All", search:"Search tacos or tortas…", quantity:"Qty", addBtn:"Add",
-    chooseMeatLabel:"Select meat", chooseTwoBtn:"Choose 2 meats",
-    comboModalTitle:"Build Your Combo Taco",
-    comboInstruction:"Select exactly 2 meats to combine in your taco.",
-    comboQtyLabel:"How many tacos like this?", comboAddBtn:"Add combo to order",
+    confirmReady:"Pressing send will open WhatsApp with your order ready to confirm.",
+    send:"Send order via WhatsApp", back:"Back", copyOrder:"Copy text",
+    all:"All", search:"Search tacos, tortas or drinks…", quantity:"Qty", addBtn:"Add",
+    chooseTwoBtn:"Choose 2 meats",
+    comboModalTitle:"Combo Taco",
+    comboInstruction:"Pick exactly 2 meats to combine.",
+    comboQtyLabel:"Quantity", comboAddBtn:"Add to order",
     comboMaxHint:"You already picked 2 meats. Uncheck one to swap.",
     add:"Add", remove:"Remove", close:"Close", photo:"Product photo",
-    enlarge:"Enlarge photo", emptyCart:"Your order is currently empty.",
+    enlarge:"Enlarge photo", emptyCart:"Your order is empty.",
     pricePending:"Price to confirm", photoSoon:"Photo coming soon",
     hello:"Hello, I have a question about El Mexicanito.",
-    chat:"Contact on WhatsApp", viewOrder:"View order →",
+    chat:"WhatsApp", viewOrder:"View order",
     statusOpen:"Open now", statusClosing:"Closing soon", statusClosed:"Closed",
-    needName:"Please enter your name so we can identify your order.",
+    needName:"Please enter your name.",
     needAddress:"Please enter your delivery address.",
-    copied:"Order copied to clipboard.", cartCleared:"Order cleared.",
+    copied:"Order text copied.", cartCleared:"Order cleared.",
     addedToast:"Added", unitOne:"item", unitMany:"items",
-    tortaOf:"Torta · ", meatPrefix:"Meat: "
+    tortaOf:"Torta · "
   }
 };
 
-const STORAGE_KEY = "el_mexicanito_order_v3";
+/* Ilustraciones mínimas en trazo fino (SVG) cuando un producto aún no tiene foto */
+const PLACEHOLDER_SVGS = {
+  taco: `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 31a16 16 0 0 1 32 0z"/><path d="M12 24c2-3 5-5 8-5M22 19c3 0 6 2 8 4M15 31h18"/><circle cx="19" cy="25" r="1"/><circle cx="28" cy="26" r="1"/></svg>`,
+  torta: `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M9 22c0-6 6.5-10 15-10s15 4 15 10H9z"/><path d="M8 26c3 1.5 5-1.5 8 0s5-1.5 8 0 5-1.5 8 0 5-1.5 8 0"/><path d="M10 30h28v2a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5v-2z"/></svg>`,
+  cup: `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14h20l-2.6 23a3 3 0 0 1-3 2.7h-8.8a3 3 0 0 1-3-2.7L14 14z"/><path d="M12 14h24"/><path d="M27 14l4-7"/><path d="M15.5 23c3-1.5 6 1.5 8.5 0s5.5 1.5 8.5 0"/></svg>`,
+  bottle: `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 7h8v5l4 7v18a3 3 0 0 1-3 3H19a3 3 0 0 1-3-3V19l4-7V7z"/><path d="M19 7h10"/><rect x="16" y="23" width="16" height="9" rx="1"/></svg>`
+};
+
+const STORAGE_KEY = "el_mexicanito_order_v4";
 const $ = id => document.getElementById(id);
 const make = (tag, cls, text) => {
   const el = document.createElement(tag);
@@ -1733,18 +1829,21 @@ const make = (tag, cls, text) => {
 
 const productMap = new Map(MENU.map(p => [p.id, p]));
 const meatMap = new Map(CARNES.map(c => [c.id, c]));
-const cart = new Map(); // key -> { key, id, meats:[], quantity }
+const cart = new Map(); // key -> { key, id, variants:[], quantity }
+const selectedOpt = new Map(); // productId -> optionId
+
+MENU.forEach(p => {
+  if (p.opciones?.length) selectedOpt.set(p.id, p.opciones[0].id);
+});
 
 let lang = "es";
 let activeCategory = "ALL";
-let selectedTortaMeat = CARNES[0].id;
 let orderId = "";
 let toastTimer;
 
 const comboDraft = { meats: [], qty: 1 };
 
 const orderState = {
-  delivery: "recoger",
   veggie: "con_todo",
   extras: new Set(["salsa_verde", "salsa_roja", "limones"]),
   payment: "efectivo",
@@ -1752,33 +1851,52 @@ const orderState = {
 };
 
 const t = key => TEXT[lang][key];
+const productTitle = p => lang === "es" ? p.nombre : p.nombreEn;
+const catLabel = p => lang === "es" ? p.categoria : (p.categoriaEn || p.categoria);
 const meatLabel = id => {
   const m = meatMap.get(id);
   return m ? (lang === "es" ? m.nombre : m.nombreEn) : id;
 };
-const productTitle = p => lang === "es" ? p.nombre : p.nombreEn;
-const catLabel = p => lang === "es" ? p.categoria : (p.categoriaEn || p.categoria);
-const hasPrice = p => typeof p.precio === "number" && Number.isFinite(p.precio) && p.precio >= 0;
+const optionObj = (p, optId) => p?.opciones?.find(o => o.id === optId) || null;
+const optionLabel = (p, optId, short = false) => {
+  const o = optionObj(p, optId);
+  if (!o) return optId;
+  if (short && (o.corto || o.cortoEn)) return lang === "es" ? o.corto : (o.cortoEn || o.corto);
+  return lang === "es" ? o.nombre : (o.nombreEn || o.nombre);
+};
+
+const isNum = v => typeof v === "number" && Number.isFinite(v) && v >= 0;
+const unitPriceFor = (p, variantId = null) => {
+  if (!p) return null;
+  if (variantId) {
+    const o = optionObj(p, variantId);
+    if (o && isNum(o.precio)) return o.precio;
+  }
+  return isNum(p.precio) ? p.precio : null;
+};
 const money = n => new Intl.NumberFormat(lang === "es" ? "es-MX" : "en-US", {
   style:"currency", currency:"MXN", currencyDisplay:"narrowSymbol"
 }).format(n);
-const priceText = p => hasPrice(p) ? money(p.precio) + " MXN" : t("pricePending");
+const formatPrice = val => isNum(val) ? money(val) + " MXN" : t("pricePending");
 const waUrl = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
 const normalize = v => v.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-function cartKeyFor(productId, meats = []) {
-  if (!meats.length) return productId;
-  return productId + "::" + [...meats].sort().join("+");
+function cartKeyFor(productId, variants = []) {
+  if (!variants.length) return productId;
+  return productId + "::" + [...variants].sort().join("+");
 }
 
 function rowDisplayName(row) {
   const p = productMap.get(row.id);
   if (!p) return "";
-  if (p.tipo === "torta-select" && row.meats?.length) {
-    return t("tortaOf") + meatLabel(row.meats[0]);
+  if (p.id === "torta" && row.variants?.length) {
+    return t("tortaOf") + optionLabel(p, row.variants[0]);
   }
-  if (p.tipo === "combo2" && row.meats?.length === 2) {
-    return productTitle(p) + " (" + meatLabel(row.meats[0]) + " + " + meatLabel(row.meats[1]) + ")";
+  if (p.tipo === "combo2" && row.variants?.length === 2) {
+    return productTitle(p) + " (" + meatLabel(row.variants[0]) + " + " + meatLabel(row.variants[1]) + ")";
+  }
+  if ((p.tipo === "select" || p.tipo === "sizes") && row.variants?.length) {
+    return productTitle(p) + " (" + optionLabel(p, row.variants[0]) + ")";
   }
   return productTitle(p);
 }
@@ -1804,8 +1922,8 @@ function loadState() {
     if (Array.isArray(data.cart)) {
       data.cart.forEach(([key, row]) => {
         if (row && productMap.has(row.id) && row.quantity > 0) {
-          const validMeats = Array.isArray(row.meats) ? row.meats.filter(m => meatMap.has(m)) : [];
-          cart.set(key, { key, id: row.id, meats: validMeats, quantity: Math.min(99, Number(row.quantity) || 1) });
+          const variants = Array.isArray(row.variants) ? row.variants : [];
+          cart.set(key, { key, id: row.id, variants, quantity: Math.min(99, Number(row.quantity) || 1) });
         }
       });
     }
@@ -1816,7 +1934,7 @@ function loadState() {
   } catch {}
 }
 
-/* ================= ESTADO DINÁMICO DE ACTIVIDAD ================= */
+/* ================= INDICADOR DINÁMICO DE ACTIVIDAD ================= */
 function updateOpenStatus() {
   const now = new Date();
   const day = now.getDay(); // 0=Dom, 1=Lun ... 6=Sáb
@@ -1846,7 +1964,7 @@ function showToast(msg) {
   el.textContent = msg;
   el.hidden = false;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { el.hidden = true; }, 2400);
+  toastTimer = setTimeout(() => { el.hidden = true; }, 2300);
 }
 
 /* ================= NAVEGACIÓN Y MODALES ================= */
@@ -1894,13 +2012,13 @@ $("closeOrder").onclick = () => $("orderDialog").close();
 $("closeCombo").onclick = () => $("comboDialog").close();
 $("closePhoto").onclick = () => $("photoDialog").close();
 
-/* ================= OPERACIONES DEL CARRITO ================= */
-function changeItem(productId, delta, meats = []) {
-  const key = cartKeyFor(productId, meats);
+/* ================= CARRITO ================= */
+function changeItem(productId, delta, variants = []) {
+  const key = cartKeyFor(productId, variants);
   const prev = cart.get(key)?.quantity || 0;
   const next = Math.max(0, Math.min(99, prev + delta));
 
-  if (next > 0) cart.set(key, { key, id: productId, meats: [...meats], quantity: next });
+  if (next > 0) cart.set(key, { key, id: productId, variants: [...variants], quantity: next });
   else cart.delete(key);
 
   if (cart.size && !orderId) orderId = "EM-" + Date.now().toString(36).slice(-5).toUpperCase();
@@ -1918,20 +2036,25 @@ function calcTotals() {
   let knownSum = 0;
   let hasPending = false;
   let totalItems = 0;
+  let hasFood = false;
+
   for (const row of cart.values()) {
     const p = productMap.get(row.id);
     if (!p) continue;
     totalItems += row.quantity;
-    if (hasPrice(p)) knownSum += p.precio * row.quantity;
+    if (p.esComida) hasFood = true;
+    const unit = unitPriceFor(p, row.variants?.[0] || null);
+    if (isNum(unit)) knownSum += unit * row.quantity;
     else hasPending = true;
   }
+
   let text = money(0) + " MXN";
   if (totalItems > 0) {
     if (!hasPending) text = money(knownSum) + " MXN";
     else if (knownSum > 0) text = money(knownSum) + " MXN" + t("plusPending");
     else text = t("pending");
   }
-  return { knownSum, hasPending, totalItems, text };
+  return { knownSum, hasPending, totalItems, hasFood, text };
 }
 
 function getRowsByProduct(productId) {
@@ -1966,7 +2089,7 @@ function openComboModal() {
 function renderComboModal() {
   const count = comboDraft.meats.length;
   const counter = $("comboCounter");
-  counter.textContent = count + " / 2" + (count === 2 ? " ✓" : "");
+  counter.textContent = count + " / 2";
   counter.classList.toggle("ready", count === 2);
 
   const grid = $("comboMeatGrid");
@@ -2000,12 +2123,8 @@ function renderComboModal() {
   $("addComboBtn").disabled = count !== 2;
 }
 
-$("comboMinus").onclick = () => {
-  if (comboDraft.qty > 1) { comboDraft.qty--; renderComboModal(); }
-};
-$("comboPlus").onclick = () => {
-  if (comboDraft.qty < 99) { comboDraft.qty++; renderComboModal(); }
-};
+$("comboMinus").onclick = () => { if (comboDraft.qty > 1) { comboDraft.qty--; renderComboModal(); } };
+$("comboPlus").onclick = () => { if (comboDraft.qty < 99) { comboDraft.qty++; renderComboModal(); } };
 $("addComboBtn").onclick = () => {
   if (comboDraft.meats.length !== 2) return;
   const sorted = [...comboDraft.meats].sort();
@@ -2043,8 +2162,9 @@ function renderProducts() {
 
   const visible = MENU.filter(p => {
     const matchCat = activeCategory === "ALL" || p.categoria === activeCategory;
-    const extraSearch = p.tipo !== "simple" ? CARNES.map(c => c.nombre + " " + c.nombreEn).join(" ") : "";
-    const haystack = normalize(p.nombre + " " + p.nombreEn + " " + p.categoria + " " + (p.descripcion || "") + " " + extraSearch);
+    const optSearch = p.opciones ? p.opciones.map(o => o.nombre + " " + (o.nombreEn || "")).join(" ") : "";
+    const comboSearch = p.tipo === "combo2" ? CARNES.map(c => c.nombre + " " + c.nombreEn).join(" ") : "";
+    const haystack = normalize(p.nombre + " " + p.nombreEn + " " + p.categoria + " " + (p.descripcion || "") + " " + optSearch + " " + comboSearch);
     return matchCat && (!q || haystack.includes(q));
   });
 
@@ -2062,15 +2182,15 @@ function renderProducts() {
       card.append(make("span", "card-tag", lang === "es" ? product.tag : (product.tagEn || product.tag)));
     }
 
-    // Foto con fallback elegante
+    // Fotografía o ilustración orgánica en trazo fino
     const photo = make("button", "photo");
     photo.type = "button";
     photo.disabled = true;
     photo.setAttribute("aria-label", t("enlarge") + " " + productTitle(product));
 
     const fallback = make("div", "placeholder");
+    fallback.innerHTML = PLACEHOLDER_SVGS[product.ilustracion] || PLACEHOLDER_SVGS.taco;
     fallback.append(
-      make("div", "placeholder-icon", product.icono || "🌮"),
       make("strong", "", lang === "es" ? (product.nombreCorto || product.nombre) : (product.nombreCortoEn || product.nombreEn)),
       make("small", "", t("photoSoon"))
     );
@@ -2090,7 +2210,6 @@ function renderProducts() {
       openDialog($("photoDialog"));
     };
 
-    // Contenido
     const content = make("div", "content");
     content.append(
       make("span", "category-label", catLabel(product)),
@@ -2099,32 +2218,56 @@ function renderProducts() {
     if (product.descripcion || product.descripcionEn) {
       content.append(make("p", "card-description", lang === "es" ? product.descripcion : (product.descripcionEn || product.descripcion)));
     }
-    content.append(make("div", "price" + (hasPrice(product) ? "" : " pending"), priceText(product)));
 
-    // Desplegable de carnes en Torta
-    if (product.tipo === "torta-select") {
+    const currentOpt = selectedOpt.get(product.id) || null;
+    const priceVal = unitPriceFor(product, currentOpt);
+    const priceEl = make("div", "price" + (isNum(priceVal) ? "" : " pending"), formatPrice(priceVal));
+    content.append(priceEl);
+
+    // Desplegable (Torta y Jugo Boing)
+    if (product.tipo === "select" && product.opciones?.length) {
       const vBox = make("div", "variant-box");
-      const selId = "tortaMeatSelect";
-      const lbl = make("label", "select-label", t("chooseMeatLabel"));
+      const selId = "sel-" + product.id;
+      const lbl = make("label", "select-label", lang === "es" ? product.labelOpcion : (product.labelOpcionEn || product.labelOpcion));
       lbl.htmlFor = selId;
-      const select = make("select", "meat-select");
+      const select = make("select", "custom-select");
       select.id = selId;
-      CARNES.forEach(c => {
+      product.opciones.forEach(o => {
         const opt = document.createElement("option");
-        opt.value = c.id;
-        opt.textContent = lang === "es" ? c.nombre : c.nombreEn;
-        if (c.id === selectedTortaMeat) opt.selected = true;
+        opt.value = o.id;
+        opt.textContent = lang === "es" ? o.nombre : (o.nombreEn || o.nombre);
+        if (o.id === currentOpt) opt.selected = true;
         select.append(opt);
       });
       select.addEventListener("change", () => {
-        selectedTortaMeat = select.value;
+        selectedOpt.set(product.id, select.value);
         syncCardsAndBar();
       });
       vBox.append(lbl, select);
       content.append(vBox);
     }
 
-    // Contenedor de etiquetas de variantes agregadas (para Torta y Taco Combinado)
+    // Selector táctil de tamaños (Agua natural de guayaba: ½ Litro / 1 Litro)
+    if (product.tipo === "sizes" && product.opciones?.length) {
+      const vBox = make("div", "variant-box");
+      vBox.append(make("span", "select-label", lang === "es" ? product.labelOpcion : (product.labelOpcionEn || product.labelOpcion)));
+      const sw = make("div", "size-switch");
+      product.opciones.forEach(o => {
+        const btn = make("button", "size-btn" + (o.id === currentOpt ? " active" : ""), lang === "es" ? o.nombre : (o.nombreEn || o.nombre));
+        btn.type = "button";
+        btn.dataset.optId = o.id;
+        btn.onclick = () => {
+          selectedOpt.set(product.id, o.id);
+          sw.querySelectorAll(".size-btn").forEach(b => b.classList.toggle("active", b.dataset.optId === o.id));
+          syncCardsAndBar();
+        };
+        sw.append(btn);
+      });
+      vBox.append(sw);
+      content.append(vBox);
+    }
+
+    // Etiquetas de variantes ya agregadas
     if (product.tipo !== "simple") {
       const addedList = make("div", "added-variants");
       addedList.hidden = true;
@@ -2135,7 +2278,7 @@ function renderProducts() {
     const actions = make("div", "card-actions");
 
     if (product.tipo === "combo2") {
-      const comboBtn = make("button", "add-btn combo-cta", "✨ " + t("chooseTwoBtn"));
+      const comboBtn = make("button", "add-btn combo-cta", t("chooseTwoBtn"));
       comboBtn.type = "button";
       comboBtn.onclick = openComboModal;
       actions.append(comboBtn);
@@ -2143,9 +2286,10 @@ function renderProducts() {
       const addBtn = make("button", "add-btn", "+ " + t("addBtn"));
       addBtn.type = "button";
       addBtn.onclick = () => {
-        if (product.tipo === "torta-select") {
-          changeItem(product.id, 1, [selectedTortaMeat]);
-          showToast(t("addedToast") + ": " + t("tortaOf") + meatLabel(selectedTortaMeat));
+        if (product.tipo === "select" || product.tipo === "sizes") {
+          const optId = selectedOpt.get(product.id);
+          changeItem(product.id, 1, [optId]);
+          showToast(t("addedToast") + ": " + optionLabel(product, optId));
         } else {
           changeItem(product.id, 1);
           showToast(t("addedToast") + ": " + productTitle(product));
@@ -2156,8 +2300,12 @@ function renderProducts() {
       stepRow.hidden = true;
       const stepLabel = make("span", "stepper-label", t("quantity"));
       const stepper = buildStepper(
-        () => product.tipo === "torta-select" ? changeItem(product.id, -1, [selectedTortaMeat]) : changeItem(product.id, -1),
-        () => product.tipo === "torta-select" ? changeItem(product.id, 1, [selectedTortaMeat]) : changeItem(product.id, 1),
+        () => (product.tipo === "select" || product.tipo === "sizes")
+          ? changeItem(product.id, -1, [selectedOpt.get(product.id)])
+          : changeItem(product.id, -1),
+        () => (product.tipo === "select" || product.tipo === "sizes")
+          ? changeItem(product.id, 1, [selectedOpt.get(product.id)])
+          : changeItem(product.id, 1),
         0,
         productTitle(product)
       );
@@ -2188,31 +2336,40 @@ function syncCardsAndBar() {
       badge.hidden = totalForProduct === 0;
     }
 
-    // Mostrar píldoras con variantes ya agregadas (Torta o Taco Combinado)
+    // Actualizar precio si depende de la variante seleccionada (ej. Agua ½ L vs 1 L)
+    const activeOpt = selectedOpt.get(id) || null;
+    const priceEl = card.querySelector(".price");
+    if (priceEl) {
+      const val = unitPriceFor(product, activeOpt);
+      priceEl.textContent = formatPrice(val);
+      priceEl.classList.toggle("pending", !isNum(val));
+    }
+
+    // Mostrar píldoras con variantes ya agregadas
     const addedList = card.querySelector(".added-variants");
     if (addedList) {
       addedList.replaceChildren();
       addedList.hidden = rows.length === 0;
       rows.forEach(r => {
         const text = product.tipo === "combo2"
-          ? r.quantity + "× " + meatLabel(r.meats[0]) + " + " + meatLabel(r.meats[1])
-          : r.quantity + "× " + meatLabel(r.meats[0]);
+          ? r.quantity + "× " + meatLabel(r.variants[0]) + " + " + meatLabel(r.variants[1])
+          : r.quantity + "× " + optionLabel(product, r.variants[0], true);
         addedList.append(make("span", "variant-pill", text));
       });
     }
 
-    // Controles de cantidad en tarjeta simple o torta (sincronizado a la carne del desplegable)
+    // Sincronizar botón Agregar / stepper con la opción activa
     if (product.tipo !== "combo2") {
-      const targetKey = product.tipo === "torta-select"
-        ? cartKeyFor(id, [selectedTortaMeat])
+      const targetKey = (product.tipo === "select" || product.tipo === "sizes")
+        ? cartKeyFor(id, [activeOpt])
         : cartKeyFor(id);
       const qty = cart.get(targetKey)?.quantity || 0;
       const addBtn = card.querySelector(".add-btn");
       const stepRow = card.querySelector(".stepper-row");
       addBtn.hidden = qty > 0;
       stepRow.hidden = qty === 0;
-      if (product.tipo === "torta-select") {
-        stepRow.querySelector(".stepper-label").textContent = meatLabel(selectedTortaMeat);
+      if (product.tipo === "select" || product.tipo === "sizes") {
+        stepRow.querySelector(".stepper-label").textContent = optionLabel(product, activeOpt, true);
       }
       stepRow.querySelector("output").textContent = qty;
       const btns = stepRow.querySelectorAll("button");
@@ -2244,7 +2401,7 @@ $("clearSearch").addEventListener("click", () => {
   $("search").focus();
 });
 
-/* ================= CARRITO EN MODAL ================= */
+/* ================= MODAL DE CARRITO ================= */
 function renderCart() {
   const container = $("cartRows");
   container.replaceChildren();
@@ -2262,20 +2419,21 @@ function renderCart() {
       const titleCol = make("div");
       titleCol.append(make("strong", "", productTitle(p)));
 
-      if (p.tipo === "torta-select" && row.meats?.length) {
-        titleCol.append(make("div", "cart-variant-text", t("meatPrefix") + meatLabel(row.meats[0])));
-      } else if (p.tipo === "combo2" && row.meats?.length === 2) {
-        titleCol.append(make("div", "cart-variant-text", meatLabel(row.meats[0]) + " + " + meatLabel(row.meats[1])));
+      if (p.tipo === "combo2" && row.variants?.length === 2) {
+        titleCol.append(make("div", "cart-variant-text", meatLabel(row.variants[0]) + " + " + meatLabel(row.variants[1])));
+      } else if ((p.tipo === "select" || p.tipo === "sizes") && row.variants?.length) {
+        titleCol.append(make("div", "cart-variant-text", optionLabel(p, row.variants[0])));
       }
 
-      const linePrice = hasPrice(p) ? money(p.precio * row.quantity) + " MXN" : t("pricePending");
+      const unit = unitPriceFor(p, row.variants?.[0] || null);
+      const linePrice = isNum(unit) ? money(unit * row.quantity) + " MXN" : t("pricePending");
       top.append(titleCol, make("span", "", linePrice));
 
       const bottom = make("div", "cart-bottom");
-      const unitInfo = hasPrice(p) ? money(p.precio) + " c/u" : t("pricePending");
+      const unitInfo = isNum(unit) ? money(unit) + " c/u" : t("pricePending");
       const stepper = buildStepper(
-        () => changeItem(row.id, -1, row.meats),
-        () => changeItem(row.id, 1, row.meats),
+        () => changeItem(row.id, -1, row.variants),
+        () => changeItem(row.id, 1, row.variants),
         row.quantity,
         rowDisplayName(row)
       );
@@ -2292,6 +2450,7 @@ function renderCart() {
   $("total").textContent = totals.text;
   $("continueOrder").disabled = !cart.size;
   $("priceConfirmHint").textContent = totals.hasPending ? t("confirmPending") : t("confirmReady");
+  $("foodPrepBlock").hidden = !totals.hasFood;
 
   if (!cart.size) setStep(1);
 }
@@ -2328,18 +2487,7 @@ $("clearCartBtn").onclick = () => {
   showToast(t("cartCleared"));
 };
 
-/* ================= OPCIONES DE CHECKOUT ================= */
-document.querySelectorAll("[data-delivery]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    orderState.delivery = btn.dataset.delivery;
-    document.querySelectorAll("[data-delivery]").forEach(b => b.classList.toggle("active", b === btn));
-    $("pickupFields").hidden = orderState.delivery !== "recoger";
-    $("deliveryFields").hidden = orderState.delivery !== "domicilio";
-    $("dineFields").hidden = orderState.delivery !== "local";
-    updatePreview();
-  });
-});
-
+/* ================= OPCIONES DEL FORMULARIO ================= */
 document.querySelectorAll("[data-veggie]").forEach(btn => {
   btn.addEventListener("click", () => {
     orderState.veggie = btn.dataset.veggie;
@@ -2397,7 +2545,7 @@ $("gpsBtn").addEventListener("click", () => {
   );
 });
 
-["customer", "pickupTime", "address", "refs", "tableRef", "cashAmount", "notes"].forEach(id => {
+["customer", "address", "refs", "cashAmount", "notes"].forEach(id => {
   $(id).addEventListener("input", () => { saveState(); updatePreview(); });
   $(id).addEventListener("change", () => { saveState(); updatePreview(); });
 });
@@ -2409,11 +2557,6 @@ function buildWhatsAppMessage() {
     day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit"
   }).format(new Date());
 
-  const deliveryLabels = {
-    recoger: isEs ? "Recoger en taquería" : "Pickup",
-    domicilio: isEs ? "Envío a domicilio" : "Delivery",
-    local: isEs ? "Comer en local" : "Dine-in"
-  };
   const veggieLabels = {
     con_todo: t("vAll"), sin_cebolla: t("vNoOnion"), sin_cilantro: t("vNoCilantro"), sin_verdura: t("vPlain")
   };
@@ -2427,48 +2570,42 @@ function buildWhatsAppMessage() {
 
   const totals = calcTotals();
   const lines = [
-    "🌮 *" + (isEs ? "NUEVO PEDIDO" : "NEW ORDER") + " · " + CONFIG.nombre.toUpperCase() + "*",
-    "🧾 Folio: *" + (orderId || "EM-001") + "*",
-    "🕒 " + nowStr,
+    "*" + (isEs ? "PEDIDO A DOMICILIO" : "DELIVERY ORDER") + " · " + CONFIG.nombre.toUpperCase() + "*",
+    "Folio: *" + (orderId || "EM-001") + "* · " + nowStr,
     "",
-    "*" + (isEs ? "DETALLE DEL PEDIDO:" : "ORDER DETAILS:") + "*"
+    "*" + (isEs ? "Detalle del pedido:" : "Order details:") + "*"
   ];
 
   cart.forEach(row => {
     const p = productMap.get(row.id);
     if (!p) return;
-    const sub = hasPrice(p) ? money(p.precio * row.quantity) + " MXN" : t("pricePending");
-    lines.push("• " + row.quantity + " × " + rowDisplayName(row) + " — " + sub);
+    const unit = unitPriceFor(p, row.variants?.[0] || null);
+    const sub = isNum(unit) ? money(unit * row.quantity) + " MXN" : t("pricePending");
+    lines.push("- " + row.quantity + " × " + rowDisplayName(row) + " — " + sub);
   });
 
   lines.push(
     "",
-    "💰 *" + t("total") + ":* " + totals.text,
-    "────────────────────",
-    "📦 *" + (isEs ? "Modalidad" : "Order type") + ":* " + deliveryLabels[orderState.delivery]
+    "*" + t("total") + ":* " + totals.text,
+    "--------------------",
+    "*" + (isEs ? "Entrega" : "Delivery") + ":* " + (isEs ? "Para llevar a domicilio" : "Home delivery")
   );
 
   const customer = $("customer").value.trim();
-  if (customer) lines.push("👤 *" + (isEs ? "Cliente" : "Customer") + ":* " + customer);
+  const addr = $("address").value.trim();
+  const refs = $("refs").value.trim();
 
-  if (orderState.delivery === "recoger") {
-    const sel = $("pickupTime");
-    lines.push("⏱️ *" + (isEs ? "Recoger" : "Pickup") + ":* " + sel.options[sel.selectedIndex].text);
-  } else if (orderState.delivery === "domicilio") {
-    const addr = $("address").value.trim();
-    const refs = $("refs").value.trim();
-    if (addr) lines.push("📍 *" + (isEs ? "Dirección" : "Address") + ":* " + addr);
-    if (refs) lines.push("🏠 *" + (isEs ? "Referencias" : "Landmarks") + ":* " + refs);
-    if (orderState.gpsUrl) lines.push("🗺️ *GPS:* " + orderState.gpsUrl);
-  } else if (orderState.delivery === "local") {
-    const tbl = $("tableRef").value.trim();
-    if (tbl) lines.push("🍽️ *" + (isEs ? "Mesa / Lugar" : "Table") + ":* " + tbl);
-  }
+  if (customer) lines.push("*" + (isEs ? "Cliente" : "Customer") + ":* " + customer);
+  if (addr) lines.push("*" + (isEs ? "Dirección" : "Address") + ":* " + addr);
+  if (refs) lines.push("*" + (isEs ? "Referencias" : "Landmarks") + ":* " + refs);
+  if (orderState.gpsUrl) lines.push("*GPS:* " + orderState.gpsUrl);
 
-  const chosenExtras = [...orderState.extras].map(k => extraLabels[k]).filter(Boolean);
-  lines.push("🥗 *" + (isEs ? "Preparación" : "Preparation") + ":* " + veggieLabels[orderState.veggie]);
-  if (chosenExtras.length) {
-    lines.push("🌶️ *" + (isEs ? "Acompañamientos" : "Sides") + ":* " + chosenExtras.join(", "));
+  if (totals.hasFood) {
+    const chosenExtras = [...orderState.extras].map(k => extraLabels[k]).filter(Boolean);
+    lines.push("*" + (isEs ? "Preparación" : "Preparation") + ":* " + veggieLabels[orderState.veggie]);
+    if (chosenExtras.length) {
+      lines.push("*" + (isEs ? "Acompañamientos" : "Sides") + ":* " + chosenExtras.join(", "));
+    }
   }
 
   let payLine = payLabels[orderState.payment] || payLabels.efectivo;
@@ -2476,13 +2613,13 @@ function buildWhatsAppMessage() {
   if (orderState.payment === "efectivo" && cashAmt) {
     payLine += " (" + (isEs ? "Paga con: " : "Paying with: ") + cashAmt + ")";
   }
-  lines.push("💳 *" + (isEs ? "Pago" : "Payment") + ":* " + payLine);
+  lines.push("*" + (isEs ? "Pago" : "Payment") + ":* " + payLine);
 
   const notes = $("notes").value.trim();
-  if (notes) lines.push("📝 *" + (isEs ? "Notas" : "Notes") + ":* " + notes);
+  if (notes) lines.push("*" + (isEs ? "Notas" : "Notes") + ":* " + notes);
 
   if (totals.hasPending) {
-    lines.push("", isEs ? "Por favor confírmame el total final y tiempo estimado." : "Please confirm the final total and estimated time.");
+    lines.push("", isEs ? "Por favor confírmame el total final y tiempo estimado de entrega." : "Please confirm the final total and estimated delivery time.");
   }
 
   return lines.join("\n");
@@ -2495,7 +2632,7 @@ function updatePreview() {
 function validateCheckout() {
   if (!cart.size) { setStep(1); return false; }
   if (!$("customer").value.trim()) { showToast(t("needName")); $("customer").focus(); return false; }
-  if (orderState.delivery === "domicilio" && !$("address").value.trim()) { showToast(t("needAddress")); $("address").focus(); return false; }
+  if (!$("address").value.trim()) { showToast(t("needAddress")); $("address").focus(); return false; }
   return true;
 }
 
@@ -2526,22 +2663,20 @@ $("copyOrderBtn").addEventListener("click", async () => {
 /* ================= IDIOMA Y ARRANQUE ================= */
 function applyLanguage() {
   document.documentElement.lang = lang;
-  document.title = CONFIG.nombre + " | " + t("menuTitle");
+  document.title = CONFIG.nombre + " | " + t("menu");
   document.querySelectorAll("[data-t]").forEach(node => {
     const key = node.dataset.t;
     if (TEXT[lang][key] !== undefined) node.textContent = TEXT[lang][key];
   });
 
-  const allPriced = MENU.every(hasPrice);
-  $("currencyBadge").textContent = allPriced ? t("currencyReady") : t("currencyPending");
-  $("language").textContent = lang === "es" ? "English · EN" : "Español · ES";
+  $("language").textContent = lang === "es" ? "EN" : "ES";
+  $("language").setAttribute("aria-label", lang === "es" ? "Switch to English" : "Cambiar a español");
   $("visitSchedule").textContent = lang === "es" ? CONFIG.horario : CONFIG.horarioEn;
 
   $("search").placeholder = t("search");
   $("customer").placeholder = t("namePlaceholder");
   $("address").placeholder = t("addressPlaceholder");
   $("refs").placeholder = t("refsPlaceholder");
-  $("tableRef").placeholder = t("tablePlaceholder");
   $("cashAmount").placeholder = t("changePlaceholder");
   $("notes").placeholder = t("notesPlaceholder");
   $("gpsBtnText").textContent = orderState.gpsUrl ? t("gpsAttached") : t("gpsAdd");
