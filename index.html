@@ -832,16 +832,29 @@ dialog::backdrop{background:rgba(71,36,25,.64);backdrop-filter:blur(3px)}
 .cart-title strong{font-weight:700;color:var(--cacao)}
 .cart-variant-text{font-size:12.5px;color:var(--chile);font-weight:600;margin-top:2px}
 .cart-sub{font-size:12px;color:var(--canela)}
+.cart-controls{display:inline-flex;align-items:center;gap:8px}
+.trash-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:34px;padding:6px 10px;border-radius:8px;
+  border:1px solid rgba(158,42,28,.26);background:var(--chile-suave);color:var(--chile-oscuro);
+  font-size:12px;font-weight:700;flex-shrink:0;
+  transition:background .15s ease,color .15s ease,border-color .15s ease,transform .1s ease;
+}
+.trash-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.trash-btn:hover{background:var(--chile);border-color:var(--chile);color:var(--tortilla)}
+.trash-btn:active{transform:scale(.95)}
+.trash-btn.icon-only{width:32px;height:32px;min-height:32px;padding:0;border-radius:7px}
 .totals{margin-top:14px;padding:13px 15px;background:var(--masa);border:1px solid var(--borde);border-radius:var(--r-sm)}
 .totals div{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin:4px 0}
 .totals .total{margin-top:8px;padding-top:8px;border-top:1px solid var(--borde);font-size:16px;font-weight:800;color:var(--chile-oscuro)}
 
 .delivery-banner{
-  display:flex;align-items:center;gap:10px;padding:11px 13px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;margin-bottom:16px;
   border-radius:var(--r-sm);background:var(--maiz-suave);border:1px solid #E9D3A3;
   font-size:13px;font-weight:700;color:var(--cacao);
 }
-.delivery-banner svg{width:18px;height:18px;stroke:var(--chile);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.delivery-banner-main{display:flex;align-items:center;gap:9px;min-width:0}
+.delivery-banner-main svg{width:18px;height:18px;stroke:var(--chile);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .form-section{margin-bottom:16px}
 .section-title{
   display:block;font-size:11.5px;font-weight:700;letter-spacing:.7px;
@@ -1184,7 +1197,10 @@ footer .footer-studio{margin-top:2px;font-size:12px}
       <div id="step1Body">
         <div class="cart-toolbar">
           <p class="hint" data-t="review">Revisa tus productos antes de continuar.</p>
-          <button type="button" id="clearCartBtn" class="button ghost" data-t="clearCart" hidden>Vaciar</button>
+          <button type="button" id="clearCartBtn" class="trash-btn" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+            <span data-t="clearCart">Vaciar</span>
+          </button>
         </div>
         <div id="cartRows"></div>
         <div class="totals" aria-live="polite">
@@ -1196,8 +1212,14 @@ footer .footer-studio{margin-top:2px;font-size:12px}
 
       <form id="orderForm" hidden novalidate>
         <div class="delivery-banner">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span data-t="deliveryOnlyNotice">Pedido para llevar a domicilio</span>
+          <div class="delivery-banner-main">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-t="deliveryOnlyNotice">Pedido para llevar a domicilio</span>
+          </div>
+          <button type="button" id="clearCartStep2Btn" class="trash-btn" aria-label="Vaciar pedido">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+            <span data-t="clearCart">Vaciar</span>
+          </button>
         </div>
 
         <label class="field">
@@ -1462,6 +1484,7 @@ const TEXT = {
     needName:"Escribe tu nombre para registrar el pedido.",
     needAddress:"Escribe tu dirección para el envío a domicilio.",
     copied:"Texto copiado al portapapeles.", cartCleared:"Se vació tu pedido.",
+    orderSentReset:"Pedido enviado por WhatsApp. Tu bolsa se reinició.", deleteItem:"Eliminar artículo",
     addedToast:"Agregado al pedido",
     groupTacosMeta:"$18 c/u", groupDrinksMeta:"$25 – $50",
     reviewsKicker:"Reseñas en Google Maps", reviewsTitle:"¿Qué opinan nuestros clientes?",
@@ -1514,6 +1537,7 @@ const TEXT = {
     needName:"Please enter your name.",
     needAddress:"Please enter your delivery address.",
     copied:"Text copied to clipboard.", cartCleared:"Order cleared.",
+    orderSentReset:"Order sent via WhatsApp. Your bag has been reset.", deleteItem:"Remove item",
     addedToast:"Added to order",
     groupTacosMeta:"$18 each", groupDrinksMeta:"$25 – $50",
     reviewsKicker:"Google Maps Reviews", reviewsTitle:"What do our guests think?",
@@ -1543,6 +1567,20 @@ const LIME_SLICE_SVG = `<svg viewBox="0 0 48 48" aria-hidden="true">
   <path d="M6.5 22H41.5" stroke="#F8F4E6" stroke-width="1.4" stroke-linecap="round"/>
   <circle cx="24" cy="22" r="1.8" fill="#F8F4E6"/>
 </svg>`;
+
+/* Ilustración vectorial 2D de rabanito mexicano (bulbo magenta, punta blanca y hojas verdes) */
+const RADISH_SVG = `<svg viewBox="0 0 48 54" aria-hidden="true">
+  <path d="M24 18C21 12 13 9 11 12.5C9.5 15.2 14.5 18.5 22.5 19.5Z" fill="#2A8C4A"/>
+  <path d="M24 18C27 12 35 9 37 12.5C38.5 15.2 33.5 18.5 25.5 19.5Z" fill="#2A8C4A"/>
+  <path d="M24 18.5C20.5 11.5 20.5 5 24 4.2C27.5 5 27.5 11.5 24 18.5Z" fill="#46B863"/>
+  <path d="M24 18V7.5M23.5 18.5L14.5 13.5M24.5 18.5L33.5 13.5" stroke="#1E6B37" stroke-width="1.2" stroke-linecap="round" opacity=".75"/>
+  <path d="M24 17.5C15.8 17.5 11.2 23.4 12.4 30.8C13.5 37.6 19.8 41.2 24 46.8C28.2 41.2 34.5 37.6 35.6 30.8C36.8 23.4 32.2 17.5 24 17.5Z" fill="#D82855"/>
+  <path d="M16.2 37.5C18.6 40.6 21.8 43.4 24 46.8C26.2 43.4 29.4 40.6 31.8 37.5C29 38.8 26.4 39.2 24 39.2C21.6 39.2 19 38.8 16.2 37.5Z" fill="#FFFDF8"/>
+  <path d="M24 46.2C24 49 22.6 50.8 24.4 52.5" fill="none" stroke="#FFFDF8" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M16.8 24.8C17.4 22.2 19.4 20.6 21.6 20.2" fill="none" stroke="#FF85A5" stroke-width="2.2" stroke-linecap="round" opacity=".85"/>
+</svg>`;
+
+const TRASH_ICON_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>`;
 
 /* Banderitas vectoriales de papel picado tricolor con figura de taco y ondulación curva */
 let papelAnimId = 0;
@@ -1729,19 +1767,20 @@ function spawnLimeBurst(anchorEl) {
     fill: "forwards"
   }).onfinish = () => ring.remove();
 
-  /* Explosión 360° de limones partidos 2D con rotación en ejes X, Y y Z */
-  const count = 12;
+  /* Explosión 360° de limones partidos y rabanitos 2D girando en ejes X, Y y Z */
+  const count = 14;
   const baseOffset = Math.random() * Math.PI * 2;
   for (let i = 0; i < count; i++) {
+    const isRadish = i % 2 === 1;
     const lime = document.createElement("span");
     lime.className = "flying-lime";
-    lime.innerHTML = LIME_SLICE_SVG;
+    lime.innerHTML = isRadish ? RADISH_SVG : LIME_SLICE_SVG;
 
-    const angle = baseOffset + (i / count) * Math.PI * 2 + (Math.random() * 0.34 - 0.17);
-    const radius = (i % 2 === 0 ? 78 : 114) + Math.random() * 34;
+    const angle = baseOffset + (i / count) * Math.PI * 2 + (Math.random() * 0.32 - 0.16);
+    const radius = (i % 2 === 0 ? 80 : 118) + Math.random() * 34;
     const dx = Math.cos(angle) * radius;
     const dy = Math.sin(angle) * radius;
-    const size = Math.round(28 + Math.random() * 14);
+    const size = Math.round((isRadish ? 30 : 28) + Math.random() * 14);
 
     const rx0 = Math.round(Math.random() * 90 - 45);
     const ry0 = Math.round(Math.random() * 90 - 45);
@@ -2241,14 +2280,28 @@ function renderCart() {
       top.append(titleCol, make("span", "", money(unit * row.quantity) + " MXN"));
 
       const bottom = make("div", "cart-bottom");
-      bottom.append(
-        make("span", "cart-sub", money(unit) + " c/u"),
+      const controls = make("div", "cart-controls");
+      const delBtn = make("button", "trash-btn icon-only");
+      delBtn.type = "button";
+      delBtn.innerHTML = TRASH_ICON_SVG;
+      delBtn.setAttribute("aria-label", t("deleteItem") + ": " + rowDisplayName(row));
+      delBtn.onclick = () => {
+        cart.delete(row.key);
+        if (!cart.size) orderId = "";
+        saveState();
+        syncCardsAndBadges();
+        renderCart();
+        updatePreview();
+      };
+      controls.append(
         buildStepper(
           btn => changeItem(row.id, -1, row.variants, btn),
           btn => changeItem(row.id, 1, row.variants, btn),
           row.quantity, rowDisplayName(row)
-        )
+        ),
+        delBtn
       );
+      bottom.append(make("span", "cart-sub", money(unit) + " c/u"), controls);
       box.append(top, bottom);
       container.append(box);
     });
@@ -2278,7 +2331,19 @@ document.querySelectorAll("[data-order]").forEach(btn => btn.onclick = () => {
 $("continueOrder").onclick = () => { if (cart.size) { setStep(2); $("customer").focus(); } };
 $("back").onclick = () => setStep(1);
 $("more").onclick = () => { $("orderDialog").close(); showView("menu"); };
-$("clearCartBtn").onclick = () => { cart.clear(); orderId = ""; saveState(); syncCardsAndBadges(); renderCart(); showToast(t("cartCleared")); };
+function resetOrderBag(toastKey) {
+  cart.clear();
+  orderId = "";
+  $("cashAmount").value = "";
+  $("notes").value = "";
+  saveState();
+  syncCardsAndBadges();
+  renderCart();
+  updatePreview();
+  if (toastKey) showToast(t(toastKey));
+}
+$("clearCartBtn").onclick = () => resetOrderBag("cartCleared");
+$("clearCartStep2Btn").onclick = () => resetOrderBag("cartCleared");
 
 document.querySelectorAll("[data-veggie]").forEach(btn => btn.onclick = () => {
   orderState.veggie = btn.dataset.veggie;
@@ -2387,6 +2452,8 @@ $("sendWhatsAppBtn").onclick = () => {
   const url = waUrl(buildWhatsAppMessage());
   const win = window.open(url, "_blank", "noopener,noreferrer");
   if (!win) window.location.assign(url);
+  resetOrderBag("orderSentReset");
+  $("orderDialog").close();
 };
 
 $("copyOrderBtn").onclick = async () => {
