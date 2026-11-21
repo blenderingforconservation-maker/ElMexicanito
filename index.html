@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#8f241c">
+<meta name="description" content="Menú digital de El Mexicanito. Tacos en San Luis Potosí.">
+<title>El Mexicanito | Menú</title>
+<style>
+:root{
+  --bg:#F7F1E7;--paper:#FFFCF6;--ink:#261B17;
+  --muted:#79665B;--red:#98291F;--red-dark:#5D1915;
+  --yellow:#E7B64B;--green:#526B42;--line:#E5D8C6;
+  --radius:22px;--shadow:0 14px 35px #4a28100d;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+body.locked{overflow:hidden}
+button,input,textarea{font:inherit}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+button:disabled{opacity:.4;cursor:default}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.wrap{width:min(1200px,100%);margin:auto;padding-inline:22px}
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:radial-gradient(circle at 86% 18%,#b4492f 0,transparent 28%),
+             linear-gradient(135deg,var(--red-dark),var(--red) 68%,#7c211b);
+  color:var(--paper);padding-bottom:48px;
+}
+.hero:before{
+  content:"";position:absolute;z-index:-1;right:-180px;top:30px;
+  width:560px;height:560px;border:1px solid #f4d68b55;border-radius:50%;
+  box-shadow:0 0 0 55px #f4d68b0c,0 0 0 110px #f4d68b0c;
+}
+.hero:after{
+  content:"";position:absolute;z-index:-1;left:-110px;bottom:-280px;
+  width:380px;height:380px;border:1px solid #f4d68b35;border-radius:50%;
+}
+.hero-photo{position:absolute;inset:0;z-index:-3;width:100%;height:100%;object-fit:cover}
+.hero.has-photo:before{display:none}
+.hero.has-photo:after{content:"";position:absolute;inset:0;z-index:-2;width:auto;height:auto;border:0;border-radius:0;background:linear-gradient(90deg,#35110ff2,#651a17a0)}
+.top{display:flex;justify-content:flex-end;align-items:center;gap:18px;padding-block:22px}
+.kicker{font-size:11px;font-weight:800;letter-spacing:1.8px;line-height:1.6;text-transform:uppercase}
+.language{border:1px solid #ffffff70;color:white;background:#ffffff0c;padding:10px 15px;border-radius:99px;min-height:42px}
+.hero-content{padding:16px 0 12px}
+.hero h1{margin:18px 0 20px;font-family:Georgia,serif;font-size:clamp(52px,9vw,104px);font-weight:normal;letter-spacing:-3px;line-height:1.02}
+.hero p{font-size:19px;line-height:1.7;max-width:650px;margin-bottom:0;color:#fff1db}
+.hero .kicker{color:#F2CD79}
+.desktop-nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;min-height:72px;gap:20px}
+.brand{font-family:Georgia,serif;font-size:24px;color:var(--red-dark)}
+.nav-buttons{display:flex;gap:6px}
+.nav-buttons button,.mobile-nav button{border:0;color:var(--ink);background:transparent;padding:13px 18px;border-radius:99px;font-size:12px;font-weight:800}
+.nav-buttons .active{background:var(--red);color:white}
+.count{display:inline-block;background:var(--yellow);color:var(--red-dark);padding:3px 6px;border-radius:99px;font-size:10px;margin-left:4px}
+main{padding-block:38px 65px;scroll-margin-top:85px}
+h2{font-family:Georgia,serif;font-size:clamp(35px,5vw,49px);font-weight:normal;margin:8px 0 15px}
+.lead{color:var(--muted);line-height:1.75;max-width:730px;font-size:15px}
+.menu-tools{display:flex;align-items:center;gap:20px;justify-content:space-between;margin-top:24px}
+.search{width:min(100%,340px);padding:13px 16px;min-height:47px;border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font-size:16px}
+.currency{font-size:12px;color:var(--muted)}
+.filters{display:flex;gap:8px;overflow:auto;padding:18px 0 25px;scrollbar-width:thin}
+.filter{flex-shrink:0;min-height:43px;border:1px solid var(--line);border-radius:99px;background:var(--paper);color:var(--ink);padding:10px 17px;font-size:12px;font-weight:800}
+.filter.active{background:var(--red);color:white;border-color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{min-width:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--paper);display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.photo{width:100%;aspect-ratio:4/3;position:relative;display:grid;place-items:center;background:linear-gradient(145deg,#F0E0C7,#E8D1B3);border:0;padding:0;overflow:hidden}
+.photo:disabled{opacity:1}
+.photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.placeholder{text-align:center;color:var(--red);padding:24px}
+.placeholder span{display:block;font-size:48px;margin-bottom:9px}
+.placeholder strong{font-family:Georgia,serif;font-size:21px;font-weight:normal;display:block}
+.placeholder small{display:block;margin-top:6px;color:#8A7160;font-size:11px}
+.content{padding:19px 20px 21px;flex:1}
+.category-label{font-size:10px;letter-spacing:1.2px;color:var(--green);text-transform:uppercase;font-weight:800}
+.card h3{font-family:Georgia,serif;font-size:25px;font-weight:normal;line-height:1.2;margin:9px 0 12px}
+.card-description{font-size:13px;line-height:1.6;color:var(--muted)}
+.price{font-size:19px;font-weight:800;color:var(--red);margin-top:17px}
+.price.pending{font-size:14px;letter-spacing:.2px;color:#8B755F;font-weight:700}
+.quantity{margin:0 20px 19px;padding-top:13px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px}
+.stepper{display:flex;align-items:center;gap:10px}
+.stepper button{width:43px;height:43px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--red);font-size:23px}
+.stepper output{min-width:19px;text-align:center;font-weight:bold}
+.empty{padding:32px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);line-height:1.7}
+.visit-card{max-width:650px;margin:0 auto;padding:36px 30px;background:var(--paper);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
+.visit-card .kicker{color:var(--green);font-size:12px;letter-spacing:1.8px}
+.visit-card h2{margin:10px 0 14px;line-height:1.12;color:var(--ink)}
+.visit-card .lead{font-size:16px;margin-bottom:24px}
+.info-box{padding:18px 20px;margin-bottom:14px;background:#F8F2E8;border:1px solid var(--line);border-radius:18px}
+.info-box-label{display:block;font-size:11px;font-weight:800;letter-spacing:1.2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.info-box-text{margin:0;font-size:16px;line-height:1.55;color:var(--ink)}
+.visit-actions{display:flex;flex-direction:column;gap:12px;margin:22px 0 8px}
+.visit-btn{min-height:56px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 20px;border:0;border-radius:16px;color:white;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.visit-btn.maps{background:var(--ink)}
+.visit-btn.whatsapp{background:#287D4D}
+.visit-btn.call{background:var(--red)}
+.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border:1px solid transparent;border-radius:13px;background:var(--red);color:white;text-decoration:none;font-size:13px;font-weight:800}
+.secondary{background:transparent;color:var(--red);border-color:var(--line)}
+footer{padding:25px 80px 35px 22px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px;line-height:1.8}
+.wa-float{position:fixed;bottom:23px;right:20px;z-index:30;width:54px;height:54px;display:grid;place-items:center;background:#25D366;border-radius:50%;color:white;box-shadow:0 8px 24px #0003}
+.wa-float svg{width:32px;height:32px;fill:currentColor;stroke:none}
+.mobile-nav{display:none}
+.nav-icon{width:22px;height:22px;margin:0 auto 5px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+dialog{padding:0;border:0;border-radius:25px;background:var(--paper);color:var(--ink);width:min(620px,calc(100% - 24px));max-height:90vh;max-height:90dvh;box-shadow:0 25px 90px #0004}
+dialog::backdrop{background:#23100ed1}
+.dialog-content{padding:25px}
+.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.dialog-head h2{font-size:33px;margin:0}
+.close{width:44px;height:44px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--ink);font-size:27px}
+.hint{font-size:12px;line-height:1.7;color:var(--muted)}
+.cart-row{padding:16px 0;border-bottom:1px solid var(--line)}
+.cart-title{display:flex;justify-content:space-between;align-items:start;gap:15px;font-size:14px;line-height:1.5}
+.cart-variant{font-size:12px;color:var(--muted);margin-top:5px}
+.cart-row .quantity{margin:12px 0 0;padding:0;border:0}
+.totals{padding:16px 0}
+.totals div{display:flex;justify-content:space-between;gap:15px;margin:12px 0;font-size:14px}
+.totals .total{font-size:18px;font-weight:bold}
+.full{width:100%;margin-top:10px}
+.field{display:block;font-size:13px;line-height:1.5;margin:18px 0}
+.field input,.field textarea{display:block;width:100%;margin-top:6px;padding:12px;min-height:46px;border:1px solid var(--line);border-radius:11px;background:white;color:var(--ink);font-size:16px}
+#photoDialog{width:min(1000px,calc(100% - 24px));background:transparent;box-shadow:none}
+.photo-top{display:flex;justify-content:end;margin-bottom:10px}
+#largePhoto{display:block;max-width:100%;max-height:75vh;object-fit:contain;margin:auto;border-radius:14px}
+.toast{position:fixed;z-index:60;bottom:100px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 30px);padding:14px 18px;border-radius:13px;background:var(--red);color:white;font-size:13px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+  .wrap{padding-inline:16px}.hero{padding-bottom:30px}.hero-content{padding-top:10px}
+  .hero h1{font-size:clamp(46px,12vw,76px);letter-spacing:-2px}.hero p{font-size:17px}
+  .desktop-nav{display:none}main{scroll-margin-top:15px}.menu-tools{display:block}
+  .search{width:100%;max-width:none}.currency{display:block;margin-top:14px}
+  .visit-card{padding:26px 20px;border-radius:24px}
+  .mobile-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;position:fixed;bottom:calc(10px + env(safe-area-inset-bottom));left:10px;right:10px;z-index:35;background:var(--paper);padding:7px;border:1px solid var(--line);border-radius:21px;box-shadow:0 10px 35px #0002}
+  .mobile-nav button{padding:7px 3px;font-size:10px;min-height:53px;border-radius:14px}
+  .mobile-nav button.active{background:#F4E4CD;color:var(--red)}
+  .wa-float{bottom:calc(95px + env(safe-area-inset-bottom));right:16px;width:48px;height:48px}
+  footer{padding:24px 20px calc(115px + env(safe-area-inset-bottom))}
+  .toast{bottom:calc(155px + env(safe-area-inset-bottom))}
+}
+@media(max-width:540px){.grid{grid-template-columns:1fr}.dialog-content{padding:19px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero" id="hero">
+  <img id="heroPhoto" class="hero-photo" alt="" hidden>
+  <div class="wrap">
+    <div class="top"><button type="button" id="language" class="language">English · EN</button></div>
+    <div class="hero-content">
+      <span class="kicker" data-t="heroLabel">TACOS AL ESTILO DE LA CALLE</span>
+      <h1>El Mexicanito</h1>
+      <p id="slogan">El antojo tiene nombre. ¡Y se llama El Mexicanito!</p>
+    </div>
+  </div>
+</header>
+
+<div class="desktop-nav">
+  <nav class="wrap nav-inner" aria-label="Principal">
+    <span class="brand">El Mexicanito</span>
+    <div class="nav-buttons">
+      <button type="button" data-view="menu" class="active" data-t="menu">MENÚ</button>
+      <button type="button" data-view="visit" data-t="visit">VISÍTANOS</button>
+      <button type="button" data-order aria-haspopup="dialog"><span data-t="order">PEDIDOS</span><span class="count" data-count hidden></span></button>
+    </div>
+  </nav>
+</div>
+
+<main id="main" class="wrap">
+  <section id="menuView">
+    <span class="kicker" data-t="menuLabel">DIRECTO AL ANTOJO</span>
+    <h2 data-t="menuTitle">Nuestros tacos</h2>
+    <p class="lead" data-t="intro">Elige tus tacos, ajusta la cantidad y revisa tu pedido antes de enviarlo por WhatsApp.</p>
+    <div class="menu-tools">
+      <input id="search" class="search" type="search" aria-label="Buscar tacos" placeholder="Buscar un taco…">
+      <span class="currency" data-t="currency">Precios por actualizar · Consulta por WhatsApp</span>
+    </div>
+    <div id="products" class="grid"></div>
+    <p id="empty" class="empty" data-t="noResults" hidden>No encontramos tacos con esa búsqueda.</p>
+  </section>
+
+  <section id="visitView" hidden>
+    <div class="visit-card">
+      <span class="kicker" data-t="visitLabel">VISÍTANOS</span>
+      <h2 data-t="visitTitle">Aquí nos encontramos</h2>
+      <p class="lead" data-t="visitIntro">Consulta la ubicación y contáctanos para confirmar tu pedido.</p>
+      <div class="info-box">
+        <span class="info-box-label" data-t="locationLabel">UBICACIÓN</span>
+        <p id="visitAddress" class="info-box-text"></p>
+      </div>
+      <div class="info-box">
+        <span class="info-box-label" data-t="scheduleLabel">HORARIO PUBLICADO</span>
+        <p id="visitSchedule" class="info-box-text"></p>
+      </div>
+      <div class="info-box">
+        <span class="info-box-label" data-t="phoneLabel">TELÉFONO PUBLICADO</span>
+        <p id="visitPhone" class="info-box-text"></p>
+      </div>
+      <div class="visit-actions">
+        <a id="visitMapsBtn" class="visit-btn maps" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">📍</span><span data-t="mapsBtn">ABRIR EN GOOGLE MAPS</span></a>
+        <a id="visitWA" class="visit-btn whatsapp" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💬</span><span data-t="waBtn">CONTACTAR POR WHATSAPP</span></a>
+        <a id="visitCall" class="visit-btn call"><span aria-hidden="true">☎</span><span data-t="callBtn">LLAMAR</span></a>
+      </div>
+      <p class="hint" data-t="scheduleNote">Horario y teléfono tomados de fichas públicas. Pueden cambiar; confirma antes de acudir.</p>
+    </div>
+  </section>
+</main>
+
+<footer>El Mexicanito<br><span data-t="footer">Menú digital · San Luis Potosí, S.L.P.</span></footer>
+
+<a id="floatingWA" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.031 21.498L12 21.5c-1.616 0-3.197-.417-4.582-1.206l-4.996 1.31 1.332-4.87A9.444 9.444 0 012.5 12C2.5 6.762 6.762 2.5 12 2.5 17.238 2.5 21.5 6.762 21.5 12c0 5.238-4.262 9.5-9.469 9.498zm-4.704-2.616c1.378.815 2.99 1.258 4.673 1.258 4.49 0 8.14-3.65 8.14-8.14S16.49 3.86 12 3.86 3.86 7.51 3.86 12c0 1.745.545 3.42 1.558 4.81l-1.026 3.75 3.843-1.012l.092.054zM16.5 14.5c-.25-.125-1.488-.735-1.718-.82-.23-.084-.398-.125-.566.125-.168.25-.65 .82-.796.988-.146.168-.293.188-.543.063C11.5 14.3 10.165 13 9.24 11.5c-.146-.25-.015-.386.11-.51.112-.112.25-.292.375-.438.125-.146.167-.25.25-.417.083-.167.042-.313-.02-.438-.063-.125-.567-1.365-.776-1.87-.203-.49-.41-.424-.566-.432-.146-.008-.313-.008-.48-.008-.167 0-.438.062-.667.312C7 8.125 6.25 8.833 6.25 10.25c0 1.417 1.27 2.792 1.448 3.03.177.24 2.062 3.15 4.996 4.418.698.3 1.242.48 1.667.615.7.223 1.336.19 1.838.115.563-.083 1.73-.708 1.972-1.396.24-.688.282-1.282.167-1.407-.073-.125-.282-.208-.532-.333z"/></svg>
+</a>
+
+<nav class="mobile-nav" aria-label="Navegación móvil">
+  <button type="button" data-view="visit">
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+    <span data-t="visit">VISÍTANOS</span>
+  </button>
+  <button type="button" data-view="menu" class="active">
+    <svg class="nav-icon" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    <span data-t="menu">MENÚ</span>
+  </button>
+  <button type="button" data-order aria-haspopup="dialog">
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+    <span data-t="order">PEDIDOS</span><span class="count" data-count hidden></span>
+  </button>
+</nav>
+
+<dialog id="orderDialog" aria-labelledby="orderTitle">
+  <div class="dialog-content">
+    <div class="dialog-head"><h2 id="orderTitle" data-t="orderTitle">Mi pedido</h2><button id="closeOrder" class="close" type="button" aria-label="Cerrar">×</button></div>
+    <p class="hint" data-t="review">Revisa tus tacos y cantidades antes de continuar.</p>
+    <div id="cartRows"></div>
+    <div class="totals" aria-live="polite">
+      <div><span data-t="subtotal">Subtotal</span><strong id="subtotal"></strong></div>
+      <div class="total"><span data-t="total">Total</span><strong id="total"></strong></div>
+    </div>
+    <div id="cartStep">
+      <button id="continueOrder" class="button full" type="button" data-t="continue">CONTINUAR</button>
+      <button id="more" class="button secondary full" type="button" data-t="more">AGREGAR MÁS TACOS</button>
+    </div>
+    <form id="orderForm" hidden>
+      <label class="field"><span data-t="name">Tu nombre (opcional)</span><input id="customer" autocomplete="name" maxlength="100"></label>
+      <label class="field"><span data-t="notes">Comentarios para tu pedido (opcional)</span><textarea id="notes" maxlength="500" rows="3"></textarea></label>
+      <p class="hint" data-t="confirm">Los precios están pendientes de actualización. El restaurante confirmará el costo al recibir tu mensaje.</p>
+      <button class="button full" type="submit" data-t="send">ENVIAR PEDIDO POR WHATSAPP</button>
+      <button id="back" class="button secondary full" type="button" data-t="back">VOLVER A MI PEDIDO</button>
+      <p class="hint" data-t="waNote">WhatsApp abrirá el mensaje preparado. Pulsa Enviar para solicitar tu pedido.</p>
+    </form>
+  </div>
+</dialog>
+
+<dialog id="photoDialog" aria-label="Fotografía del taco">
+  <div class="photo-top"><button id="closePhoto" class="close" type="button" aria-label="Cerrar">×</button></div>
+  <img id="largePhoto" alt="">
+</dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   ZONA EDITABLE · EL MEXICANITO
+   1) Para agregar un precio, cambia precio:null por precio:18
+      (sustituye 18 por el precio real en pesos).
+   2) Sube cada foto a images/Menu/ usando el nombre indicado.
+   3) Puedes cambiar teléfono, dirección, horario y portada aquí.
+   ============================================================ */
+const CONFIG = {
+  nombre:"El Mexicanito",
+  // Número publicado como teléfono del negocio. Confirma que reciba WhatsApp.
+  whatsapp:"524445396284",
+  telefonoVisible:"444 539 6284",
+  direccion:"Av. Nicolás Zapata y Anáhuac, Col. Tequisquiapan, C.P. 78250, San Luis Potosí, S.L.P., México",
+  horario:"Lunes a sábado · 20:00 a 02:00 h · Domingo cerrado",
+  horarioEn:"Monday to Saturday · 8:00 p.m. to 2:00 a.m. · Sunday closed",
+  maps:"https://maps.app.goo.gl/c9U9ZHns9X64SmFF8",
+  lema:"El antojo tiene nombre. ¡Y se llama El Mexicanito!",
+  lemaEn:"Your craving has a name. El Mexicanito!",
+  portada:"images/Restaurante/portada.jpg",
+  carpetaFotos:"images/Menu/",
+  extensionFotos:".jpg"
+};
+
+const MENU = [
+  {id:"suadero", nombre:"Suadero", nombreEn:"Suadero", precio:null, foto:"taco-suadero.jpg"},
+  {id:"chamorro", nombre:"Chamorro", nombreEn:"Pork shank", precio:null, foto:"taco-chamorro.jpg"},
+  {id:"costilla", nombre:"Costilla", nombreEn:"Rib", precio:null, foto:"taco-costilla.jpg"},
+  {id:"cuerito", nombre:"Cuerito", nombreEn:"Pork skin", precio:null, foto:"taco-cuerito.jpg"},
+  {id:"buche", nombre:"Buche", nombreEn:"Pork stomach", precio:null, foto:"taco-buche.jpg"},
+  {id:"bistec", nombre:"Bistec", nombreEn:"Steak", precio:null, foto:"taco-bistec.jpg"},
+  {id:"chorizo", nombre:"Chorizo", nombreEn:"Mexican chorizo", precio:null, foto:"taco-chorizo.jpg"},
+  {id:"machitos", nombre:"Machitos", nombreEn:"Machitos", precio:null, foto:"taco-machitos.jpg"}
+];
+
+const TEXT = {
+  es:{
+    heroLabel:"TACOS AL ESTILO DE LA CALLE",menu:"MENÚ",visit:"VISÍTANOS",order:"PEDIDOS",
+    menuLabel:"DIRECTO AL ANTOJO",menuTitle:"Nuestros tacos",
+    intro:"Elige tus tacos, ajusta la cantidad y revisa tu pedido antes de enviarlo por WhatsApp.",
+    currency:"Precios por actualizar · Consulta por WhatsApp",noResults:"No encontramos tacos con esa búsqueda.",
+    visitLabel:"VISÍTANOS",visitTitle:"Aquí nos encontramos",visitIntro:"Consulta la ubicación y contáctanos para confirmar tu pedido.",
+    locationLabel:"UBICACIÓN",scheduleLabel:"HORARIO PUBLICADO",phoneLabel:"TELÉFONO PUBLICADO",
+    mapsBtn:"ABRIR EN GOOGLE MAPS",waBtn:"CONTACTAR POR WHATSAPP",callBtn:"LLAMAR",
+    scheduleNote:"Horario y teléfono tomados de fichas públicas. Pueden cambiar; confirma antes de acudir.",
+    footer:"Menú digital · San Luis Potosí, S.L.P.",orderTitle:"Mi pedido",
+    review:"Revisa tus tacos y cantidades antes de continuar.",subtotal:"Subtotal",total:"Total",
+    pending:"Por confirmar",continue:"CONTINUAR",more:"AGREGAR MÁS TACOS",name:"Tu nombre (opcional)",
+    notes:"Comentarios para tu pedido (opcional)",
+    confirm:"Los precios están pendientes de actualización. El restaurante confirmará el costo al recibir tu mensaje.",
+    send:"ENVIAR PEDIDO POR WHATSAPP",back:"VOLVER A MI PEDIDO",
+    waNote:"WhatsApp abrirá el mensaje preparado. Pulsa Enviar para solicitar tu pedido.",
+    all:"Todos",search:"Buscar un taco…",quantity:"Cantidad",add:"Agregar",remove:"Quitar",
+    close:"Cerrar",photo:"Fotografía del taco",enlarge:"Ampliar fotografía",emptyCart:"Tu pedido está vacío.",
+    pricePending:"Precio pendiente",hello:"Hola, quisiera información sobre El Mexicanito.",
+    chat:"Contactar por WhatsApp",category:"Categorías del menú",emptyName:"Cliente"
+  },
+  en:{
+    heroLabel:"STREET-STYLE TACOS",menu:"MENU",visit:"VISIT US",order:"ORDERS",
+    menuLabel:"STRAIGHT TO THE CRAVING",menuTitle:"Our tacos",
+    intro:"Choose your tacos, adjust the quantity and review your order before sending it on WhatsApp.",
+    currency:"Prices to be updated · Ask us on WhatsApp",noResults:"No tacos match your search.",
+    visitLabel:"VISIT US",visitTitle:"Find us here",visitIntro:"Check our location and contact us to confirm your order.",
+    locationLabel:"LOCATION",scheduleLabel:"PUBLISHED HOURS",phoneLabel:"PUBLISHED PHONE",
+    mapsBtn:"OPEN IN GOOGLE MAPS",waBtn:"CONTACT ON WHATSAPP",callBtn:"CALL",
+    scheduleNote:"Hours and phone number are taken from public listings. They may change; please confirm before visiting.",
+    footer:"Digital menu · San Luis Potosí, S.L.P.",orderTitle:"My order",
+    review:"Review your tacos and quantities before continuing.",subtotal:"Subtotal",total:"Total",
+    pending:"To be confirmed",continue:"CONTINUE",more:"ADD MORE TACOS",name:"Your name (optional)",
+    notes:"Order comments (optional)",
+    confirm:"Prices have not been added yet. The restaurant will confirm the cost after receiving your message.",
+    send:"SEND ORDER VIA WHATSAPP",back:"BACK TO MY ORDER",
+    waNote:"WhatsApp will open the prepared message. Press Send to place your request.",
+    all:"All",search:"Search tacos…",quantity:"Quantity",add:"Add",remove:"Remove",
+    close:"Close",photo:"Taco photograph",enlarge:"Enlarge photograph",emptyCart:"Your order is empty.",
+    pricePending:"Price pending",hello:"Hello, I would like information about El Mexicanito.",
+    chat:"Contact on WhatsApp",category:"Menu categories",emptyName:"Customer"
+  }
+};
+
+const $ = id => document.getElementById(id);
+const make = (tag,cls,text) => {
+  const node=document.createElement(tag);
+  if(cls)node.className=cls;
+  if(text!==undefined)node.textContent=text;
+  return node;
+};
+let lang="es",orderId="",toastTimer;
+const cart=new Map();
+const lookup=new Map(MENU.map(p=>[p.id,p]));
+const t=key=>TEXT[lang][key];
+const name=p=>lang==="es"?p.nombre:p.nombreEn;
+const money=n=>new Intl.NumberFormat(lang==="es"?"es-MX":"en-US",{style:"currency",currency:"MXN",currencyDisplay:"narrowSymbol"}).format(n);
+const keyFor=p=>p.id;
+const wa=message=>"https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(message);
+const normalize=value=>value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const hasPrice=p=>typeof p.precio==="number"&&Number.isFinite(p.precio)&&p.precio>=0;
+const priceText=p=>hasPrice(p)?money(p.precio)+" MXN":t("pricePending");
+
+function showView(view,changeHash=true,scroll=true){
+  const visit=view==="visit";
+  $("menuView").hidden=visit;$("visitView").hidden=!visit;
+  document.querySelectorAll("[data-view]").forEach(button=>{
+    const active=button.dataset.view===(visit?"visit":"menu");
+    button.classList.toggle("active",active);
+    if(active)button.setAttribute("aria-current","page");else button.removeAttribute("aria-current");
+  });
+  if(changeHash){try{history.replaceState(null,"",visit?"#visitanos":"#menu");}catch{}}
+  if(scroll)$("main").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+}
+document.querySelectorAll("[data-view]").forEach(button=>button.addEventListener("click",()=>showView(button.dataset.view)));
+
+function openDialog(dialog){dialog.showModal();document.body.classList.add("locked");}
+[$("orderDialog"),$("photoDialog")].forEach(dialog=>{
+  dialog.addEventListener("close",()=>document.body.classList.remove("locked"));
+  dialog.addEventListener("click",event=>{
+    if(event.target!==dialog)return;
+    const rect=dialog.getBoundingClientRect();
+    if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();
+  });
+});
+$("closeOrder").onclick=() => $("orderDialog").close();
+$("closePhoto").onclick=() => $("photoDialog").close();
+
+function controls(product){
+  const row=make("div","quantity");row.dataset.key=keyFor(product);
+  row.append(make("span","",t("quantity")));
+  const stepper=make("div","stepper");
+  const minus=make("button","","−"),plus=make("button","","+"),output=make("output","","0");
+  minus.type=plus.type="button";
+  const label=name(product);
+  minus.setAttribute("aria-label",t("remove")+" "+label);
+  plus.setAttribute("aria-label",t("add")+" "+label);
+  output.setAttribute("aria-label",t("quantity")+" "+label);
+  minus.onclick=()=>change(product,-1);plus.onclick=()=>change(product,1);
+  stepper.append(minus,output,plus);row.append(stepper);
+  return row;
+}
+function change(product,delta){
+  const key=keyFor(product),quantity=Math.max(0,Math.min(99,(cart.get(key)?.quantity||0)+delta));
+  if(quantity)cart.set(key,{id:product.id,quantity});else cart.delete(key);
+  if(cart.size&&!orderId)orderId="EM-"+Date.now().toString(36).toUpperCase();
+  if(!cart.size)orderId="";
+  renderCart();sync();
+}
+function sync(){
+  document.querySelectorAll("[data-key]").forEach(row=>{
+    const quantity=cart.get(row.dataset.key)?.quantity||0;
+    row.querySelector("output").textContent=quantity;
+    const buttons=row.querySelectorAll("button");
+    buttons[0].disabled=quantity===0;buttons[1].disabled=quantity>=99;
+  });
+  const count=[...cart.values()].reduce((sum,row)=>sum+row.quantity,0);
+  document.querySelectorAll("[data-count]").forEach(node=>{node.textContent=count;node.hidden=count===0;});
+}
+function renderProducts(){
+  const grid=$("products");grid.replaceChildren();
+  const query=normalize($("search").value.trim());
+  const visible=MENU.filter(product=>!query||normalize(product.nombre+" "+product.nombreEn).includes(query));
+  $("empty").hidden=visible.length>0;
+  visible.forEach(product=>{
+    const card=make("article","card"),photo=make("button","photo");
+    photo.type="button";photo.disabled=true;photo.setAttribute("aria-label",t("enlarge")+" "+name(product));
+    const fallback=make("div","placeholder");
+    fallback.append(make("span","","🌮"),make("strong","",name(product)),make("small","","Fotografía próximamente"));
+    const image=make("img");image.alt=name(product);image.loading="lazy";image.hidden=true;
+    image.onload=()=>{image.hidden=false;fallback.hidden=true;photo.disabled=false;};
+    image.onerror=()=>{image.hidden=true;fallback.hidden=false;photo.disabled=true;};
+    image.src=CONFIG.carpetaFotos+product.foto;
+    photo.append(fallback,image);
+    photo.onclick=()=>{$("largePhoto").src=image.currentSrc||image.src;$("largePhoto").alt=name(product);openDialog($("photoDialog"));};
+    const content=make("div","content");
+    content.append(make("span","category-label",lang==="es"?"TACO":"TACO"),make("h3","",lang==="es"?"Taco de "+product.nombre:" "+product.nombreEn+" taco"));
+    const price=make("div","price"+(hasPrice(product)?"":" pending"),priceText(product));
+    content.append(price);
+    card.append(photo,content,controls(product));grid.append(card);
+  });
+  sync();
+}
+$("search").addEventListener("input",renderProducts);
+
+function subtotal(){
+  let sum=0;
+  for(const row of cart.values()){
+    const product=lookup.get(row.id);
+    if(!hasPrice(product))return null;
+    sum+=product.precio*row.quantity;
+  }
+  return sum;
+}
+function renderCart(){
+  const container=$("cartRows");
+  const active=document.activeElement,focused=container.contains(active)?active.getAttribute("aria-label"):null;
+  container.replaceChildren();
+  if(!cart.size)container.append(make("p","hint",t("emptyCart")));
+  cart.forEach(row=>{
+    const product=lookup.get(row.id),box=make("div","cart-row"),heading=make("div","cart-title");
+    const lineTotal=hasPrice(product)?money(product.precio*row.quantity)+" MXN":t("pricePending");
+    heading.append(make("strong","",(lang==="es"?"Taco de "+product.nombre:product.nombreEn+" taco")),make("span","",lineTotal));
+    box.append(heading,make("div","cart-variant",t("quantity")+": "+row.quantity),controls(product));
+    container.append(box);
+  });
+  const sum=subtotal(),allPriced=sum!==null;
+  $("subtotal").textContent=!cart.size?money(0):allPriced?money(sum)+" MXN":t("pending");
+  $("total").textContent=!cart.size?money(0):allPriced?money(sum)+" MXN":t("pending");
+  $("continueOrder").disabled=!cart.size;
+  if(!cart.size)cartStep();
+  sync();
+  if(focused){const next=[...container.querySelectorAll("button")].find(button=>button.getAttribute("aria-label")===focused&&!button.disabled);(next||$("more")).focus();}
+}
+function cartStep(){$("cartStep").hidden=false;$("orderForm").hidden=true;}
+document.querySelectorAll("[data-order]").forEach(button=>button.onclick=()=>{cartStep();renderCart();openDialog($("orderDialog"));$("closeOrder").focus();});
+$("continueOrder").onclick=()=>{if(!cart.size)return;$("cartStep").hidden=true;$("orderForm").hidden=false;$("customer").focus();};
+$("back").onclick=()=>{cartStep();$("continueOrder").focus();};
+$("more").onclick=()=>{$("orderDialog").close();showView("menu");};
+
+$("orderForm").addEventListener("submit",event=>{
+  event.preventDefault();if(!cart.size){cartStep();return;}
+  const value=id=>$(id).value.trim();
+  const sum=subtotal();
+  const message=["*"+CONFIG.nombre+"*","Pedido: "+orderId,"","Mi pedido:"];
+  cart.forEach(row=>{
+    const product=lookup.get(row.id);
+    const label=lang==="es"?"Taco de "+product.nombre:product.nombreEn+" taco";
+    message.push(row.quantity+" × "+label+" — "+(hasPrice(product)?money(product.precio*row.quantity)+" MXN":t("pricePending")));
+  });
+  message.push("",(lang==="es"?"Total":"Total")+": "+(sum===null?t("pending"):money(sum)+" MXN"));
+  if(value("customer"))message.push((lang==="es"?"Nombre: ":"Name: ")+value("customer"));
+  if(value("notes"))message.push((lang==="es"?"Comentarios: ":"Comments: ")+value("notes"));
+  message.push("",lang==="es"?"Por favor confirma el precio final y la disponibilidad.":"Please confirm final prices and availability.");
+  window.location.assign(wa(message.join("\n")));
+});
+
+function applyLanguage(){
+  document.documentElement.lang=lang;
+  document.title=CONFIG.nombre+" | "+t("menuTitle");
+  document.querySelectorAll("[data-t]").forEach(node=>node.textContent=t(node.dataset.t));
+  $("language").textContent=lang==="es"?"English · EN":"Español · ES";
+  $("language").setAttribute("aria-label",lang==="es"?"Switch to English":"Cambiar a español");
+  $("slogan").textContent=lang==="es"?CONFIG.lema:CONFIG.lemaEn;
+  $("search").placeholder=t("search");$("search").setAttribute("aria-label",t("search"));
+  $("closeOrder").setAttribute("aria-label",t("close"));$("closePhoto").setAttribute("aria-label",t("close"));
+  $("photoDialog").setAttribute("aria-label",t("photo"));
+  $("floatingWA").href=wa(t("hello"));$("floatingWA").setAttribute("aria-label",t("chat"));
+  $("visitWA").href=wa(t("hello"));
+  renderProducts();renderCart();
+}
+$("language").onclick=()=>{lang=lang==="es"?"en":"es";applyLanguage();};
+
+$("visitAddress").textContent=CONFIG.direccion;
+$("visitSchedule").textContent=lang==="es"?CONFIG.horario:CONFIG.horarioEn;
+$("visitPhone").textContent=CONFIG.telefonoVisible;
+$("visitMapsBtn").href=CONFIG.maps;
+$("visitCall").href="tel:"+CONFIG.whatsapp.replace(/^52/,"");
+
+if(CONFIG.portada){
+  $("heroPhoto").onload=()=>{$("heroPhoto").hidden=false;$("hero").classList.add("has-photo");};
+  $("heroPhoto").onerror=()=>{$("heroPhoto").hidden=true;$("hero").classList.remove("has-photo");};
+  $("heroPhoto").src=CONFIG.portada;
+}
+$("language").addEventListener("click",()=>{$("visitSchedule").textContent=lang==="es"?CONFIG.horario:CONFIG.horarioEn;});
+window.addEventListener("hashchange",()=>showView(location.hash==="#visitanos"?"visit":"menu",false));
+applyLanguage();
+showView(location.hash==="#visitanos"?"visit":"menu",false,false);
+</script>
+</body>
+</html>
