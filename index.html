@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Paleta psicológica gastronómica: Comal y Maíz (cero negro) */
+  /* Paleta psicológica gastronómica: Comal y Maíz (sin negro) */
   --masa:#F8F2E6;
   --adobe:#EFE4D2;
   --tortilla:#FFFDF8;
@@ -25,7 +25,6 @@
   --maiz-suave:#FBF0D9;
   --cilantro:#2A6F44;
   --cilantro-hover:#215936;
-  --cilantro-suave:#E7F2EB;
   --live-green:#48DE84;
   --live-amber:#F5BC47;
   --borde:#E4D6C3;
@@ -51,9 +50,7 @@ body{
   background:var(--masa);
   line-height:1.48;
   -webkit-font-smoothing:antialiased;
-  position:relative;
 }
-/* Textura sutil de papel artesanal */
 body::before{
   content:"";
   position:fixed;
@@ -73,12 +70,12 @@ a{color:inherit}
 
 .wrap{width:min(1120px,100%);margin:auto;padding-inline:22px}
 
-/* ================= HERO CON PORTADA DEL REPO ================= */
+/* ================= PORTADA AMPLIA ================= */
 .hero{
   position:relative;
   isolation:isolate;
   overflow:hidden;
-  min-height:clamp(220px,32vw,340px);
+  min-height:clamp(290px,42vw,440px);
   display:flex;
   flex-direction:column;
   background:
@@ -92,7 +89,7 @@ a{color:inherit}
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  padding-bottom:34px;
+  padding-bottom:38px;
 }
 .hero-photo{
   position:absolute;
@@ -101,7 +98,7 @@ a{color:inherit}
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center 55%;
+  object-position:center 52%;
 }
 .hero.has-photo::after{
   content:"";
@@ -110,9 +107,9 @@ a{color:inherit}
   z-index:-2;
   background:linear-gradient(
     180deg,
-    rgba(71,36,25,.58) 0%,
-    rgba(107,27,18,.42) 45%,
-    rgba(71,36,25,.86) 100%
+    rgba(71,36,25,.52) 0%,
+    rgba(107,27,18,.22) 48%,
+    rgba(71,36,25,.84) 100%
   );
 }
 .top-bar{
@@ -152,7 +149,7 @@ a{color:inherit}
   width:8px;
   height:8px;
   border-radius:50%;
-  background:#E2A195;
+  background:#D99A8E;
   position:relative;
   z-index:2;
 }
@@ -163,32 +160,16 @@ a{color:inherit}
   opacity:0;
   pointer-events:none;
 }
-.status-pill.is-open .status-dot{
-  background:var(--live-green);
-  box-shadow:0 0 8px rgba(72,222,132,.6);
-}
-.status-pill.is-open .status-ring{
-  background:rgba(72,222,132,.44);
-  animation:soft-pulse 2.5s cubic-bezier(.22,.61,.36,1) infinite;
-}
-.status-pill.is-closing .status-dot{
-  background:var(--live-amber);
-  box-shadow:0 0 8px rgba(245,188,71,.6);
-}
-.status-pill.is-closing .status-ring{
-  background:rgba(245,188,71,.44);
-  animation:soft-pulse 2s cubic-bezier(.22,.61,.36,1) infinite;
-}
-.status-pill.is-closed .status-dot{
-  background:#D99A8E;
-  opacity:.82;
-}
+.status-pill.is-open .status-dot{background:var(--live-green);box-shadow:0 0 8px rgba(72,222,132,.6)}
+.status-pill.is-open .status-ring{background:rgba(72,222,132,.44);animation:soft-pulse 2.5s cubic-bezier(.22,.61,.36,1) infinite}
+.status-pill.is-closing .status-dot{background:var(--live-amber);box-shadow:0 0 8px rgba(245,188,71,.6)}
+.status-pill.is-closing .status-ring{background:rgba(245,188,71,.44);animation:soft-pulse 2s cubic-bezier(.22,.61,.36,1) infinite}
+.status-pill.is-closed .status-dot{opacity:.82}
 .status-pill.is-closed .status-ring{display:none}
 
 @keyframes soft-pulse{
   0%{transform:scale(.55);opacity:.62}
-  75%{transform:scale(2.15);opacity:0}
-  100%{transform:scale(2.15);opacity:0}
+  75%,100%{transform:scale(2.15);opacity:0}
 }
 
 .language{
@@ -207,15 +188,15 @@ a{color:inherit}
 }
 .language:hover{background:rgba(255,253,248,.18);border-color:rgba(255,253,248,.62)}
 
-.hero-content{padding-top:36px}
+.hero-content{padding-top:48px}
 .hero h1{
   margin:0;
   font-family:var(--font-serif);
-  font-size:clamp(44px,8vw,86px);
+  font-size:clamp(46px,8.2vw,90px);
   font-weight:500;
   letter-spacing:-.035em;
   line-height:.98;
-  text-shadow:0 6px 24px rgba(71,36,25,.42);
+  text-shadow:0 6px 26px rgba(71,36,25,.48);
 }
 
 /* ================= NAV ESCRITORIO ================= */
@@ -282,12 +263,11 @@ a{color:inherit}
 }
 .count.pop{animation:badge-pop .32s cubic-bezier(.22,1.25,.36,1)}
 @keyframes badge-pop{
-  0%{transform:scale(1)}
+  0%,100%{transform:scale(1)}
   45%{transform:scale(1.36)}
-  100%{transform:scale(1)}
 }
 
-/* ================= MAIN & CARTA OPTIMIZADA ================= */
+/* ================= MAIN & CARTA ================= */
 main{padding-block:26px 96px;scroll-margin-top:76px}
 .section-head{margin-bottom:18px}
 .kicker{
@@ -307,12 +287,7 @@ h2{
   line-height:1.1;
   color:var(--chile-oscuro);
 }
-.lead{
-  color:var(--canela);
-  font-size:14.5px;
-  max-width:580px;
-  margin:0;
-}
+.lead{color:var(--canela);font-size:14.5px;max-width:580px;margin:0}
 
 .menu-bar{
   position:sticky;
@@ -368,42 +343,24 @@ h2{
 }
 .search-clear:hover{background:var(--adobe);color:var(--cacao)}
 
-/* Grupos editoriales de La Carta */
 .menu-group{margin-bottom:32px}
 .menu-group:last-child{margin-bottom:0}
 .group-head{
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:12px;
-  padding-bottom:10px;
-  margin-bottom:16px;
-  border-bottom:1px solid var(--borde);
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid var(--borde);
 }
 .group-title{
-  font-family:var(--font-serif);
-  font-size:25px;
-  font-weight:500;
-  color:var(--chile-oscuro);
-  margin:0;
-  letter-spacing:-.02em;
+  font-family:var(--font-serif);font-size:25px;font-weight:500;
+  color:var(--chile-oscuro);margin:0;letter-spacing:-.02em;
 }
 .group-meta{
-  font-size:12px;
-  font-weight:700;
-  color:var(--chile-oscuro);
-  background:var(--maiz-suave);
-  border:1px solid #EBD5A8;
-  padding:4px 11px;
-  border-radius:99px;
+  font-size:12px;font-weight:700;color:var(--chile-oscuro);
+  background:var(--maiz-suave);border:1px solid #EBD5A8;
+  padding:4px 11px;border-radius:99px;
 }
 
-/* ================= GRID Y TARJETAS RESPONSIVAS (SIN HUECOS VACÍOS) ================= */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
-}
+/* ================= GRID Y FICHAS CON ESPACIO DE FOTOGRAFÍA ================= */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .card{
   position:relative;
   min-width:0;
@@ -420,109 +377,104 @@ h2{
 .card.in-cart{border-color:var(--chile);box-shadow:0 8px 22px rgba(158,42,28,.12)}
 .card.featured{background:#FFFDF7;border-color:#DFCBB1}
 
-/* Foto opcional: solo se muestra cuando existe imagen real del producto */
+.card-badge,.card-tag{
+  position:absolute;
+  top:10px;
+  z-index:4;
+  border-radius:6px;
+  color:var(--tortilla);
+}
+.card-badge{
+  right:10px;
+  background:var(--chile);
+  padding:3px 9px;
+  font-size:12px;
+  font-weight:800;
+  box-shadow:0 4px 12px rgba(107,27,18,.28);
+}
+.card-tag{
+  left:10px;
+  background:var(--chile-oscuro);
+  padding:4px 9px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.65px;
+  text-transform:uppercase;
+}
+
+/* Espacio reservado para foto + icono abstracto temporal */
 .photo{
   width:100%;
   aspect-ratio:16/10;
   position:relative;
-  display:block;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 22% 22%,rgba(217,155,38,.12) 0,transparent 48%),
+    linear-gradient(155deg,#F3E9D8 0%,#E8D8C1 100%);
   border:0;
   border-bottom:1px solid var(--borde);
   padding:0;
   overflow:hidden;
-  background:var(--adobe);
 }
+.photo:disabled{opacity:1;cursor:default}
 .photo img{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
   transition:transform .35s ease;
 }
-.photo:hover img{transform:scale(1.03)}
+.photo:not(:disabled):hover img{transform:scale(1.03)}
 
-.card-body{
-  padding:16px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.card-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-}
-.card-id{
-  display:flex;
-  align-items:flex-start;
-  gap:11px;
-  min-width:0;
-}
-.item-emblem{
-  width:40px;
-  height:40px;
-  border-radius:11px;
-  background:var(--masa);
-  border:1px solid var(--borde);
+.abstract-slot{
   display:grid;
   place-items:center;
-  flex-shrink:0;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  background:rgba(255,253,248,.62);
+  border:1px solid rgba(158,42,28,.14);
   color:var(--chile);
 }
-.item-emblem svg{
-  width:22px;
-  height:22px;
+.abstract-slot svg{
+  width:36px;
+  height:36px;
   stroke:currentColor;
   fill:none;
-  stroke-width:1.65;
+  stroke-width:1.45;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
-.card.featured .item-emblem{
-  background:var(--chile-suave);
-  border-color:rgba(158,42,28,.22);
-}
-.card-titles{min-width:0}
-.card-badges-inline{
+
+.card-body{
+  padding:15px 16px 12px;
+  flex:1;
   display:flex;
-  align-items:center;
-  gap:6px;
-  flex-wrap:wrap;
-  margin-bottom:3px;
+  flex-direction:column;
+  gap:8px;
 }
 .category-label{
   font-size:10px;
-  letter-spacing:.95px;
+  letter-spacing:1px;
   color:var(--cilantro);
   text-transform:uppercase;
   font-weight:700;
 }
-.card-tag{
-  background:var(--chile-oscuro);
-  color:var(--tortilla);
-  padding:2px 7px;
-  border-radius:5px;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.5px;
-  text-transform:uppercase;
-}
-.card-badge{
-  background:var(--chile);
-  color:var(--tortilla);
-  padding:2px 7px;
-  border-radius:5px;
-  font-size:11px;
-  font-weight:800;
+.title-price{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
 }
 .card h3{
   font-family:var(--font-serif);
-  font-size:19.5px;
+  font-size:20px;
   font-weight:500;
   letter-spacing:-.015em;
-  line-height:1.2;
+  line-height:1.18;
   margin:0;
   color:var(--cacao);
 }
@@ -533,78 +485,45 @@ h2{
   color:var(--chile-oscuro);
   background:var(--maiz-suave);
   border:1px solid #EBD5A8;
-  padding:4px 9px;
-  border-radius:8px;
-  line-height:1.2;
+  padding:3px 9px;
+  border-radius:7px;
+  line-height:1.25;
 }
-.card-description{
-  font-size:13px;
-  line-height:1.45;
-  color:var(--canela);
-  margin:0;
-}
+.card-description{font-size:13px;line-height:1.45;color:var(--canela);margin:0}
 
-/* Selectores de variantes (Agua ½L/1L, Boing sabores) */
-.variant-box{display:grid;gap:6px}
+/* Selectores de variantes */
+.variant-box{margin-top:4px;display:grid;gap:6px}
 .select-label{font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--canela)}
 .custom-select{
-  width:100%;
-  min-height:40px;
-  padding:8px 34px 8px 11px;
-  border:1px solid var(--borde-fuerte);
-  border-radius:var(--r-sm);
+  width:100%;min-height:40px;padding:8px 34px 8px 11px;
+  border:1px solid var(--borde-fuerte);border-radius:var(--r-sm);
   background:var(--masa) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%237B5849' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 10px center;
-  appearance:none;
-  -webkit-appearance:none;
-  font-size:13.5px;
-  font-weight:600;
-  color:var(--cacao);
-  cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+  font-size:13.5px;font-weight:600;color:var(--cacao);cursor:pointer;
 }
 .custom-select:focus{border-color:var(--chile);background-color:#fff;outline:none}
 
 .size-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .size-btn{
-  border:1px solid var(--borde-fuerte);
-  background:var(--masa);
-  color:var(--cacao);
-  border-radius:var(--r-sm);
-  padding:8px 6px;
-  font-size:12px;
-  font-weight:700;
-  text-align:center;
-  transition:all .15s ease;
+  border:1px solid var(--borde-fuerte);background:var(--masa);color:var(--cacao);
+  border-radius:var(--r-sm);padding:8px 6px;font-size:12px;font-weight:700;
+  text-align:center;transition:all .15s ease;
 }
 .size-btn:hover{border-color:var(--chile)}
 .size-btn.active{background:var(--chile-oscuro);color:var(--tortilla);border-color:var(--chile-oscuro)}
 
 .added-variants{display:flex;flex-wrap:wrap;gap:5px}
 .variant-pill{
-  display:inline-flex;
-  align-items:center;
-  padding:3px 8px;
-  border-radius:6px;
-  background:var(--chile-suave);
-  color:var(--chile-oscuro);
-  border:1px solid rgba(158,42,28,.2);
-  font-size:11.5px;
-  font-weight:700;
+  display:inline-flex;align-items:center;padding:3px 8px;border-radius:6px;
+  background:var(--chile-suave);color:var(--chile-oscuro);
+  border:1px solid rgba(158,42,28,.2);font-size:11.5px;font-weight:700;
 }
 
 .card-actions{padding:0 16px 15px;margin-top:auto}
 .add-btn{
-  width:100%;
-  min-height:42px;
-  border:1px solid var(--borde-fuerte);
-  border-radius:var(--r-sm);
-  background:var(--masa);
-  color:var(--chile-oscuro);
-  font-size:13.5px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
+  width:100%;min-height:42px;border:1px solid var(--borde-fuerte);border-radius:var(--r-sm);
+  background:var(--masa);color:var(--chile-oscuro);font-size:13.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:7px;
   transition:background .16s ease,color .16s ease,border-color .16s ease,transform .1s ease;
 }
 .add-btn:hover{background:var(--chile);border-color:var(--chile);color:var(--tortilla)}
@@ -613,33 +532,16 @@ h2{
 .add-btn.combo-cta:hover{background:var(--chile-hover);border-color:var(--chile-hover)}
 
 .stepper-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  background:var(--chile-suave);
-  border:1px solid rgba(158,42,28,.26);
-  padding:4px 4px 4px 11px;
-  border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:var(--chile-suave);border:1px solid rgba(158,42,28,.26);
+  padding:4px 4px 4px 11px;border-radius:var(--r-sm);
 }
-.stepper-label{
-  font-size:12px;
-  font-weight:700;
-  color:var(--chile-oscuro);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
+.stepper-label{font-size:12px;font-weight:700;color:var(--chile-oscuro);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stepper{display:inline-flex;align-items:center;gap:5px;flex-shrink:0}
 .stepper button{
-  width:32px;height:32px;
-  border:1px solid rgba(158,42,28,.18);
-  border-radius:7px;
-  background:var(--tortilla);
-  color:var(--chile-oscuro);
-  font-size:19px;font-weight:600;
-  display:grid;place-items:center;
-  transition:background .14s ease,color .14s ease,transform .1s ease;
+  width:32px;height:32px;border:1px solid rgba(158,42,28,.18);border-radius:7px;
+  background:var(--tortilla);color:var(--chile-oscuro);font-size:19px;font-weight:600;
+  display:grid;place-items:center;transition:background .14s ease,color .14s ease,transform .1s ease;
 }
 .stepper button:hover:not(:disabled){background:var(--chile);color:var(--tortilla);border-color:var(--chile)}
 .stepper button:active:not(:disabled){transform:scale(.92)}
@@ -651,38 +553,19 @@ h2{
   text-align:center;color:var(--canela);
 }
 
-/* ================= CAPA DE LIMONES PARTIDOS VOLANDO ================= */
-.lime-layer{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:120;
-  overflow:hidden;
-}
+/* ================= CAPA DE LIMONES VOLANDO ================= */
+.lime-layer{position:fixed;inset:0;pointer-events:none;z-index:120;overflow:hidden}
 .flying-lime{
-  position:fixed;
-  left:0;
-  top:0;
-  width:28px;
-  height:28px;
-  pointer-events:none;
+  position:fixed;left:0;top:0;pointer-events:none;
   will-change:transform,opacity;
   filter:drop-shadow(0 4px 6px rgba(71,36,25,.18));
 }
 
 /* ================= VISÍTANOS Y RESEÑAS GOOGLE MAPS ================= */
-.visit-stack{
-  max-width:740px;
-  margin:0 auto;
-  display:grid;
-  gap:22px;
-}
+.visit-stack{max-width:740px;margin:0 auto;display:grid;gap:22px}
 .visit-card,.reviews-card{
-  padding:28px 26px;
-  background:var(--tortilla);
-  border:1px solid var(--borde);
-  border-radius:var(--r-lg);
-  box-shadow:var(--shadow-card);
+  padding:28px 26px;background:var(--tortilla);
+  border:1px solid var(--borde);border-radius:var(--r-lg);box-shadow:var(--shadow-card);
 }
 .visit-card .lead{margin-bottom:20px}
 .info-list{border-top:1px solid var(--borde);margin-bottom:20px}
@@ -694,11 +577,10 @@ h2{
 .info-text{margin:0;font-size:15px;line-height:1.5;color:var(--cacao);font-weight:500}
 .visit-actions{display:grid;gap:10px;margin-bottom:14px}
 .visit-btn{
-  min-height:48px;width:100%;
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:48px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;
   padding:12px 18px;border:1px solid transparent;border-radius:var(--r-sm);
   color:var(--tortilla);text-decoration:none;font-size:13.5px;font-weight:700;
-  transition:filter .16s ease,transform .1s ease,background .16s ease;
+  transition:filter .16s ease,transform .1s ease;
 }
 .visit-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .visit-btn:hover{filter:brightness(1.06)}
@@ -707,73 +589,50 @@ h2{
 .visit-btn.maps{background:var(--chile-oscuro)}
 .visit-btn.call{background:var(--masa);color:var(--chile-oscuro);border-color:var(--borde-fuerte)}
 
-/* Reseñas de Google Maps */
+/* Reseñas Google Maps */
 .reviews-header{
   display:flex;justify-content:space-between;align-items:center;
   gap:16px;flex-wrap:wrap;padding-bottom:18px;
   border-bottom:1px solid var(--borde);margin-bottom:18px;
 }
 .gmaps-brand{
-  display:inline-flex;align-items:center;gap:7px;
-  font-size:11px;font-weight:700;letter-spacing:1px;
-  text-transform:uppercase;color:var(--cilantro);margin-bottom:4px;
+  display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;color:var(--cilantro);margin-bottom:4px;
 }
 .gmaps-brand svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.1}
-.reviews-header h3{
-  font-family:var(--font-serif);font-size:26px;font-weight:500;
-  margin:0;color:var(--chile-oscuro);
-}
+.reviews-header h3{font-family:var(--font-serif);font-size:26px;font-weight:500;margin:0;color:var(--chile-oscuro)}
 .score-box{
   display:flex;align-items:center;gap:12px;padding:10px 14px;
   border-radius:var(--r-md);background:var(--masa);border:1px solid var(--borde);
 }
-.score-number{
-  font-family:var(--font-serif);font-size:32px;font-weight:600;
-  line-height:1;color:var(--chile-oscuro);
-}
+.score-number{font-family:var(--font-serif);font-size:32px;font-weight:600;line-height:1;color:var(--chile-oscuro)}
 .score-stars{display:flex;gap:2px;color:var(--maiz);font-size:15px;line-height:1;margin-bottom:3px}
 .score-count{font-size:11.5px;color:var(--canela);font-weight:600}
 
-.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-  margin-bottom:22px;
-}
+.reviews-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:22px}
 .review-item{
-  padding:15px 16px;border-radius:var(--r-md);
-  background:var(--masa);border:1px solid var(--borde);
-  display:flex;flex-direction:column;gap:8px;
+  padding:15px 16px;border-radius:var(--r-md);background:var(--masa);
+  border:1px solid var(--borde);display:flex;flex-direction:column;gap:8px;
 }
-.review-item.is-user{background:var(--cilantro-suave);border-color:rgba(42,111,68,.28)}
 .review-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .review-author{display:flex;align-items:center;gap:9px;min-width:0}
 .review-avatar{
-  width:32px;height:32px;border-radius:50%;
-  background:var(--chile-suave);color:var(--chile-oscuro);
-  font-size:12.5px;font-weight:800;display:grid;place-items:center;flex-shrink:0;
+  width:32px;height:32px;border-radius:50%;background:var(--chile-suave);
+  color:var(--chile-oscuro);font-size:12.5px;font-weight:800;
+  display:grid;place-items:center;flex-shrink:0;
 }
-.review-item.is-user .review-avatar{background:var(--cilantro);color:var(--tortilla)}
 .review-author strong{display:block;font-size:13.5px;color:var(--cacao);line-height:1.2}
 .review-author small{display:block;font-size:11px;color:var(--canela)}
 .review-stars{color:var(--maiz);font-size:13px;letter-spacing:1px;flex-shrink:0}
 .review-text{margin:0;font-size:13.5px;line-height:1.5;color:var(--cacao)}
 .review-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
 .review-tag{
-  font-size:11px;font-weight:700;color:var(--canela);
-  background:var(--tortilla);border:1px solid var(--borde);
-  padding:2px 8px;border-radius:99px;
+  font-size:11px;font-weight:700;color:var(--canela);background:var(--tortilla);
+  border:1px solid var(--borde);padding:2px 8px;border-radius:99px;
 }
 
-/* Calificador interactivo */
-.rate-box{
-  padding:20px 18px;border-radius:var(--r-md);
-  background:var(--maiz-suave);border:1px solid #E9D3A3;
-}
-.rate-box h4{
-  font-family:var(--font-serif);font-size:20px;font-weight:500;
-  margin:0 0 4px;color:var(--chile-oscuro);
-}
+.rate-box{padding:20px 18px;border-radius:var(--r-md);background:var(--maiz-suave);border:1px solid #E9D3A3}
+.rate-box h4{font-family:var(--font-serif);font-size:20px;font-weight:500;margin:0 0 4px;color:var(--chile-oscuro)}
 .star-picker{display:flex;align-items:center;gap:6px;margin:14px 0 8px;flex-wrap:wrap}
 .star-btn{
   width:42px;height:42px;border:1px solid #E3C993;border-radius:var(--r-sm);
@@ -785,39 +644,23 @@ h2{
 .star-btn.lit{color:var(--maiz);border-color:var(--maiz);background:#FFFDF7}
 .star-caption{font-size:13px;font-weight:700;color:var(--chile-oscuro);margin-left:6px}
 .rate-chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
-.rate-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.rate-thanks{
-  margin-top:12px;padding:12px 14px;border-radius:var(--r-sm);
-  background:var(--cilantro-suave);border:1px solid rgba(42,111,68,.25);
-  color:var(--cilantro);font-size:13px;font-weight:600;
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
-}
-.rate-thanks a{
-  text-decoration:none;background:var(--cilantro);color:var(--tortilla);
-  padding:7px 12px;border-radius:7px;font-size:12px;font-weight:700;
-}
 
-/* ================= BOTONES FLOTANTES ================= */
+/* ================= FLOTANTES Y NAV MÓVIL ================= */
 .wa-float,.scroll-top{
   position:fixed;right:18px;z-index:30;width:48px;height:48px;
   display:grid;place-items:center;border-radius:50%;border:0;
   transition:transform .16s ease,background .16s ease;
 }
-.wa-float{
-  bottom:22px;background:var(--cilantro);color:var(--tortilla);
-  box-shadow:0 8px 22px rgba(42,111,68,.32);
-}
+.wa-float{bottom:22px;background:var(--cilantro);color:var(--tortilla);box-shadow:0 8px 22px rgba(42,111,68,.32)}
 .wa-float:hover{transform:scale(1.05);background:var(--cilantro-hover)}
 .wa-float svg{width:26px;height:26px;fill:currentColor}
 .scroll-top{
   bottom:80px;background:rgba(255,253,248,.82);color:var(--chile-oscuro);
-  border:1px solid var(--borde-fuerte);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--borde-fuerte);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   box-shadow:0 6px 16px rgba(71,36,25,.1);
 }
 .scroll-top svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 
-/* ================= NAV MÓVIL ================= */
 .mobile-nav{display:none}
 .nav-icon{
   width:20px;height:20px;margin:0 auto 4px;display:block;
@@ -838,22 +681,21 @@ h2{
 .button.wa-submit:hover:not(:disabled){background:var(--cilantro-hover)}
 .button.secondary{background:var(--tortilla);color:var(--cacao);border-color:var(--borde-fuerte)}
 .button.secondary:hover:not(:disabled){background:var(--masa)}
-.button.ghost{background:transparent;color:var(--canela);border-color:transparent;min-height:34px;padding:5px 9px;font-size:12px}
+.button.ghost{background:transparent;color:var(--canela);min-height:34px;padding:5px 9px;font-size:12px}
 .button.ghost:hover{color:var(--chile);background:var(--chile-suave)}
 .full{width:100%}
+.foot-stack{display:grid;gap:8px}
+.foot-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 
 dialog{
   padding:0;border:1px solid var(--borde);border-radius:var(--r-lg);
   background:var(--tortilla);color:var(--cacao);
-  width:min(560px,calc(100% - 24px));max-height:90vh;max-height:90dvh;
+  width:min(560px,calc(100% - 24px));max-height:90dvh;
   box-shadow:var(--shadow-sheet);overflow:hidden;
 }
 dialog::backdrop{background:rgba(71,36,25,.64);backdrop-filter:blur(3px)}
-.dialog-shell{display:flex;flex-direction:column;max-height:90vh;max-height:90dvh}
-.sheet-handle{
-  width:38px;height:4px;border-radius:99px;background:var(--borde-fuerte);
-  margin:9px auto 0;display:none;
-}
+.dialog-shell{display:flex;flex-direction:column;max-height:90dvh}
+.sheet-handle{width:38px;height:4px;border-radius:99px;background:var(--borde-fuerte);margin:9px auto 0;display:none}
 .dialog-head{
   display:flex;justify-content:space-between;align-items:center;gap:12px;
   padding:16px 20px 13px;border-bottom:1px solid var(--borde);
@@ -866,28 +708,20 @@ dialog::backdrop{background:rgba(71,36,25,.64);backdrop-filter:blur(3px)}
 }
 .close:hover{background:var(--adobe)}
 
-.step-bar{
-  display:grid;grid-template-columns:1fr 1fr;
-  border-bottom:1px solid var(--borde);background:var(--masa);
-}
-.step-tab{
-  padding:10px 12px;font-size:12px;font-weight:700;
-  color:var(--canela);text-align:center;border-bottom:2px solid transparent;
-}
+.step-bar{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--borde);background:var(--masa)}
+.step-tab{padding:10px 12px;font-size:12px;font-weight:700;color:var(--canela);text-align:center;border-bottom:2px solid transparent}
 .step-tab.active{color:var(--chile-oscuro);border-bottom-color:var(--chile);background:var(--tortilla)}
 .dialog-body{padding:18px 20px 20px;overflow-y:auto;flex:1}
-.dialog-foot{
-  padding:13px 20px 16px;border-top:1px solid var(--borde);
-  background:var(--tortilla);display:grid;gap:8px;
-}
+.dialog-foot{padding:13px 20px 16px;border-top:1px solid var(--borde);background:var(--tortilla);display:grid;gap:8px}
 .hint{font-size:12.5px;line-height:1.5;color:var(--canela);margin:0}
 
-/* MODAL TACO COMBINADO */
-.combo-header-info{
-  display:flex;justify-content:space-between;align-items:center;gap:10px;
-  margin-bottom:14px;padding:11px 13px;border-radius:var(--r-sm);
-  background:var(--masa);border:1px solid var(--borde);
+/* MODAL COMBO */
+.combo-header-info,.combo-qty-bar{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:11px 13px;border-radius:var(--r-sm);background:var(--masa);border:1px solid var(--borde);
 }
+.combo-header-info{margin-bottom:14px}
+.combo-qty-bar{margin-top:16px;font-size:14px}
 .combo-counter{
   padding:4px 10px;border-radius:6px;font-size:12px;font-weight:800;
   background:var(--adobe);color:var(--canela);white-space:nowrap;
@@ -907,31 +741,19 @@ dialog::backdrop{background:rgba(71,36,25,.64);backdrop-filter:blur(3px)}
   display:grid;place-items:center;font-size:12px;font-weight:900;flex-shrink:0;
 }
 .meat-option.selected .meat-check{background:var(--chile);border-color:var(--chile);color:var(--tortilla)}
-.combo-qty-bar{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-top:16px;padding:11px 13px;border-radius:var(--r-sm);
-  background:var(--masa);border:1px solid var(--borde);font-size:14px;
-}
 
-/* CARRITO */
-.cart-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+/* CARRITO & CHECKOUT */
+.cart-toolbar,.cart-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cart-toolbar{margin-bottom:6px}
 .cart-row{padding:13px 0;border-bottom:1px solid var(--borde);display:grid;gap:8px}
 .cart-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-size:15px}
 .cart-title strong{font-weight:700;color:var(--cacao)}
 .cart-variant-text{font-size:12.5px;color:var(--chile);font-weight:600;margin-top:2px}
 .cart-sub{font-size:12px;color:var(--canela)}
-.cart-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.totals{
-  margin-top:14px;padding:13px 15px;background:var(--masa);
-  border:1px solid var(--borde);border-radius:var(--r-sm);
-}
+.totals{margin-top:14px;padding:13px 15px;background:var(--masa);border:1px solid var(--borde);border-radius:var(--r-sm)}
 .totals div{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin:4px 0}
-.totals .total{
-  margin-top:8px;padding-top:8px;border-top:1px solid var(--borde);
-  font-size:16px;font-weight:800;color:var(--chile-oscuro);
-}
+.totals .total{margin-top:8px;padding-top:8px;border-top:1px solid var(--borde);font-size:16px;font-weight:800;color:var(--chile-oscuro)}
 
-/* CHECKOUT SOLO A DOMICILIO */
 .delivery-banner{
   display:flex;align-items:center;gap:10px;padding:11px 13px;margin-bottom:16px;
   border-radius:var(--r-sm);background:var(--maiz-suave);border:1px solid #E9D3A3;
@@ -979,19 +801,12 @@ dialog::backdrop{background:rgba(71,36,25,.64);backdrop-filter:blur(3px)}
   border:1px solid var(--borde);border-radius:var(--r-sm);
   font-size:12px;color:var(--canela);white-space:pre-line;line-height:1.5;
 }
-.foot-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 
-#photoDialog{
-  width:min(880px,calc(100% - 24px));background:transparent;
-  border:0;box-shadow:none;overflow:visible;
-}
+#photoDialog{width:min(880px,calc(100% - 24px));background:transparent;border:0;box-shadow:none;overflow:visible}
 .photo-top{display:flex;justify-content:flex-end;margin-bottom:10px}
 #largePhoto{display:block;max-width:100%;max-height:76vh;object-fit:contain;margin:auto;border-radius:var(--r-md)}
 
-footer{
-  padding:26px 20px 44px;border-top:1px solid var(--borde);
-  text-align:center;color:var(--canela);font-size:12.5px;line-height:1.75;
-}
+footer{padding:26px 20px 44px;border-top:1px solid var(--borde);text-align:center;color:var(--canela);font-size:12.5px;line-height:1.75}
 footer strong{color:var(--chile-oscuro)}
 .toast{
   position:fixed;z-index:95;bottom:88px;left:50%;transform:translateX(-50%);
@@ -1006,16 +821,15 @@ footer strong{color:var(--chile-oscuro)}
 }
 @media(max-width:760px){
   .wrap{padding-inline:16px}
-  .hero{min-height:220px}
-  .hero > .wrap{padding-bottom:24px}
-  .hero h1{font-size:clamp(40px,11.5vw,64px)}
+  .hero{min-height:275px}
+  .hero > .wrap{padding-bottom:26px}
+  .hero h1{font-size:clamp(42px,11.5vw,66px)}
   .desktop-nav{display:none}
   .menu-bar{top:0;padding:10px 0}
   .search-wrap{width:100%}
   main{padding-block:20px 116px;scroll-margin-top:8px}
   .visit-card,.reviews-card{padding:22px 18px}
   .reviews-grid{grid-template-columns:1fr}
-  .rate-actions{grid-template-columns:1fr}
 
   .mobile-nav{
     display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
@@ -1053,7 +867,7 @@ footer strong{color:var(--chile-oscuro)}
   .toast{bottom:calc(88px + env(safe-area-inset-bottom))}
 }
 @media(max-width:520px){
-  .grid{grid-template-columns:1fr;gap:12px}
+  .grid{grid-template-columns:1fr;gap:14px}
   .meat-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
@@ -1160,7 +974,7 @@ footer strong{color:var(--chile-oscuro)}
         <p class="hint" data-t="scheduleNote">Horarios sujetos a cambios en días festivos. Confirma disponibilidad por WhatsApp.</p>
       </div>
 
-      <!-- INTERFAZ DE RESEÑAS DE GOOGLE MAPS JUSTO DEBAJO DE "VER EN MAPS" -->
+      <!-- RESEÑAS DE GOOGLE MAPS -->
       <section class="reviews-card" aria-labelledby="reviewsTitle">
         <div class="reviews-header">
           <div>
@@ -1183,8 +997,8 @@ footer strong{color:var(--chile-oscuro)}
         <div id="reviewsGrid" class="reviews-grid"></div>
 
         <div class="rate-box">
-          <h4 data-t="rateTitle">Califica tu experiencia</h4>
-          <p class="hint" data-t="rateIntro">Tu opinión nos ayuda a mejorar y puedes compartirla directo en Google Maps.</p>
+          <h4 data-t="rateTitle">Califica en Google Maps</h4>
+          <p class="hint" data-t="rateIntro">Escribe tu opinión aquí; al pulsar publicar la copiamos lista para pegarla y abrir directamente nuestra ficha de Google Maps.</p>
 
           <form id="reviewForm" novalidate>
             <div class="star-picker" role="radiogroup" aria-label="Calificación en estrellas">
@@ -1204,25 +1018,15 @@ footer strong{color:var(--chile-oscuro)}
             </div>
 
             <label class="field">
-              <span data-t="reviewNameLabel">Tu nombre <small data-t="optionalTag">(opcional)</small></span>
-              <input id="reviewAuthor" maxlength="50" placeholder="Ej. Mariana G.">
-            </label>
-
-            <label class="field">
-              <span data-t="reviewCommentLabel">Tu comentario</span>
+              <span data-t="reviewCommentLabel">Tu opinión <small data-t="optionalTag">(opcional)</small></span>
               <textarea id="reviewComment" maxlength="260" rows="2" placeholder="¿Qué tacos te gustaron más?"></textarea>
             </label>
 
-            <div class="rate-actions">
-              <button type="submit" id="submitReviewBtn" class="button" data-t="publishLocalBtn">Publicar calificación</button>
-              <a id="rateOnMapsBtn" class="button secondary" target="_blank" rel="noopener noreferrer" data-t="rateMapsBtn">Calificar en Google Maps</a>
-            </div>
+            <button type="submit" id="submitReviewBtn" class="button full">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span data-t="publishMapsBtn">Publicar en Google Maps</span>
+            </button>
           </form>
-
-          <div id="rateThanks" class="rate-thanks" hidden>
-            <span id="rateThanksMsg"></span>
-            <a id="rateThanksLink" target="_blank" rel="noopener noreferrer" data-t="openMapsNow">Abrir Google Maps</a>
-          </div>
         </div>
       </section>
     </div>
@@ -1287,7 +1091,7 @@ footer strong{color:var(--chile-oscuro)}
   </div>
 </dialog>
 
-<!-- MODAL: PEDIDO Y ENVÍO A DOMICILIO POR WHATSAPP -->
+<!-- MODAL: PEDIDO A DOMICILIO POR WHATSAPP -->
 <dialog id="orderDialog" aria-labelledby="orderTitle">
   <div class="dialog-shell">
     <span class="sheet-handle" aria-hidden="true"></span>
@@ -1302,7 +1106,6 @@ footer strong{color:var(--chile-oscuro)}
     </div>
 
     <div class="dialog-body">
-      <!-- PASO 1 -->
       <div id="step1Body">
         <div class="cart-toolbar">
           <p class="hint" data-t="review">Revisa tus productos antes de continuar.</p>
@@ -1316,7 +1119,6 @@ footer strong{color:var(--chile-oscuro)}
         </div>
       </div>
 
-      <!-- PASO 2: SOLO A DOMICILIO -->
       <form id="orderForm" hidden novalidate>
         <div class="delivery-banner">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1384,17 +1186,17 @@ footer strong{color:var(--chile-oscuro)}
           <textarea id="notes" maxlength="400" rows="2" placeholder="Ej. Tortilla dorada, sin hielo en el agua…"></textarea>
         </label>
 
-        <p id="priceConfirmHint" class="hint"></p>
+        <p class="hint" data-t="confirmReady">Al enviar se abrirá WhatsApp con el desglose completo de tu pedido.</p>
         <div id="orderPreview" class="order-preview" aria-label="Vista previa del mensaje"></div>
       </form>
     </div>
 
     <div class="dialog-foot">
-      <div id="step1Foot" style="display:grid;gap:8px">
+      <div id="step1Foot" class="foot-stack">
         <button id="continueOrder" class="button full" type="button" data-t="continue">Continuar al envío</button>
         <button id="more" class="button secondary full" type="button" data-t="more">Seguir agregando</button>
       </div>
-      <div id="step2Foot" style="display:grid;gap:8px" hidden>
+      <div id="step2Foot" class="foot-stack" hidden>
         <button id="sendWhatsAppBtn" class="button wa-submit full" type="button">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           <span data-t="send">Enviar pedido por WhatsApp</span>
@@ -1420,13 +1222,12 @@ footer strong{color:var(--chile-oscuro)}
 
 /* ============================================================
    ZONA EDITABLE · EL MEXICANITO
-   1) Portada: toma imagenes/tacos.jpg del repositorio GitHub.
-   2) Precios activos:
-      - Tacos (todas las carnes y Combinado): $18 MXN
-      - Agua natural de guayaba: ½ Litro $25 | 1 Litro $50
-      - Jugo Boing de vidrio (354 ml): $25 MXN
-   3) WhatsApp de pedidos: 444 538 6284 (524445386284).
-   4) Reseñas: edita o añade comentarios reales en RESENAS_MAPS.
+   1) Portada: imagenes/tacos.jpg (respaldo automático a GitHub Raw).
+   2) Fotos individuales: súbelas a imagenes/Menu/ con los nombres
+      indicados en CARNES y MENU. Mientras no existan se muestra
+      el icono abstracto en el espacio reservado de cada ficha.
+   3) googlePlaceId: pega aquí tu Place ID de Google Maps para
+      abrir directo la ventana "Escribir una reseña".
    ============================================================ */
 const CONFIG = {
   nombre: "El Mexicanito",
@@ -1436,6 +1237,7 @@ const CONFIG = {
   horario: "Lunes a sábado · 20:00 a 02:00 h · Domingo cerrado",
   horarioEn: "Monday to Saturday · 8:00 p.m. to 2:00 a.m. · Sunday closed",
   maps: "https://maps.app.goo.gl/c9U9ZHns9X64SmFF8",
+  googlePlaceId: "",
   portada: "imagenes/tacos.jpg",
   portadaFallback: "https://raw.githubusercontent.com/blenderingforconservation-maker/ElMexicanito/main/imagenes/tacos.jpg",
   carpetaFotos: "imagenes/Menu/",
@@ -1474,7 +1276,7 @@ const MENU = [
     nombreEn: c.nombreEn + " taco",
     precio: c.precioTaco,
     foto: c.foto,
-    ilustracion: "taco"
+    icono: "taco"
   })),
   {
     id: "taco-combinado",
@@ -1490,7 +1292,7 @@ const MENU = [
     tagEn: "2 meats",
     precio: 18,
     foto: "taco-combinado.jpg",
-    ilustracion: "taco"
+    icono: "combo"
   },
   {
     id: "agua-guayaba",
@@ -1510,7 +1312,7 @@ const MENU = [
     ],
     precio: 25,
     foto: "agua-guayaba.jpg",
-    ilustracion: "cup"
+    icono: "agua"
   },
   {
     id: "jugo-boing",
@@ -1527,52 +1329,39 @@ const MENU = [
     opciones: SABORES_BOING,
     precio: 25,
     foto: "boing-vidrio.jpg",
-    ilustracion: "bottle"
+    icono: "botella"
   }
 ];
 
-/* Mejores reseñas visibles debajo de "Ver en Maps" (editables) */
 const RESENAS_MAPS = [
   {
-    autor: "Cliente en Google Maps",
-    fecha: "Reseña destacada",
-    fechaEn: "Featured review",
-    estrellas: 5,
-    texto: "Excelente sabor y muy bien servidos. El suadero y la costilla nunca fallan.",
-    textoEn: "Excellent flavor and generous portions. Suadero and rib never disappoint.",
-    tags: ["Gran sabor", "5 estrellas"]
+    autor:"Cliente en Google Maps", fecha:"Reseña destacada", fechaEn:"Featured review", estrellas:5,
+    texto:"Excelente sabor y muy bien servidos. El suadero y la costilla nunca fallan.",
+    textoEn:"Excellent flavor and generous portions. Suadero and rib never disappoint.",
+    tags:["Gran sabor","5 estrellas"]
   },
   {
-    autor: "Comensal frecuente",
-    fecha: "Google Maps",
-    fechaEn: "Google Maps",
-    estrellas: 5,
-    texto: "Las salsas levantan perfecto cualquier taco y el precio de $18 está súper justo.",
-    textoEn: "The salsas pair perfectly with every taco and the $18 price is very fair.",
-    tags: ["Salsas ricas", "Buen precio"]
+    autor:"Comensal frecuente", fecha:"Google Maps", fechaEn:"Google Maps", estrellas:5,
+    texto:"Las salsas levantan perfecto cualquier taco y el precio de $18 está súper justo.",
+    textoEn:"The salsas pair perfectly with every taco and the $18 price is very fair.",
+    tags:["Salsas ricas","Buen precio"]
   },
   {
-    autor: "Visita nocturna",
-    fecha: "Google Maps",
-    fechaEn: "Google Maps",
-    estrellas: 5,
-    texto: "Atención rápida incluso en hora pico. Pedir combinados con agua natural de guayaba es obligatorio.",
-    textoEn: "Fast service even at peak hours. Getting combo tacos with fresh guava water is a must.",
-    tags: ["Buen servicio", "Agua de guayaba"]
+    autor:"Visita nocturna", fecha:"Google Maps", fechaEn:"Google Maps", estrellas:5,
+    texto:"Atención rápida incluso en hora pico. Pedir combinados con agua natural de guayaba es obligatorio.",
+    textoEn:"Fast service even at peak hours. Getting combo tacos with fresh guava water is a must.",
+    tags:["Buen servicio","Agua de guayaba"]
   },
   {
-    autor: "Opinión verificada",
-    fecha: "Google Maps",
-    fechaEn: "Google Maps",
-    estrellas: 5,
-    texto: "De los mejores tacos nocturnos de Tequisquiapan. Llegan bien calientitos a domicilio.",
-    textoEn: "One of the best late-night taco spots in Tequisquiapan. Delivery arrives piping hot.",
-    tags: ["Tequisquiapan", "Gran sabor"]
+    autor:"Opinión verificada", fecha:"Google Maps", fechaEn:"Google Maps", estrellas:5,
+    texto:"De los mejores tacos nocturnos de Tequisquiapan. Llegan bien calientitos a domicilio.",
+    textoEn:"One of the best late-night taco spots in Tequisquiapan. Delivery arrives piping hot.",
+    tags:["Tequisquiapan","Gran sabor"]
   }
 ];
 
 const TEXT = {
-  es: {
+  es:{
     menu:"Menú", visit:"Visítanos", order:"Mi pedido", orderShort:"Pedido",
     menuLabel:"Para llevar a domicilio", menuTitle:"La carta",
     intro:"Elige tus tacos, combina dos carnes y acompaña con agua de guayaba o Boing bien frío. Tu orden llega directo a nuestro WhatsApp.",
@@ -1610,32 +1399,27 @@ const TEXT = {
     comboInstruction:"Elige exactamente 2 carnes para combinar · $18 MXN",
     comboQtyLabel:"Cantidad", comboAddBtn:"Agregar al pedido",
     comboMaxHint:"Ya seleccionaste 2 carnes. Desmarca una para cambiarla.",
-    add:"Agregar", remove:"Quitar", close:"Cerrar", photo:"Fotografía del producto",
-    enlarge:"Ampliar fotografía", emptyCart:"Todavía no agregas nada a tu pedido.",
-    hello:"Hola, quiero hacer una consulta sobre El Mexicanito.",
-    chat:"WhatsApp",
+    add:"Agregar", remove:"Quitar", enlarge:"Ampliar fotografía",
+    emptyCart:"Todavía no agregas nada a tu pedido.",
+    hello:"Hola, quiero hacer una consulta sobre El Mexicanito.", chat:"WhatsApp",
     statusOpen:"Abierto ahora", statusClosing:"Próximo a cerrar", statusClosed:"Cerrado",
     needName:"Escribe tu nombre para registrar el pedido.",
     needAddress:"Escribe tu dirección para el envío a domicilio.",
-    copied:"Texto del pedido copiado.", cartCleared:"Se vació tu pedido.",
+    copied:"Texto copiado al portapapeles.", cartCleared:"Se vació tu pedido.",
     addedToast:"Agregado al pedido",
     groupTacosMeta:"$18 c/u", groupDrinksMeta:"$25 – $50",
     reviewsKicker:"Reseñas en Google Maps", reviewsTitle:"Lo que dicen nuestros clientes",
     reviewsCountSuffix:"reseñas",
-    rateTitle:"Califica tu experiencia",
-    rateIntro:"Tu opinión nos ayuda a mejorar y puedes compartirla directo en Google Maps.",
+    rateTitle:"Califica en Google Maps",
+    rateIntro:"Escribe tu opinión aquí; al pulsar publicar la copiamos lista para pegarla y abrir directamente nuestra ficha de Google Maps.",
     rtFlavor:"Gran sabor", rtSalsas:"Salsas ricas", rtPrice:"Buen precio", rtService:"Buen servicio",
-    reviewNameLabel:"Tu nombre", reviewNamePlaceholder:"Ej. Mariana G.",
-    reviewCommentLabel:"Tu comentario", reviewCommentPlaceholder:"¿Qué tacos te gustaron más?",
-    publishLocalBtn:"Publicar calificación", rateMapsBtn:"Calificar en Google Maps",
-    openMapsNow:"Abrir Google Maps",
+    reviewCommentLabel:"Tu opinión", reviewCommentPlaceholder:"¿Qué tacos te gustaron más?",
+    publishMapsBtn:"Publicar en Google Maps",
     starLabels:["","Puede mejorar","Regular","Muy bien","¡Muy ricos!","¡Excelentes tacos!"],
-    reviewNeedComment:"Escribe un breve comentario o elige una etiqueta para publicar.",
-    reviewSavedMsg:"¡Gracias por tu calificación! Copiamos tu comentario por si deseas pegarlo en Google Maps.",
-    reviewSavedNoCopy:"¡Gracias por tu calificación! Puedes compartirla también en Google Maps.",
-    justNow:"Recién publicada", anonymous:"Cliente"
+    reviewCopiedOpening:"Opinión copiada. Pégala en Google Maps para publicarla.",
+    reviewOpening:"Abriendo Google Maps para publicar tu calificación…"
   },
-  en: {
+  en:{
     menu:"Menu", visit:"Visit us", order:"My order", orderShort:"Order",
     menuLabel:"Home delivery", menuTitle:"The menu",
     intro:"Choose your tacos, combine two meats and pair with fresh guava water or a chilled Boing. Orders go straight to WhatsApp.",
@@ -1673,52 +1457,39 @@ const TEXT = {
     comboInstruction:"Pick exactly 2 meats to combine · $18 MXN",
     comboQtyLabel:"Quantity", comboAddBtn:"Add to order",
     comboMaxHint:"You already picked 2 meats. Uncheck one to swap.",
-    add:"Add", remove:"Remove", close:"Close", photo:"Product photo",
-    enlarge:"Enlarge photo", emptyCart:"Your order is empty.",
-    hello:"Hello, I have a question about El Mexicanito.",
-    chat:"WhatsApp",
+    add:"Add", remove:"Remove", enlarge:"Enlarge photo",
+    emptyCart:"Your order is empty.",
+    hello:"Hello, I have a question about El Mexicanito.", chat:"WhatsApp",
     statusOpen:"Open now", statusClosing:"Closing soon", statusClosed:"Closed",
     needName:"Please enter your name.",
     needAddress:"Please enter your delivery address.",
-    copied:"Order text copied.", cartCleared:"Order cleared.",
+    copied:"Text copied to clipboard.", cartCleared:"Order cleared.",
     addedToast:"Added to order",
     groupTacosMeta:"$18 each", groupDrinksMeta:"$25 – $50",
     reviewsKicker:"Google Maps Reviews", reviewsTitle:"What our guests say",
     reviewsCountSuffix:"reviews",
-    rateTitle:"Rate your experience",
-    rateIntro:"Your feedback helps us improve and you can also share it on Google Maps.",
+    rateTitle:"Review us on Google Maps",
+    rateIntro:"Write your review here; tapping publish copies it to your clipboard and opens our Google Maps listing directly.",
     rtFlavor:"Great flavor", rtSalsas:"Tasty salsas", rtPrice:"Fair prices", rtService:"Great service",
-    reviewNameLabel:"Your name", reviewNamePlaceholder:"e.g. Alex G.",
     reviewCommentLabel:"Your review", reviewCommentPlaceholder:"Which tacos were your favorite?",
-    publishLocalBtn:"Post rating", rateMapsBtn:"Rate on Google Maps",
-    openMapsNow:"Open Google Maps",
+    publishMapsBtn:"Publish on Google Maps",
     starLabels:["","Could improve","Fair","Good","Very tasty!","Amazing tacos!"],
-    reviewNeedComment:"Add a brief comment or select a tag to post.",
-    reviewSavedMsg:"Thanks for your rating! We copied your comment so you can paste it on Google Maps.",
-    reviewSavedNoCopy:"Thanks for your rating! You can also share it on Google Maps.",
-    justNow:"Just posted", anonymous:"Guest"
+    reviewCopiedOpening:"Review copied. Paste it on Google Maps to publish.",
+    reviewOpening:"Opening Google Maps to post your rating…"
   }
 };
 
-/* Emblemas minimalistas SVG para cada tarjeta */
-const EMBLEM_SVGS = {
-  taco: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16a9 9 0 0 1 18 0z"/><path d="M6.5 12c1.2-1.6 2.8-2.4 4.5-2.4M12 9.6c1.8 0 3.3.9 4.5 2.2"/><circle cx="9.5" cy="13.2" r=".7"/><circle cx="14.5" cy="13.5" r=".7"/></svg>`,
-  cup: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 7h11l-1.4 12.2a2 2 0 0 1-2 1.8H9.9a2 2 0 0 1-2-1.8L6.5 7z"/><path d="M5.5 7h13M13.5 7l2-3.5M7.5 12c1.6-.8 3 .8 4.5 0s3 .8 4.5 0"/></svg>`,
-  bottle: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v3l2.2 3.8v9.2a2 2 0 0 1-2 2H9.8a2 2 0 0 1-2-2V9.8L10 6V3z"/><path d="M9.5 3h5M8 12.5h8v4H8z"/></svg>`
+/* Iconos abstractos en trazo fino mientras se suben las fotos reales */
+const ABSTRACT_ICONS = {
+  taco: `<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 27a14 14 0 0 1 28 0"/><path d="M10 27h20"/><path d="M13 18c2.2-1.8 4.6-2.6 7-2.6s4.8.8 7 2.6"/><path d="M16 10c0-1.5 1-2.5 1-4M23 11c0-1.5 1-2.5 1-4" opacity=".6"/></svg>`,
+  combo: `<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 27a12 12 0 0 1 22-4"/><path d="M13 28a12 12 0 0 1 22 0z"/><path d="M18 22.5h12" opacity=".6"/></svg>`,
+  agua: `<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M11 11h18l-2.2 19a2.5 2.5 0 0 1-2.5 2.2h-8.6A2.5 2.5 0 0 1 13.2 30L11 11z"/><path d="M12.5 20c2.5-1.4 5 1.4 7.5 0s5 1.4 7.5 0"/><circle cx="24" cy="15.5" r="1.4" opacity=".65"/></svg>`,
+  botella: `<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M17 6h6v5l3.5 6v13.5A2.5 2.5 0 0 1 24 33h-8a2.5 2.5 0 0 1-2.5-2.5V17L17 11V6z"/><path d="M14 21h12M14 26.5h12" opacity=".6"/></svg>`
 };
 
-/* SVG de limón partido fresco para la animación al agregar */
-const LIME_SLICE_SVG = `<svg viewBox="0 0 44 44" aria-hidden="true">
-  <path d="M4 22a18 18 0 0 0 36 0z" fill="#2A6F44"/>
-  <path d="M7.2 22a14.8 14.8 0 0 0 29.6 0z" fill="#F8F4E8"/>
-  <path d="M9.6 22a12.4 12.4 0 0 0 24.8 0z" fill="#8DD34F"/>
-  <path d="M22 22V34.2M22 22L13.4 30.8M22 22L30.6 30.8" stroke="#F8F4E8" stroke-width="1.7" stroke-linecap="round"/>
-  <circle cx="19" cy="26" r="1" fill="#F8F4E8" opacity=".85"/>
-  <circle cx="25.5" cy="26.2" r="1" fill="#F8F4E8" opacity=".85"/>
-</svg>`;
+const LIME_SLICE_SVG = `<svg viewBox="0 0 44 44" aria-hidden="true"><path d="M4 22a18 18 0 0 0 36 0z" fill="#2A6F44"/><path d="M7.2 22a14.8 14.8 0 0 0 29.6 0z" fill="#F8F4E8"/><path d="M9.6 22a12.4 12.4 0 0 0 24.8 0z" fill="#8DD34F"/><path d="M22 22V34.2M22 22L13.4 30.8M22 22L30.6 30.8" stroke="#F8F4E8" stroke-width="1.7" stroke-linecap="round"/></svg>`;
 
-const STORAGE_KEY = "el_mexicanito_order_v7";
-const REVIEWS_KEY = "el_mexicanito_reviews_v2";
+const STORAGE_KEY = "el_mexicanito_order_v8";
 const $ = id => document.getElementById(id);
 const make = (tag, cls, text) => {
   const el = document.createElement(tag);
@@ -1730,32 +1501,17 @@ const make = (tag, cls, text) => {
 const productMap = new Map(MENU.map(p => [p.id, p]));
 const meatMap = new Map(CARNES.map(c => [c.id, c]));
 const cart = new Map();
-const selectedOpt = new Map();
-MENU.forEach(p => { if (p.opciones?.length) selectedOpt.set(p.id, p.opciones[0].id); });
+const selectedOpt = new Map(MENU.filter(p => p.opciones?.length).map(p => [p.id, p.opciones[0].id]));
 
-let lang = "es";
-let activeCategory = "ALL";
-let orderId = "";
-let toastTimer;
-let lastBadgeCount = 0;
-
+let lang = "es", activeCategory = "ALL", orderId = "", toastTimer, lastBadgeCount = 0;
 const comboDraft = { meats: [], qty: 1 };
-const orderState = {
-  veggie: "con_todo",
-  extras: new Set(["salsa_verde", "salsa_roja", "limones"]),
-  payment: "efectivo",
-  gpsUrl: ""
-};
+const orderState = { veggie: "con_todo", extras: new Set(["salsa_verde", "salsa_roja", "limones"]), payment: "efectivo", gpsUrl: "" };
 const reviewDraft = { stars: 5, tags: new Set() };
-let userReviews = [];
 
 const t = key => TEXT[lang][key];
 const productTitle = p => lang === "es" ? p.nombre : p.nombreEn;
 const catLabel = p => lang === "es" ? p.categoria : (p.categoriaEn || p.categoria);
-const meatLabel = id => {
-  const m = meatMap.get(id);
-  return m ? (lang === "es" ? m.nombre : m.nombreEn) : id;
-};
+const meatLabel = id => { const m = meatMap.get(id); return m ? (lang === "es" ? m.nombre : m.nombreEn) : id; };
 const optionObj = (p, optId) => p?.opciones?.find(o => o.id === optId) || null;
 const optionLabel = (p, optId, short = false) => {
   const o = optionObj(p, optId);
@@ -1763,157 +1519,111 @@ const optionLabel = (p, optId, short = false) => {
   if (short && (o.corto || o.cortoEn)) return lang === "es" ? o.corto : (o.cortoEn || o.corto);
   return lang === "es" ? o.nombre : (o.nombreEn || o.nombre);
 };
-const isNum = v => typeof v === "number" && Number.isFinite(v) && v >= 0;
-const unitPriceFor = (p, variantId = null) => {
-  if (!p) return 0;
-  if (variantId) {
-    const o = optionObj(p, variantId);
-    if (o && isNum(o.precio)) return o.precio;
-  }
-  return isNum(p.precio) ? p.precio : 0;
-};
+const unitPriceFor = (p, variantId = null) => optionObj(p, variantId)?.precio ?? p?.precio ?? 0;
 const money = n => new Intl.NumberFormat(lang === "es" ? "es-MX" : "en-US", {
   style:"currency", currency:"MXN", currencyDisplay:"narrowSymbol", maximumFractionDigits:0
 }).format(n);
 const waUrl = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
+const mapsReviewUrl = () => CONFIG.googlePlaceId
+  ? "https://search.google.com/local/writereview?placeid=" + encodeURIComponent(CONFIG.googlePlaceId.trim())
+  : CONFIG.maps;
 const normalize = v => v.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-
-function cartKeyFor(productId, variants = []) {
-  if (!variants.length) return productId;
-  return productId + "::" + [...variants].sort().join("+");
-}
+const cartKeyFor = (id, variants = []) => variants.length ? id + "::" + [...variants].sort().join("+") : id;
 
 function rowDisplayName(row) {
   const p = productMap.get(row.id);
   if (!p) return "";
-  if (p.tipo === "combo2" && row.variants?.length === 2) {
+  if (p.tipo === "combo2" && row.variants.length === 2) {
     return productTitle(p) + " (" + meatLabel(row.variants[0]) + " + " + meatLabel(row.variants[1]) + ")";
   }
-  if ((p.tipo === "select" || p.tipo === "sizes") && row.variants?.length) {
+  if (row.variants.length) {
     return productTitle(p) + " (" + optionLabel(p, row.variants[0], p.tipo === "sizes") + ")";
   }
   return productTitle(p);
 }
 
-/* ================= ANIMACIÓN DE LIMONES PARTIDOS VOLANDO ================= */
-function spawnLimeBurst(anchorEl) {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const layer = $("limeLayer");
-  if (!layer || !Element.prototype.animate) return;
-
-  let originX = window.innerWidth * 0.5;
-  let originY = window.innerHeight * 0.65;
-  if (anchorEl && typeof anchorEl.getBoundingClientRect === "function") {
-    const r = anchorEl.getBoundingClientRect();
-    if (r.width > 0 || r.height > 0) {
-      originX = r.left + r.width * 0.5;
-      originY = r.top + r.height * 0.45;
-    }
+async function copyToClipboard(text) {
+  if (!text) return false;
+  try { await navigator.clipboard.writeText(text); return true; }
+  catch {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.append(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
   }
+}
 
+/* ================= LIMONES PARTIDOS VOLANDO ================= */
+function spawnLimeBurst(anchorEl) {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !Element.prototype.animate) return;
+  const layer = $("limeLayer");
+  let x = window.innerWidth * 0.5, y = window.innerHeight * 0.65;
+  if (anchorEl?.getBoundingClientRect) {
+    const r = anchorEl.getBoundingClientRect();
+    if (r.width || r.height) { x = r.left + r.width * 0.5; y = r.top + r.height * 0.45; }
+  }
   const count = 5;
   for (let i = 0; i < count; i++) {
     const lime = document.createElement("span");
     lime.className = "flying-lime";
     lime.innerHTML = LIME_SLICE_SVG;
+    const spread = (i - 2) * 28 + (Math.random() * 16 - 8);
+    const peakY = -(56 + Math.random() * 42);
+    const rot0 = Math.random() * 48 - 24;
+    const rot1 = rot0 + (spread >= 0 ? 1 : -1) * (85 + Math.random() * 90);
+    const size = Math.round(24 * (0.75 + Math.random() * 0.38));
 
-    const spread = (i - (count - 1) / 2) * 28 + (Math.random() * 18 - 9);
-    const peakY = -(56 + Math.random() * 44);
-    const endX = spread * 1.45;
-    const endY = peakY + 34 + Math.random() * 24;
-    const startRot = Math.random() * 50 - 25;
-    const endRot = startRot + (spread >= 0 ? 1 : -1) * (80 + Math.random() * 95);
-    const size = Math.round(25 * (0.74 + Math.random() * 0.4));
-
-    lime.style.width = size + "px";
-    lime.style.height = size + "px";
-    lime.style.left = (originX - size / 2) + "px";
-    lime.style.top = (originY - size / 2) + "px";
+    lime.style.cssText = `width:${size}px;height:${size}px;left:${x - size / 2}px;top:${y - size / 2}px`;
     layer.append(lime);
 
-    const anim = lime.animate([
-      { transform: `translate3d(0, 0, 0) rotate(${startRot}deg) scale(0.35)`, opacity: 0 },
-      { transform: `translate3d(${spread * 0.55}px, ${peakY}px, 0) rotate(${(startRot + endRot) * 0.5}deg) scale(1.08)`, opacity: 0.96, offset: 0.42 },
-      { transform: `translate3d(${endX}px, ${endY}px, 0) rotate(${endRot}deg) scale(0.68)`, opacity: 0 }
+    lime.animate([
+      { transform: `translate3d(0,0,0) rotate(${rot0}deg) scale(.35)`, opacity: 0 },
+      { transform: `translate3d(${spread * .55}px,${peakY}px,0) rotate(${(rot0 + rot1) * .5}deg) scale(1.06)`, opacity: .95, offset: .42 },
+      { transform: `translate3d(${spread * 1.4}px,${peakY + 42}px,0) rotate(${rot1}deg) scale(.65)`, opacity: 0 }
     ], {
-      duration: 680 + Math.random() * 220,
-      delay: i * 28,
+      duration: 680 + Math.random() * 200,
+      delay: i * 26,
       easing: "cubic-bezier(.22,.68,.32,1)",
       fill: "forwards"
-    });
-    anim.onfinish = () => lime.remove();
+    }).onfinish = () => lime.remove();
   }
 }
 
-/* ================= PERSISTENCIA ================= */
+/* ================= PERSISTENCIA & ESTADO ================= */
 function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      cart: [...cart.entries()],
-      orderId,
-      customer: $("customer").value,
-      address: $("address").value,
-      refs: $("refs").value
+      cart: [...cart.entries()], orderId,
+      customer: $("customer").value, address: $("address").value, refs: $("refs").value
     }));
   } catch {}
 }
 
 function loadState() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const data = JSON.parse(raw);
-      if (Array.isArray(data.cart)) {
-        data.cart.forEach(([key, row]) => {
-          if (row && productMap.has(row.id) && row.quantity > 0) {
-            const variants = Array.isArray(row.variants) ? row.variants : [];
-            cart.set(key, { key, id: row.id, variants, quantity: Math.min(99, Number(row.quantity) || 1) });
-          }
-        });
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    if (!data) return;
+    (data.cart || []).forEach(([key, row]) => {
+      if (row && productMap.has(row.id) && row.quantity > 0) {
+        cart.set(key, { key, id: row.id, variants: Array.isArray(row.variants) ? row.variants : [], quantity: Math.min(99, Number(row.quantity) || 1) });
       }
-      if (data.orderId && cart.size) orderId = data.orderId;
-      if (data.customer) $("customer").value = data.customer;
-      if (data.address) $("address").value = data.address;
-      if (data.refs) $("refs").value = data.refs;
-    }
-  } catch {}
-
-  try {
-    const rawRev = localStorage.getItem(REVIEWS_KEY);
-    if (rawRev) {
-      const parsed = JSON.parse(rawRev);
-      if (Array.isArray(parsed)) userReviews = parsed;
-    }
+    });
+    if (data.orderId && cart.size) orderId = data.orderId;
+    if (data.customer) $("customer").value = data.customer;
+    if (data.address) $("address").value = data.address;
+    if (data.refs) $("refs").value = data.refs;
   } catch {}
 }
 
-function saveReviews() {
-  try { localStorage.setItem(REVIEWS_KEY, JSON.stringify(userReviews)); } catch {}
-}
-
-/* ================= INDICADOR DINÁMICO DE ACTIVIDAD ================= */
 function updateOpenStatus() {
-  const now = new Date();
-  const day = now.getDay();
-  const hour = now.getHours();
-
-  // Abierto: Lun–Sáb 20:00–23:59 | Próximo a cerrar: madrugada 00:00–01:59 (excepto lunes) | Cerrado: resto
-  const isEveningOpen = day >= 1 && day <= 6 && hour >= 20;
-  const isClosingSoon = day !== 1 && hour < 2;
-
+  const now = new Date(), day = now.getDay(), hour = now.getHours();
+  const state = (day >= 1 && day <= 6 && hour >= 20) ? "open" : (day !== 1 && hour < 2) ? "closing" : "closed";
   const pill = $("statusPill");
-  pill.classList.remove("is-open", "is-closing", "is-closed");
-
-  if (isEveningOpen) {
-    pill.classList.add("is-open");
-    $("statusText").textContent = t("statusOpen");
-  } else if (isClosingSoon) {
-    pill.classList.add("is-closing");
-    $("statusText").textContent = t("statusClosing");
-  } else {
-    pill.classList.add("is-closed");
-    $("statusText").textContent = t("statusClosed");
-  }
+  pill.className = "status-pill is-" + state;
+  $("statusText").textContent = t(state === "open" ? "statusOpen" : state === "closing" ? "statusClosing" : "statusClosed");
 }
 
 function showToast(msg) {
@@ -1921,10 +1631,10 @@ function showToast(msg) {
   el.textContent = msg;
   el.hidden = false;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { el.hidden = true; }, 2200);
+  toastTimer = setTimeout(() => { el.hidden = true; }, 2300);
 }
 
-/* ================= NAVEGACIÓN Y MODALES ================= */
+/* ================= NAVEGACIÓN & MODALES ================= */
 function showView(view, changeHash = true, scroll = true) {
   const visit = view === "visit";
   $("menuView").hidden = visit;
@@ -1932,39 +1642,22 @@ function showView(view, changeHash = true, scroll = true) {
   document.querySelectorAll("[data-view]").forEach(btn => {
     const active = btn.dataset.view === (visit ? "visit" : "menu");
     btn.classList.toggle("active", active);
-    if (active) btn.setAttribute("aria-current", "page");
-    else btn.removeAttribute("aria-current");
+    active ? btn.setAttribute("aria-current", "page") : btn.removeAttribute("aria-current");
   });
-  if (changeHash) {
-    try { history.replaceState(null, "", visit ? "#visitanos" : "#menu"); } catch {}
-  }
-  if (scroll) {
-    $("main").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-  }
+  if (changeHash) try { history.replaceState(null, "", visit ? "#visitanos" : "#menu"); } catch {}
+  if (scroll) $("main").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 }
+document.querySelectorAll("[data-view]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.view)));
 
-document.querySelectorAll("[data-view]").forEach(btn =>
-  btn.addEventListener("click", () => showView(btn.dataset.view))
-);
-
-function openDialog(dialog) {
-  dialog.showModal();
-  document.body.classList.add("locked");
-}
-
+function openDialog(dialog) { dialog.showModal(); document.body.classList.add("locked"); }
 [$("orderDialog"), $("comboDialog"), $("photoDialog")].forEach(dialog => {
-  dialog.addEventListener("close", () => {
-    if (!document.querySelector("dialog[open]")) document.body.classList.remove("locked");
-  });
+  dialog.addEventListener("close", () => { if (!document.querySelector("dialog[open]")) document.body.classList.remove("locked"); });
   dialog.addEventListener("click", ev => {
     if (ev.target !== dialog) return;
-    const rect = dialog.getBoundingClientRect();
-    if (ev.clientX < rect.left || ev.clientX > rect.right || ev.clientY < rect.top || ev.clientY > rect.bottom) {
-      dialog.close();
-    }
+    const r = dialog.getBoundingClientRect();
+    if (ev.clientX < r.left || ev.clientX > r.right || ev.clientY < r.top || ev.clientY > r.bottom) dialog.close();
   });
 });
-
 $("closeOrder").onclick = () => $("orderDialog").close();
 $("closeCombo").onclick = () => $("comboDialog").close();
 $("closePhoto").onclick = () => $("photoDialog").close();
@@ -1974,61 +1667,45 @@ function changeItem(productId, delta, variants = [], anchorEl = null) {
   const key = cartKeyFor(productId, variants);
   const prev = cart.get(key)?.quantity || 0;
   const next = Math.max(0, Math.min(99, prev + delta));
-
   if (next > 0) cart.set(key, { key, id: productId, variants: [...variants], quantity: next });
   else cart.delete(key);
 
   if (cart.size && !orderId) orderId = "EM-" + Date.now().toString(36).slice(-5).toUpperCase();
   if (!cart.size) orderId = "";
-
   if (delta > 0 && next > prev) spawnLimeBurst(anchorEl);
 
   saveState();
   syncCardsAndBadges();
-  if ($("orderDialog").open) {
-    renderCart();
-    updatePreview();
-  }
+  if ($("orderDialog").open) { renderCart(); updatePreview(); }
 }
 
 function calcTotals() {
-  let sum = 0;
-  let totalItems = 0;
-  let hasFood = false;
-
-  for (const row of cart.values()) {
+  let sum = 0, totalItems = 0, hasFood = false;
+  cart.forEach(row => {
     const p = productMap.get(row.id);
-    if (!p) continue;
+    if (!p) return;
     totalItems += row.quantity;
     if (p.esComida) hasFood = true;
-    sum += unitPriceFor(p, row.variants?.[0] || null) * row.quantity;
-  }
-
+    sum += unitPriceFor(p, row.variants[0]) * row.quantity;
+  });
   return { sum, totalItems, hasFood, text: money(sum) + " MXN" };
-}
-
-function getRowsByProduct(productId) {
-  return [...cart.values()].filter(r => r.id === productId);
 }
 
 function buildStepper(onMinus, onPlus, qty, label) {
   const stepper = make("div", "stepper");
-  const minus = make("button", "", "−");
-  const output = make("output", "", String(qty));
-  const plus = make("button", "", "+");
+  const minus = make("button", "", "−"), output = make("output", "", String(qty)), plus = make("button", "", "+");
   minus.type = plus.type = "button";
   minus.disabled = qty === 0;
   plus.disabled = qty >= 99;
   minus.setAttribute("aria-label", t("remove") + " " + label);
   plus.setAttribute("aria-label", t("add") + " " + label);
-  output.setAttribute("aria-label", t("quantity") + " " + label);
   minus.onclick = ev => onMinus(ev.currentTarget);
   plus.onclick = ev => onPlus(ev.currentTarget);
   stepper.append(minus, output, plus);
   return stepper;
 }
 
-/* ================= PERSONALIZADOR TACO COMBINADO ================= */
+/* ================= TACO COMBINADO ================= */
 function openComboModal() {
   comboDraft.meats = [];
   comboDraft.qty = 1;
@@ -2038,30 +1715,21 @@ function openComboModal() {
 
 function renderComboModal() {
   const count = comboDraft.meats.length;
-  const counter = $("comboCounter");
-  counter.textContent = count + " / 2";
-  counter.classList.toggle("ready", count === 2);
+  $("comboCounter").textContent = count + " / 2";
+  $("comboCounter").classList.toggle("ready", count === 2);
 
   const grid = $("comboMeatGrid");
   grid.replaceChildren();
-
   CARNES.forEach(meat => {
-    const isSelected = comboDraft.meats.includes(meat.id);
-    const btn = make("button", "meat-option" + (isSelected ? " selected" : ""));
+    const sel = comboDraft.meats.includes(meat.id);
+    const btn = make("button", "meat-option" + (sel ? " selected" : ""));
     btn.type = "button";
-    btn.setAttribute("aria-pressed", String(isSelected));
-    const check = make("span", "meat-check", isSelected ? "✓" : "");
-    btn.append(make("span", "", lang === "es" ? meat.nombre : meat.nombreEn), check);
-
+    btn.setAttribute("aria-pressed", String(sel));
+    btn.append(make("span", "", lang === "es" ? meat.nombre : meat.nombreEn), make("span", "meat-check", sel ? "✓" : ""));
     btn.onclick = () => {
-      if (isSelected) {
-        comboDraft.meats = comboDraft.meats.filter(id => id !== meat.id);
-      } else if (comboDraft.meats.length < 2) {
-        comboDraft.meats.push(meat.id);
-      } else {
-        showToast(t("comboMaxHint"));
-        return;
-      }
+      if (sel) comboDraft.meats = comboDraft.meats.filter(id => id !== meat.id);
+      else if (comboDraft.meats.length < 2) comboDraft.meats.push(meat.id);
+      else return showToast(t("comboMaxHint"));
       renderComboModal();
     };
     grid.append(btn);
@@ -2072,32 +1740,24 @@ function renderComboModal() {
   $("comboPlus").disabled = comboDraft.qty >= 99;
   $("addComboBtn").disabled = count !== 2;
 }
-
 $("comboMinus").onclick = () => { if (comboDraft.qty > 1) { comboDraft.qty--; renderComboModal(); } };
 $("comboPlus").onclick = () => { if (comboDraft.qty < 99) { comboDraft.qty++; renderComboModal(); } };
 $("addComboBtn").onclick = ev => {
   if (comboDraft.meats.length !== 2) return;
   const sorted = [...comboDraft.meats].sort();
   changeItem("taco-combinado", comboDraft.qty, sorted, ev.currentTarget);
-  const label = meatLabel(sorted[0]) + " + " + meatLabel(sorted[1]);
   $("comboDialog").close();
-  showToast(t("addedToast") + ": " + label);
+  showToast(t("addedToast") + ": " + meatLabel(sorted[0]) + " + " + meatLabel(sorted[1]));
 };
 
-/* ================= RENDERIZADO DE LA CARTA OPTIMIZADA ================= */
+/* ================= LA CARTA ================= */
 function renderCategories() {
-  const unique = [...new Set(MENU.map(p => p.categoria))];
+  const cats = ["ALL", ...new Set(MENU.map(p => p.categoria))];
   const bar = $("categoryFilters");
   bar.replaceChildren();
-
-  const allBtn = make("button", "filter" + (activeCategory === "ALL" ? " active" : ""), t("all"));
-  allBtn.type = "button";
-  allBtn.onclick = () => { activeCategory = "ALL"; renderCategories(); renderProducts(); };
-  bar.append(allBtn);
-
-  unique.forEach(cat => {
-    const sample = MENU.find(p => p.categoria === cat);
-    const btn = make("button", "filter" + (activeCategory === cat ? " active" : ""), catLabel(sample));
+  cats.forEach(cat => {
+    const label = cat === "ALL" ? t("all") : catLabel(MENU.find(p => p.categoria === cat));
+    const btn = make("button", "filter" + (activeCategory === cat ? " active" : ""), label);
     btn.type = "button";
     btn.onclick = () => { activeCategory = cat; renderCategories(); renderProducts(); };
     bar.append(btn);
@@ -2108,94 +1768,71 @@ function buildProductCard(product) {
   const card = make("article", "card" + (product.tipo !== "simple" ? " featured" : ""));
   card.dataset.id = product.id;
 
-  /* Foto opcional: solo aparece si existe imagen en imagenes/Menu/ */
+  const badge = make("span", "card-badge", "");
+  badge.hidden = true;
+  card.append(badge);
+  if (product.tag) card.append(make("span", "card-tag", lang === "es" ? product.tag : (product.tagEn || product.tag)));
+
+  /* Espacio de fotografía con icono abstracto temporal */
   const photo = make("button", "photo");
   photo.type = "button";
-  photo.hidden = true;
+  photo.disabled = true;
   photo.setAttribute("aria-label", t("enlarge") + " " + productTitle(product));
+
+  const slot = make("span", "abstract-slot");
+  slot.innerHTML = ABSTRACT_ICONS[product.icono] || ABSTRACT_ICONS.taco;
 
   const img = make("img");
   img.alt = productTitle(product);
   img.loading = "lazy";
-  img.onload = () => { photo.hidden = false; };
-  img.onerror = () => { photo.hidden = true; };
+  img.hidden = true;
+  img.onload = () => { img.hidden = false; slot.hidden = true; photo.disabled = false; };
+  img.onerror = () => { img.hidden = true; slot.hidden = false; photo.disabled = true; };
   img.src = CONFIG.carpetaFotos + product.foto;
 
-  photo.append(img);
+  photo.append(slot, img);
   photo.onclick = () => {
     $("largePhoto").src = img.currentSrc || img.src;
     $("largePhoto").alt = productTitle(product);
     openDialog($("photoDialog"));
   };
 
-  /* Cuerpo compacto y limpio */
+  /* Contenido */
   const body = make("div", "card-body");
-  const top = make("div", "card-top");
-  const idGroup = make("div", "card-id");
-
-  const emblem = make("span", "item-emblem");
-  emblem.innerHTML = EMBLEM_SVGS[product.ilustracion] || EMBLEM_SVGS.taco;
-
-  const titles = make("div", "card-titles");
-  const badgesRow = make("div", "card-badges-inline");
-  badgesRow.append(make("span", "category-label", catLabel(product)));
-
-  if (product.tag) {
-    badgesRow.append(make("span", "card-tag", lang === "es" ? product.tag : (product.tagEn || product.tag)));
-  }
-
-  const badge = make("span", "card-badge", "");
-  badge.hidden = true;
-  badgesRow.append(badge);
-
-  titles.append(badgesRow, make("h3", "", productTitle(product)));
-  idGroup.append(emblem, titles);
+  body.append(make("span", "category-label", catLabel(product)));
 
   const currentOpt = selectedOpt.get(product.id) || null;
-  const priceTag = make("span", "price-tag", money(unitPriceFor(product, currentOpt)));
-
-  top.append(idGroup, priceTag);
-  body.append(top);
+  const titlePrice = make("div", "title-price");
+  titlePrice.append(make("h3", "", productTitle(product)), make("span", "price-tag", money(unitPriceFor(product, currentOpt))));
+  body.append(titlePrice);
 
   if (product.descripcion || product.descripcionEn) {
     body.append(make("p", "card-description", lang === "es" ? product.descripcion : (product.descripcionEn || product.descripcion)));
   }
 
-  /* Selector desplegable (Sabores de Boing) */
-  if (product.tipo === "select" && product.opciones?.length) {
-    const vBox = make("div", "variant-box");
-    const selId = "sel-" + product.id;
-    const lbl = make("label", "select-label", lang === "es" ? product.labelOpcion : (product.labelOpcionEn || product.labelOpcion));
+  if (product.tipo === "select") {
+    const vBox = make("div", "variant-box"), selId = "sel-" + product.id;
+    const lbl = make("label", "select-label", lang === "es" ? product.labelOpcion : product.labelOpcionEn);
     lbl.htmlFor = selId;
     const select = make("select", "custom-select");
     select.id = selId;
     product.opciones.forEach(o => {
-      const opt = document.createElement("option");
-      opt.value = o.id;
-      opt.textContent = lang === "es" ? o.nombre : (o.nombreEn || o.nombre);
-      if (o.id === currentOpt) opt.selected = true;
+      const opt = new Option(lang === "es" ? o.nombre : (o.nombreEn || o.nombre), o.id, false, o.id === currentOpt);
       select.append(opt);
     });
-    select.addEventListener("change", () => {
-      selectedOpt.set(product.id, select.value);
-      syncCardsAndBadges();
-    });
+    select.onchange = () => { selectedOpt.set(product.id, select.value); syncCardsAndBadges(); };
     vBox.append(lbl, select);
     body.append(vBox);
-  }
-
-  /* Selector táctil de tamaños (Agua de guayaba ½ L / 1 L) */
-  if (product.tipo === "sizes" && product.opciones?.length) {
+  } else if (product.tipo === "sizes") {
     const vBox = make("div", "variant-box");
-    vBox.append(make("span", "select-label", lang === "es" ? product.labelOpcion : (product.labelOpcionEn || product.labelOpcion)));
+    vBox.append(make("span", "select-label", lang === "es" ? product.labelOpcion : product.labelOpcionEn));
     const sw = make("div", "size-switch");
     product.opciones.forEach(o => {
       const btn = make("button", "size-btn" + (o.id === currentOpt ? " active" : ""), lang === "es" ? o.nombre : (o.nombreEn || o.nombre));
       btn.type = "button";
-      btn.dataset.optId = o.id;
       btn.onclick = () => {
         selectedOpt.set(product.id, o.id);
-        sw.querySelectorAll(".size-btn").forEach(b => b.classList.toggle("active", b.dataset.optId === o.id));
+        sw.querySelectorAll(".size-btn").forEach(b => b.classList.toggle("active", b === btn));
         syncCardsAndBadges();
       };
       sw.append(btn);
@@ -2210,42 +1847,30 @@ function buildProductCard(product) {
     body.append(addedList);
   }
 
-  /* Acciones */
   const actions = make("div", "card-actions");
-
   if (product.tipo === "combo2") {
     const comboBtn = make("button", "add-btn combo-cta", t("chooseTwoBtn"));
     comboBtn.type = "button";
     comboBtn.onclick = openComboModal;
     actions.append(comboBtn);
   } else {
+    const hasOpts = product.tipo === "select" || product.tipo === "sizes";
     const addBtn = make("button", "add-btn", "+ " + t("addBtn"));
     addBtn.type = "button";
     addBtn.onclick = ev => {
-      if (product.tipo === "select" || product.tipo === "sizes") {
-        const optId = selectedOpt.get(product.id);
-        changeItem(product.id, 1, [optId], ev.currentTarget);
-        showToast(t("addedToast") + ": " + optionLabel(product, optId, product.tipo === "sizes"));
-      } else {
-        changeItem(product.id, 1, [], ev.currentTarget);
-        showToast(t("addedToast") + ": " + productTitle(product));
-      }
+      const optId = hasOpts ? selectedOpt.get(product.id) : null;
+      changeItem(product.id, 1, optId ? [optId] : [], ev.currentTarget);
+      showToast(t("addedToast") + ": " + (optId ? optionLabel(product, optId, product.tipo === "sizes") : productTitle(product)));
     };
 
     const stepRow = make("div", "stepper-row");
     stepRow.hidden = true;
-    const stepLabel = make("span", "stepper-label", t("quantity"));
     const stepper = buildStepper(
-      btn => (product.tipo === "select" || product.tipo === "sizes")
-        ? changeItem(product.id, -1, [selectedOpt.get(product.id)], btn)
-        : changeItem(product.id, -1, [], btn),
-      btn => (product.tipo === "select" || product.tipo === "sizes")
-        ? changeItem(product.id, 1, [selectedOpt.get(product.id)], btn)
-        : changeItem(product.id, 1, [], btn),
-      0,
-      productTitle(product)
+      btn => changeItem(product.id, -1, hasOpts ? [selectedOpt.get(product.id)] : [], btn),
+      btn => changeItem(product.id, 1, hasOpts ? [selectedOpt.get(product.id)] : [], btn),
+      0, productTitle(product)
     );
-    stepRow.append(stepLabel, stepper);
+    stepRow.append(make("span", "stepper-label", t("quantity")), stepper);
     actions.append(addBtn, stepRow);
   }
 
@@ -2260,27 +1885,21 @@ function renderProducts() {
   $("clearSearch").hidden = !q;
 
   const visible = MENU.filter(p => {
-    const matchCat = activeCategory === "ALL" || p.categoria === activeCategory;
-    const optSearch = p.opciones ? p.opciones.map(o => o.nombre + " " + (o.nombreEn || "")).join(" ") : "";
-    const comboSearch = p.tipo === "combo2" ? CARNES.map(c => c.nombre + " " + c.nombreEn).join(" ") : "";
-    const haystack = normalize(p.nombre + " " + p.nombreEn + " " + p.categoria + " " + (p.descripcion || "") + " " + optSearch + " " + comboSearch);
-    return matchCat && (!q || haystack.includes(q));
+    if (activeCategory !== "ALL" && p.categoria !== activeCategory) return false;
+    if (!q) return true;
+    const extra = p.opciones ? p.opciones.map(o => o.nombre + " " + (o.nombreEn || "")).join(" ")
+      : p.tipo === "combo2" ? CARNES.map(c => c.nombre + " " + c.nombreEn).join(" ") : "";
+    return normalize(`${p.nombre} ${p.nombreEn} ${p.categoria} ${p.descripcion || ""} ${extra}`).includes(q);
   });
 
   $("empty").hidden = visible.length > 0;
   if (!visible.length) return;
 
-  const groups = [...new Set(visible.map(p => p.categoria))];
-  groups.forEach(cat => {
+  [...new Set(visible.map(p => p.categoria))].forEach(cat => {
     const items = visible.filter(p => p.categoria === cat);
     const groupEl = make("div", "menu-group");
     const head = make("div", "group-head");
-    const metaText = cat === "Tacos" ? t("groupTacosMeta") : t("groupDrinksMeta");
-    head.append(
-      make("h3", "group-title", catLabel(items[0])),
-      make("span", "group-meta", metaText)
-    );
-
+    head.append(make("h3", "group-title", catLabel(items[0])), make("span", "group-meta", cat === "Tacos" ? t("groupTacosMeta") : t("groupDrinksMeta")));
     const grid = make("div", "grid");
     items.forEach(p => grid.append(buildProductCard(p)));
     groupEl.append(head, grid);
@@ -2291,24 +1910,25 @@ function renderProducts() {
 }
 
 function syncCardsAndBadges() {
-  document.querySelectorAll(".card").forEach(card => {
-    const id = card.dataset.id;
-    const product = productMap.get(id);
-    if (!product) return;
+  const byProd = new Map();
+  cart.forEach(r => {
+    if (!byProd.has(r.id)) byProd.set(r.id, []);
+    byProd.get(r.id).push(r);
+  });
 
-    const rows = getRowsByProduct(id);
+  document.querySelectorAll(".card").forEach(card => {
+    const id = card.dataset.id, product = productMap.get(id);
+    if (!product) return;
+    const rows = byProd.get(id) || [];
     const totalForProduct = rows.reduce((acc, r) => acc + r.quantity, 0);
 
     card.classList.toggle("in-cart", totalForProduct > 0);
     const badge = card.querySelector(".card-badge");
-    if (badge) {
-      badge.textContent = "×" + totalForProduct;
-      badge.hidden = totalForProduct === 0;
-    }
+    badge.textContent = "×" + totalForProduct;
+    badge.hidden = totalForProduct === 0;
 
     const activeOpt = selectedOpt.get(id) || null;
-    const priceEl = card.querySelector(".price-tag");
-    if (priceEl) priceEl.textContent = money(unitPriceFor(product, activeOpt));
+    card.querySelector(".price-tag").textContent = money(unitPriceFor(product, activeOpt));
 
     const addedList = card.querySelector(".added-variants");
     if (addedList) {
@@ -2316,28 +1936,23 @@ function syncCardsAndBadges() {
       addedList.hidden = rows.length === 0;
       rows.forEach(r => {
         const text = product.tipo === "combo2"
-          ? r.quantity + "× " + meatLabel(r.variants[0]) + " + " + meatLabel(r.variants[1])
-          : r.quantity + "× " + optionLabel(product, r.variants[0], true);
+          ? `${r.quantity}× ${meatLabel(r.variants[0])} + ${meatLabel(r.variants[1])}`
+          : `${r.quantity}× ${optionLabel(product, r.variants[0], true)}`;
         addedList.append(make("span", "variant-pill", text));
       });
     }
 
     if (product.tipo !== "combo2") {
-      const targetKey = (product.tipo === "select" || product.tipo === "sizes")
-        ? cartKeyFor(id, [activeOpt])
-        : cartKeyFor(id);
-      const qty = cart.get(targetKey)?.quantity || 0;
-      const addBtn = card.querySelector(".add-btn");
-      const stepRow = card.querySelector(".stepper-row");
+      const hasOpts = product.tipo === "select" || product.tipo === "sizes";
+      const qty = cart.get(cartKeyFor(id, hasOpts ? [activeOpt] : []))?.quantity || 0;
+      const addBtn = card.querySelector(".add-btn"), stepRow = card.querySelector(".stepper-row");
       addBtn.hidden = qty > 0;
       stepRow.hidden = qty === 0;
-      if (product.tipo === "select" || product.tipo === "sizes") {
-        stepRow.querySelector(".stepper-label").textContent = optionLabel(product, activeOpt, true);
-      }
+      if (hasOpts) stepRow.querySelector(".stepper-label").textContent = optionLabel(product, activeOpt, true);
       stepRow.querySelector("output").textContent = qty;
-      const btns = stepRow.querySelectorAll("button");
-      btns[0].disabled = qty === 0;
-      btns[1].disabled = qty >= 99;
+      const [minus, plus] = stepRow.querySelectorAll("button");
+      minus.disabled = qty === 0;
+      plus.disabled = qty >= 99;
     }
   });
 
@@ -2354,53 +1969,33 @@ function syncCardsAndBadges() {
       node.classList.add("pop");
     }
   });
-
   $("mobileOrderBtn").classList.toggle("has-items", totalItems > 0);
 }
 
 $("search").addEventListener("input", renderProducts);
-$("clearSearch").addEventListener("click", () => {
-  $("search").value = "";
-  renderProducts();
-  $("search").focus();
-});
+$("clearSearch").onclick = () => { $("search").value = ""; renderProducts(); $("search").focus(); };
 
-/* ================= RESEÑAS GOOGLE MAPS + CALIFICACIÓN ================= */
+/* ================= RESEÑAS GOOGLE MAPS ================= */
 function renderReviews() {
   const grid = $("reviewsGrid");
   grid.replaceChildren();
-
-  const allReviews = [...userReviews, ...RESENAS_MAPS];
-  const totalCount = CONFIG.totalResenasGoogle + userReviews.length;
   $("avgRating").textContent = CONFIG.ratingGoogle.toFixed(1);
-  $("reviewCountLabel").textContent = totalCount + " " + t("reviewsCountSuffix");
+  $("reviewCountLabel").textContent = CONFIG.totalResenasGoogle + " " + t("reviewsCountSuffix");
 
-  allReviews.forEach(item => {
-    const card = make("article", "review-item" + (item.isUser ? " is-user" : ""));
+  RESENAS_MAPS.forEach(item => {
+    const card = make("article", "review-item");
     const top = make("div", "review-top");
     const author = make("div", "review-author");
-    const initial = (item.autor || "C").trim().charAt(0).toUpperCase();
     const meta = make("div");
-    meta.append(
-      make("strong", "", item.autor || t("anonymous")),
-      make("small", "", lang === "es" ? item.fecha : (item.fechaEn || item.fecha))
-    );
-    author.append(make("span", "review-avatar", initial), meta);
-
-    const starsCount = Math.max(1, Math.min(5, Number(item.estrellas) || 5));
-    const stars = make("span", "review-stars", "★".repeat(starsCount) + "☆".repeat(5 - starsCount));
-    stars.setAttribute("aria-label", starsCount + " / 5");
-    top.append(author, stars);
-
-    const text = make("p", "review-text", lang === "es" ? item.texto : (item.textoEn || item.texto));
-    card.append(top, text);
-
+    meta.append(make("strong", "", item.autor), make("small", "", lang === "es" ? item.fecha : item.fechaEn));
+    author.append(make("span", "review-avatar", item.autor.charAt(0).toUpperCase()), meta);
+    top.append(author, make("span", "review-stars", "★".repeat(item.estrellas)));
+    card.append(top, make("p", "review-text", lang === "es" ? item.texto : item.textoEn));
     if (item.tags?.length) {
       const tagsWrap = make("div", "review-tags");
       item.tags.forEach(tg => tagsWrap.append(make("span", "review-tag", tg)));
       card.append(tagsWrap);
     }
-
     grid.append(card);
   });
 }
@@ -2417,66 +2012,36 @@ function updateStarPicker(hoverVal = null) {
 
 document.querySelectorAll(".star-btn").forEach(btn => {
   const s = Number(btn.dataset.star);
-  btn.addEventListener("mouseenter", () => updateStarPicker(s));
-  btn.addEventListener("mouseleave", () => updateStarPicker());
-  btn.addEventListener("click", () => {
-    reviewDraft.stars = s;
-    updateStarPicker();
-  });
+  btn.onmouseenter = () => updateStarPicker(s);
+  btn.onmouseleave = () => updateStarPicker();
+  btn.onclick = () => { reviewDraft.stars = s; updateStarPicker(); };
 });
 
 document.querySelectorAll("[data-rtag]").forEach(btn => {
-  btn.addEventListener("click", () => {
+  btn.onclick = () => {
     const key = btn.dataset.rtag;
-    if (reviewDraft.tags.has(key)) reviewDraft.tags.delete(key);
-    else reviewDraft.tags.add(key);
+    reviewDraft.tags.has(key) ? reviewDraft.tags.delete(key) : reviewDraft.tags.add(key);
     btn.classList.toggle("active", reviewDraft.tags.has(key));
-  });
+  };
 });
 
 $("reviewForm").addEventListener("submit", async ev => {
   ev.preventDefault();
   const comment = $("reviewComment").value.trim();
-  const author = $("reviewAuthor").value.trim() || t("anonymous");
-  const tagMap = {
-    sabor: t("rtFlavor"), salsas: t("rtSalsas"), precio: t("rtPrice"), servicio: t("rtService")
-  };
-  const chosenTags = [...reviewDraft.tags].map(k => tagMap[k]).filter(Boolean);
+  const tagMap = { sabor: t("rtFlavor"), salsas: t("rtSalsas"), precio: t("rtPrice"), servicio: t("rtService") };
+  const tagsText = [...reviewDraft.tags].map(k => tagMap[k]).filter(Boolean).join(", ");
+  const draftText = [comment, tagsText].filter(Boolean).join(" — ");
 
-  if (!comment && !chosenTags.length) {
-    showToast(t("reviewNeedComment"));
-    $("reviewComment").focus();
-    return;
-  }
-
-  const finalComment = comment || chosenTags.join(" · ");
-  userReviews.unshift({
-    autor: author,
-    fecha: t("justNow"),
-    fechaEn: "Just posted",
-    estrellas: reviewDraft.stars,
-    texto: finalComment,
-    textoEn: finalComment,
-    tags: chosenTags,
-    isUser: true
-  });
-  saveReviews();
-  renderReviews();
   spawnLimeBurst($("submitReviewBtn"));
+  const copied = draftText ? await copyToClipboard(draftText) : false;
+  showToast(copied ? t("reviewCopiedOpening") : t("reviewOpening"));
 
-  let copied = false;
-  if (comment && navigator.clipboard) {
-    try { await navigator.clipboard.writeText(comment); copied = true; } catch {}
-  }
-
-  $("rateThanksMsg").textContent = copied ? t("reviewSavedMsg") : t("reviewSavedNoCopy");
-  $("rateThanks").hidden = false;
-  $("reviewComment").value = "";
-  reviewDraft.tags.clear();
-  document.querySelectorAll("[data-rtag]").forEach(b => b.classList.remove("active"));
+  const url = mapsReviewUrl();
+  const win = window.open(url, "_blank", "noopener,noreferrer");
+  if (!win) window.location.assign(url);
 });
 
-/* ================= MODAL DE CARRITO ================= */
+/* ================= CARRITO & CHECKOUT WHATSAPP ================= */
 function renderCart() {
   const container = $("cartRows");
   container.replaceChildren();
@@ -2488,30 +2053,29 @@ function renderCart() {
     cart.forEach(row => {
       const p = productMap.get(row.id);
       if (!p) return;
-
       const box = make("div", "cart-row");
       const top = make("div", "cart-title");
       const titleCol = make("div");
       titleCol.append(make("strong", "", productTitle(p)));
 
-      if (p.tipo === "combo2" && row.variants?.length === 2) {
+      if (p.tipo === "combo2" && row.variants.length === 2) {
         titleCol.append(make("div", "cart-variant-text", meatLabel(row.variants[0]) + " + " + meatLabel(row.variants[1])));
-      } else if ((p.tipo === "select" || p.tipo === "sizes") && row.variants?.length) {
+      } else if (row.variants.length) {
         titleCol.append(make("div", "cart-variant-text", optionLabel(p, row.variants[0], p.tipo === "sizes")));
       }
 
-      const unit = unitPriceFor(p, row.variants?.[0] || null);
+      const unit = unitPriceFor(p, row.variants[0]);
       top.append(titleCol, make("span", "", money(unit * row.quantity) + " MXN"));
 
       const bottom = make("div", "cart-bottom");
-      const stepper = buildStepper(
-        btn => changeItem(row.id, -1, row.variants, btn),
-        btn => changeItem(row.id, 1, row.variants, btn),
-        row.quantity,
-        rowDisplayName(row)
+      bottom.append(
+        make("span", "cart-sub", money(unit) + " c/u"),
+        buildStepper(
+          btn => changeItem(row.id, -1, row.variants, btn),
+          btn => changeItem(row.id, 1, row.variants, btn),
+          row.quantity, rowDisplayName(row)
+        )
       );
-
-      bottom.append(make("span", "cart-sub", money(unit) + " c/u"), stepper);
       box.append(top, bottom);
       container.append(box);
     });
@@ -2522,238 +2086,157 @@ function renderCart() {
   $("subtotal").textContent = totals.text;
   $("total").textContent = totals.text;
   $("continueOrder").disabled = !cart.size;
-  $("priceConfirmHint").textContent = t("confirmReady");
   $("foodPrepBlock").hidden = !totals.hasFood;
-
   if (!cart.size) setStep(1);
 }
 
 function setStep(step) {
-  const isStep1 = step === 1;
-  $("step1Body").hidden = !isStep1;
-  $("step1Foot").hidden = !isStep1;
-  $("orderForm").hidden = isStep1;
-  $("step2Foot").hidden = isStep1;
-  $("pillStep1").classList.toggle("active", isStep1);
-  $("pillStep2").classList.toggle("active", !isStep1);
-  if (!isStep1) updatePreview();
+  const s1 = step === 1;
+  $("step1Body").hidden = $("step1Foot").hidden = !s1;
+  $("orderForm").hidden = $("step2Foot").hidden = s1;
+  $("pillStep1").classList.toggle("active", s1);
+  $("pillStep2").classList.toggle("active", !s1);
+  if (!s1) updatePreview();
 }
 
-document.querySelectorAll("[data-order]").forEach(btn =>
-  btn.addEventListener("click", () => {
-    setStep(1);
-    renderCart();
-    openDialog($("orderDialog"));
-    $("closeOrder").focus();
-  })
-);
-
-$("continueOrder").onclick = () => { if (!cart.size) return; setStep(2); $("customer").focus(); };
+document.querySelectorAll("[data-order]").forEach(btn => btn.onclick = () => {
+  setStep(1); renderCart(); openDialog($("orderDialog")); $("closeOrder").focus();
+});
+$("continueOrder").onclick = () => { if (cart.size) { setStep(2); $("customer").focus(); } };
 $("back").onclick = () => setStep(1);
 $("more").onclick = () => { $("orderDialog").close(); showView("menu"); };
-$("clearCartBtn").onclick = () => {
-  cart.clear();
-  orderId = "";
-  saveState();
-  syncCardsAndBadges();
-  renderCart();
-  showToast(t("cartCleared"));
-};
+$("clearCartBtn").onclick = () => { cart.clear(); orderId = ""; saveState(); syncCardsAndBadges(); renderCart(); showToast(t("cartCleared")); };
 
-/* ================= OPCIONES DEL FORMULARIO ================= */
-document.querySelectorAll("[data-veggie]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    orderState.veggie = btn.dataset.veggie;
-    document.querySelectorAll("[data-veggie]").forEach(b => b.classList.toggle("active", b === btn));
-    updatePreview();
-  });
+document.querySelectorAll("[data-veggie]").forEach(btn => btn.onclick = () => {
+  orderState.veggie = btn.dataset.veggie;
+  document.querySelectorAll("[data-veggie]").forEach(b => b.classList.toggle("active", b === btn));
+  updatePreview();
+});
+document.querySelectorAll("[data-extra]").forEach(btn => btn.onclick = () => {
+  const v = btn.dataset.extra;
+  orderState.extras.has(v) ? orderState.extras.delete(v) : orderState.extras.add(v);
+  btn.classList.toggle("active", orderState.extras.has(v));
+  updatePreview();
+});
+document.querySelectorAll("[data-pay]").forEach(btn => btn.onclick = () => {
+  orderState.payment = btn.dataset.pay;
+  document.querySelectorAll("[data-pay]").forEach(b => b.classList.toggle("active", b === btn));
+  $("cashChangeField").hidden = orderState.payment !== "efectivo";
+  updatePreview();
 });
 
-document.querySelectorAll("[data-extra]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const val = btn.dataset.extra;
-    if (orderState.extras.has(val)) orderState.extras.delete(val);
-    else orderState.extras.add(val);
-    btn.classList.toggle("active", orderState.extras.has(val));
-    updatePreview();
-  });
-});
-
-document.querySelectorAll("[data-pay]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    orderState.payment = btn.dataset.pay;
-    document.querySelectorAll("[data-pay]").forEach(b => b.classList.toggle("active", b === btn));
-    $("cashChangeField").hidden = orderState.payment !== "efectivo";
-    updatePreview();
-  });
-});
-
-$("gpsBtn").addEventListener("click", () => {
+$("gpsBtn").onclick = () => {
   if (orderState.gpsUrl) {
     orderState.gpsUrl = "";
     $("gpsBtn").classList.remove("attached");
     $("gpsBtnText").textContent = t("gpsAdd");
-    updatePreview();
-    return;
+    return updatePreview();
   }
-  if (!navigator.geolocation) { showToast(t("gpsError")); return; }
+  if (!navigator.geolocation) return showToast(t("gpsError"));
   $("gpsBtn").disabled = true;
   $("gpsBtnText").textContent = t("gpsLoading");
   navigator.geolocation.getCurrentPosition(
     pos => {
-      const lat = pos.coords.latitude.toFixed(6);
-      const lng = pos.coords.longitude.toFixed(6);
-      orderState.gpsUrl = "https://maps.google.com/?q=" + lat + "," + lng;
+      orderState.gpsUrl = `https://maps.google.com/?q=${pos.coords.latitude.toFixed(6)},${pos.coords.longitude.toFixed(6)}`;
       $("gpsBtn").disabled = false;
       $("gpsBtn").classList.add("attached");
       $("gpsBtnText").textContent = t("gpsAttached");
       updatePreview();
     },
-    () => {
-      $("gpsBtn").disabled = false;
-      $("gpsBtnText").textContent = t("gpsAdd");
-      showToast(t("gpsError"));
-    },
+    () => { $("gpsBtn").disabled = false; $("gpsBtnText").textContent = t("gpsAdd"); showToast(t("gpsError")); },
     { enableHighAccuracy: true, timeout: 10000 }
   );
-});
+};
 
 ["customer", "address", "refs", "cashAmount", "notes"].forEach(id => {
   $(id).addEventListener("input", () => { saveState(); updatePreview(); });
-  $(id).addEventListener("change", () => { saveState(); updatePreview(); });
 });
 
-/* ================= MENSAJE DE WHATSAPP ================= */
 function buildWhatsAppMessage() {
   const isEs = lang === "es";
   const nowStr = new Intl.DateTimeFormat(isEs ? "es-MX" : "en-US", {
     day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit"
   }).format(new Date());
 
-  const veggieLabels = {
-    con_todo: t("vAll"), sin_cebolla: t("vNoOnion"), sin_cilantro: t("vNoCilantro"), sin_verdura: t("vPlain")
-  };
-  const extraLabels = {
-    salsa_verde: t("eGreen"), salsa_roja: t("eRed"), limones: t("eLimes"), aparte: t("eSide")
-  };
-  const payLabels = {
-    efectivo: isEs ? "Efectivo" : "Cash",
-    transferencia: isEs ? "Transferencia" : "Bank transfer"
-  };
-
+  const veggieMap = { con_todo: t("vAll"), sin_cebolla: t("vNoOnion"), sin_cilantro: t("vNoCilantro"), sin_verdura: t("vPlain") };
+  const extraMap = { salsa_verde: t("eGreen"), salsa_roja: t("eRed"), limones: t("eLimes"), aparte: t("eSide") };
+  const payLabel = orderState.payment === "transferencia" ? t("payTransfer") : t("payCash");
   const totals = calcTotals();
+
   const lines = [
-    "*" + (isEs ? "PEDIDO A DOMICILIO" : "DELIVERY ORDER") + " · " + CONFIG.nombre.toUpperCase() + "*",
-    "Folio: *" + (orderId || "EM-001") + "* · " + nowStr,
+    `*${isEs ? "PEDIDO A DOMICILIO" : "DELIVERY ORDER"} · ${CONFIG.nombre.toUpperCase()}*`,
+    `Folio: *${orderId || "EM-001"}* · ${nowStr}`,
     "",
-    "*" + (isEs ? "Detalle del pedido:" : "Order details:") + "*"
+    `*${isEs ? "Detalle del pedido:" : "Order details:"}*`
   ];
 
   cart.forEach(row => {
     const p = productMap.get(row.id);
-    if (!p) return;
-    const unit = unitPriceFor(p, row.variants?.[0] || null);
-    lines.push("- " + row.quantity + " × " + rowDisplayName(row) + " — " + money(unit * row.quantity) + " MXN");
+    if (p) lines.push(`- ${row.quantity} × ${rowDisplayName(row)} — ${money(unitPriceFor(p, row.variants[0]) * row.quantity)} MXN`);
   });
 
   lines.push(
     "",
-    "*" + t("total") + ":* " + totals.text,
+    `*${t("total")}:* ${totals.text}`,
     "--------------------",
-    "*" + (isEs ? "Entrega" : "Delivery") + ":* " + (isEs ? "Para llevar a domicilio" : "Home delivery")
+    `*${isEs ? "Entrega" : "Delivery"}:* ${isEs ? "Para llevar a domicilio" : "Home delivery"}`
   );
 
-  const customer = $("customer").value.trim();
-  const addr = $("address").value.trim();
-  const refs = $("refs").value.trim();
-
-  if (customer) lines.push("*" + (isEs ? "Cliente" : "Customer") + ":* " + customer);
-  if (addr) lines.push("*" + (isEs ? "Dirección" : "Address") + ":* " + addr);
-  if (refs) lines.push("*" + (isEs ? "Referencias" : "Landmarks") + ":* " + refs);
-  if (orderState.gpsUrl) lines.push("*GPS:* " + orderState.gpsUrl);
+  const customer = $("customer").value.trim(), addr = $("address").value.trim(), refs = $("refs").value.trim();
+  if (customer) lines.push(`*${isEs ? "Cliente" : "Customer"}:* ${customer}`);
+  if (addr) lines.push(`*${isEs ? "Dirección" : "Address"}:* ${addr}`);
+  if (refs) lines.push(`*${isEs ? "Referencias" : "Landmarks"}:* ${refs}`);
+  if (orderState.gpsUrl) lines.push(`*GPS:* ${orderState.gpsUrl}`);
 
   if (totals.hasFood) {
-    const chosenExtras = [...orderState.extras].map(k => extraLabels[k]).filter(Boolean);
-    lines.push("*" + (isEs ? "Preparación" : "Preparation") + ":* " + veggieLabels[orderState.veggie]);
-    if (chosenExtras.length) {
-      lines.push("*" + (isEs ? "Acompañamientos" : "Sides") + ":* " + chosenExtras.join(", "));
-    }
+    const sides = [...orderState.extras].map(k => extraMap[k]).filter(Boolean);
+    lines.push(`*${isEs ? "Preparación" : "Preparation"}:* ${veggieMap[orderState.veggie]}`);
+    if (sides.length) lines.push(`*${isEs ? "Acompañamientos" : "Sides"}:* ${sides.join(", ")}`);
   }
 
-  let payLine = payLabels[orderState.payment] || payLabels.efectivo;
   const cashAmt = $("cashAmount").value.trim();
-  if (orderState.payment === "efectivo" && cashAmt) {
-    payLine += " (" + (isEs ? "Paga con: " : "Paying with: ") + cashAmt + ")";
-  }
-  lines.push("*" + (isEs ? "Pago" : "Payment") + ":* " + payLine);
+  const payText = orderState.payment === "efectivo" && cashAmt
+    ? `${payLabel} (${isEs ? "Paga con: " : "Paying with: "}${cashAmt})`
+    : payLabel;
+  lines.push(`*${isEs ? "Pago" : "Payment"}:* ${payText}`);
 
   const notes = $("notes").value.trim();
-  if (notes) lines.push("*" + (isEs ? "Notas" : "Notes") + ":* " + notes);
-
+  if (notes) lines.push(`*${isEs ? "Notas" : "Notes"}:* ${notes}`);
   return lines.join("\n");
 }
 
-function updatePreview() {
-  $("orderPreview").textContent = buildWhatsAppMessage();
-}
+function updatePreview() { $("orderPreview").textContent = buildWhatsAppMessage(); }
 
-function validateCheckout() {
-  if (!cart.size) { setStep(1); return false; }
-  if (!$("customer").value.trim()) { showToast(t("needName")); $("customer").focus(); return false; }
-  if (!$("address").value.trim()) { showToast(t("needAddress")); $("address").focus(); return false; }
-  return true;
-}
-
-$("sendWhatsAppBtn").addEventListener("click", () => {
-  if (!validateCheckout()) return;
+$("sendWhatsAppBtn").onclick = () => {
+  if (!cart.size) return setStep(1);
+  if (!$("customer").value.trim()) { showToast(t("needName")); return $("customer").focus(); }
+  if (!$("address").value.trim()) { showToast(t("needAddress")); return $("address").focus(); }
   const url = waUrl(buildWhatsAppMessage());
   const win = window.open(url, "_blank", "noopener,noreferrer");
   if (!win) window.location.assign(url);
-});
+};
 
-$("copyOrderBtn").addEventListener("click", async () => {
-  if (!cart.size) return;
-  const text = buildWhatsAppMessage();
-  try {
-    await navigator.clipboard.writeText(text);
-    showToast(t("copied"));
-  } catch {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    document.body.append(ta);
-    ta.select();
-    document.execCommand("copy");
-    ta.remove();
-    showToast(t("copied"));
-  }
-});
+$("copyOrderBtn").onclick = async () => {
+  if (cart.size && await copyToClipboard(buildWhatsAppMessage())) showToast(t("copied"));
+};
 
-/* ================= IDIOMA Y ARRANQUE ================= */
+/* ================= IDIOMA & ARRANQUE ================= */
 function applyLanguage() {
   document.documentElement.lang = lang;
   document.title = CONFIG.nombre + " | " + t("menu");
-  document.querySelectorAll("[data-t]").forEach(node => {
-    const key = node.dataset.t;
-    if (TEXT[lang][key] !== undefined) node.textContent = TEXT[lang][key];
-  });
+  document.querySelectorAll("[data-t]").forEach(n => { if (TEXT[lang][n.dataset.t] !== undefined) n.textContent = TEXT[lang][n.dataset.t]; });
 
   $("language").textContent = lang === "es" ? "EN" : "ES";
-  $("language").setAttribute("aria-label", lang === "es" ? "Switch to English" : "Cambiar a español");
   $("visitSchedule").textContent = lang === "es" ? CONFIG.horario : CONFIG.horarioEn;
-
   $("search").placeholder = t("search");
   $("customer").placeholder = t("namePlaceholder");
   $("address").placeholder = t("addressPlaceholder");
   $("refs").placeholder = t("refsPlaceholder");
   $("cashAmount").placeholder = t("changePlaceholder");
   $("notes").placeholder = t("notesPlaceholder");
-  $("reviewAuthor").placeholder = t("reviewNamePlaceholder");
   $("reviewComment").placeholder = t("reviewCommentPlaceholder");
   $("gpsBtnText").textContent = orderState.gpsUrl ? t("gpsAttached") : t("gpsAdd");
-
-  $("floatingWA").href = waUrl(t("hello"));
-  $("floatingWA").setAttribute("aria-label", t("chat"));
-  $("visitWA").href = waUrl(t("hello"));
+  $("floatingWA").href = $("visitWA").href = waUrl(t("hello"));
 
   updateOpenStatus();
   updateStarPicker();
@@ -2765,41 +2248,25 @@ function applyLanguage() {
   updatePreview();
 }
 
-$("language").addEventListener("click", () => {
-  lang = lang === "es" ? "en" : "es";
-  applyLanguage();
-});
+$("language").onclick = () => { lang = lang === "es" ? "en" : "es"; applyLanguage(); };
 
-window.addEventListener("scroll", () => {
-  $("scrollTopBtn").hidden = window.scrollY < 320;
-}, { passive: true });
-$("scrollTopBtn").addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-});
+window.addEventListener("scroll", () => { $("scrollTopBtn").hidden = window.scrollY < 320; }, { passive: true });
+$("scrollTopBtn").onclick = () => window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 
 $("visitAddress").textContent = CONFIG.direccion;
 $("visitPhone").textContent = CONFIG.telefonoVisible;
 $("visitMapsBtn").href = CONFIG.maps;
-$("rateOnMapsBtn").href = CONFIG.maps;
-$("rateThanksLink").href = CONFIG.maps;
 $("visitCall").href = "tel:" + CONFIG.whatsapp.replace(/^52/, "");
 
-/* Carga de portada desde imagenes/tacos.jpg con respaldo a GitHub Raw */
-if (CONFIG.portada) {
-  const heroPhoto = $("heroPhoto");
-  let triedFallback = false;
-  heroPhoto.onload = () => { heroPhoto.hidden = false; $("hero").classList.add("has-photo"); };
-  heroPhoto.onerror = () => {
-    if (!triedFallback && CONFIG.portadaFallback) {
-      triedFallback = true;
-      heroPhoto.src = CONFIG.portadaFallback;
-      return;
-    }
-    heroPhoto.hidden = true;
-    $("hero").classList.remove("has-photo");
-  };
-  heroPhoto.src = CONFIG.portada;
-}
+/* Portada desde imagenes/tacos.jpg con respaldo a GitHub Raw */
+const heroPhoto = $("heroPhoto");
+let triedFallback = false;
+heroPhoto.onload = () => { heroPhoto.hidden = false; $("hero").classList.add("has-photo"); };
+heroPhoto.onerror = () => {
+  if (!triedFallback && CONFIG.portadaFallback) { triedFallback = true; heroPhoto.src = CONFIG.portadaFallback; return; }
+  heroPhoto.hidden = true; $("hero").classList.remove("has-photo");
+};
+heroPhoto.src = CONFIG.portada;
 
 window.addEventListener("hashchange", () => showView(location.hash === "#visitanos" ? "visit" : "menu", false));
 
